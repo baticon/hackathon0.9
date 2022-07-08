@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid gray;
+}
+
+.subContainer {
+  display: flex;
+  flex-direction: column;
+  flex-flow: column wrap;
+  margin-left: 5%;
+  margin-right: 5%;
+}
