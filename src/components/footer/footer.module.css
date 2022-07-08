@@ -2,6 +2,8 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 3px solid gray;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .subContainer {
@@ -10,4 +12,38 @@
   flex-flow: column wrap;
   margin-left: 5%;
   margin-right: 5%;
+}
+
+.blackFooterText {
+  font-family: Roboto;
+  font-size: 100%;
+  color: black;
+}
+
+.grayFooterText {
+  font-family: Roboto;
+  font-size: 80%;
+  color: gray;
+}
+
+@media (max-width: 414px) {
+  .subContainer {
+    display: flex;
+    flex-direction: column;
+    flex-flow: column wrap;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  .blackFooterText {
+    font-family: Roboto;
+    font-size: 50%;
+    color: black;
+  }
+
+  .grayFooterText {
+    font-family: Roboto;
+    font-size: 30%;
+    color: gray;
+  }
 }

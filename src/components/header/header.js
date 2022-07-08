@@ -1,4 +1,4 @@
-import logo from "../media/logo.jpg";
+import logo from "../media/jusan_logo.png";
 import style from "./header.module.css";
 
 const header = () => {
@@ -7,9 +7,9 @@ const header = () => {
       <a href="https://jusan.kz/">
         <img src={logo} className={style.logo}></img>
       </a>
-      <a style={{ fontSize: "100%", color: "#EA4335" }}>JUSAN HR</a>
-      <a style={{ fontSize: "100%" }}>Политика конфиденциальности</a>
-      <a style={{ fontSize: "100%" }}>Узнать про наем в Жусан</a>
+      <a className={style.jusan}>Модуль JUSAN HR</a>
+      <a className={style.text}>Политика конфиденциальности</a>
+      <a className={style.text}>Узнать про наем в Жусан</a>
     </div>
   );
 };

@@ -7,6 +7,26 @@
 
 .subContainer {
   display: flex;
+  align-items: center;
   flex-direction: column;
   flex-flow: column wrap;
+}
+
+.minifooter {
+  font-size: 80%;
+  color: black;
+}
+
+@media (max-width: 414px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1%;
+    margin-right: 0;
+  }
+
+  .minifooter {
+    font-size: 60%;
+    color: black;
+  }
 }
