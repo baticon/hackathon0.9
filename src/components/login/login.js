@@ -8,13 +8,13 @@ const login = () => {
   return (
     <div>
       <Header></Header>
-      <div className={style.imageContainer}>
+      {/* <div className={style.imageContainer}>
         <img
           src={HeaderImg}
           alt="header image"
           style={{ width: "100%", height: "100%" }}
         />
-      </div>
+      </div> */}
       <div className={style.container}>
         <form className={style.loginForm}>
           <div className={style.loginContainer}>

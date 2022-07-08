@@ -7,9 +7,9 @@ const header = () => {
       <a href="https://jusan.kz/">
         <img src={logo} className={style.logo}></img>
       </a>
-      <a className={style.jusan}>Модуль JUSAN HR</a>
+      <a className={style.jusan}>Модуль JUSAN Hire</a>
       <a className={style.text}>Политика конфиденциальности</a>
-      <a className={style.text}>Узнать про наем в Жусан</a>
+      <a className={style.text}>Вакансии в Jusan</a>
     </div>
   );
 };

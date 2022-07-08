@@ -43,16 +43,18 @@
 .spanHeader {
   margin-top: 10%;
   margin-bottom: 10px;
-  font-size: 150%;
-  font-family: Roboto;
+  font-size: 2rem;
+  font-family: Arial, Helvetica, serif;
   font-weight: normal;
-  color: rgb(51, 51, 51);
+  color: #00008b;
 }
 
 .spanSubHeader {
   margin-bottom: 5%;
   font-size: 100%;
   margin-top: 5%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #00008b;
 }
 
 .formInput {
@@ -92,6 +94,12 @@
   padding: 3%;
   background-color: #ea4335;
   color: white;
+  transition: 0.7s;
+}
+
+.button:hover {
+  background-color: #002ead;
+  transition: 0.7s;
 }
 
 .forgotten {
