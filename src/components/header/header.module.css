@@ -28,11 +28,19 @@
   /* height: 1rem; */
 }
 
+.menu {
+  font-size: 150%;
+  font-family: Arial, Helvetica, serif;
+  text-decoration: none;
+  color: #ea4335;
+  text-align: left;
+  list-style-type: none;
+}
+
 @media (max-width: 414px) {
   .container {
     display: flex;
-    /* width: 70%; */
-    width: 85%;
+    width: 95%;
     text-align: center;
     justify-content: space-between;
     align-items: center;
@@ -57,5 +65,14 @@
   .logo {
     width: 5rem;
     /* height: 1rem; */
+  }
+
+  .menu {
+    font-size: 70%;
+    font-family: Arial, Helvetica, serif;
+    text-decoration: none;
+    color: #ea4335;
+    text-align: right;
+    list-style-type: none;
   }
 }

@@ -1,15 +1,42 @@
 import Header from "../header/header";
 import Footer from "../footer/footer";
-import HeaderImg from "../media/header.jpg";
-import checkIcon from "../media/check.png";
 import style from "./login.module.css";
+import loginFetch from "../services/login";
 
-const login = () => {
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
+const Login = () => {
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const onSubmit = async (info) => {
+    try {
+      const response = await loginFetch(info);
+      const resJson = await response.json();
+      sessionStorage.setItem("Token", resJson.body.accessToken);
+      if (response.status === 401 || response.status === 400) {
+        throw new Error(response.error);
+      }
+      navigate("/admin");
+      console.log(info);
+    } catch (error) {
+      alert(error);
+    }
+    reset();
+  };
+
   return (
     <div>
       <Header />
       <div className={style.container}>
-        <form className={style.loginForm}>
+        <form className={style.loginForm} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.loginContainer}>
             <span className={style.spanHeader}>Введите учётные данные</span>
             <span className={style.spanSubHeader}>
@@ -22,16 +49,36 @@ const login = () => {
               className={style.inputField}
               placeholder="Логин"
               pattern="^(?=.{3,15}$)(?=.*[a-zA-Z])([a-zA-Z\d-]+)$"
-              title="Логин — от 3 до 15 символов, только латиница. Без пробелов, без спецсимволов, кроме нижнего подчеркивания и дефиса. Может содержать числа, но не полностью состоять из них."
+              title={errors.username && errors.username.message}
+              {...register("username", {
+                required: "Поле обязательно для заполнения",
+                pattern: {
+                  value: /^(?=.{3,15}$)(?=.*[a-zA-Z])([a-zA-Z\d-]+)$/i,
+                  message:
+                    "Логин — от 3 до 15 символов, только латиница. Без пробелов, без спецсимволов, кроме нижнего подчеркивания и дефиса. Может содержать числа, но не полностью состоять из них.",
+                },
+              })}
             />
+
             <input
               type="password"
               className={style.inputField}
               placeholder="Пароль"
               pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}"
-              title="Пароль — от 8 до 30 символов, обязательно хотя бы один спецсимвол и цифра."
+              title={errors.password && errors.password.message}
+              {...register("password", {
+                required: "Поле обязательно для заполнения",
+                pattern: {
+                  value:
+                    /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$/i,
+                  message:
+                    "Пароль — от 8 до 30 символов, обязательно хотя бы один спецсимвол и цифра.",
+                },
+              })}
             />
-            <button className={style.button}>Enter</button>
+            <button className={style.button} type="submit">
+              Войти
+            </button>
             <a className={style.forgotten} href="/registration">
               Забыли пароль?
             </a>
@@ -44,4 +91,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
