@@ -108,55 +108,22 @@
 }
 
 @media (max-width: 414px) {
-  .loginForm {
-    margin: auto;
+  .imageContainer {
+  }
+
+  .container {
+    /* border: 3px solid red; */
     width: 100%;
     height: 100%;
+    background-image: url("../media/loginBackground.jpg");
   }
 
-  .loginContainer {
-    width: 80%;
-  }
-
-  .spanHeader {
-    margin: auto;
-    font-size: 100%;
-  }
-
-  .spanSubHeader {
-    font-size: 80%;
-  }
-
-  .formInput {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  .loginForm {
+    margin-left: 0%;
     width: 100%;
-    /* padding-left: 10%; */
-  }
+    height: 100%;
 
-  .label {
-    margin-top: 5%;
-  }
-
-  .inputField {
-    width: 80%;
-  }
-
-  .button {
-    font-size: 80%;
-    margin-top: 5%;
-    width: 15%;
-    height: 15%;
-    padding-top: 0;
-    margin-top: 5%;
+    margin-top: 3%;
     margin-bottom: 5%;
-    border-radius: 10px;
-    background-color: #ea4335;
-    color: white;
-  }
-
-  .forgotten {
-    font-size: 70%;
   }
 }
