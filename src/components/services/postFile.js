@@ -16,7 +16,6 @@ function FileUpload() {
     formData.append("file", selectedFile);
     try {
       const data = await fetch(
-        //   "https://freeimage.host/api/1/upload?key=6d207e02198a847aa98d0a2a901485a5",
         `http://164.92.192.48:9095/upload/file/database?name=${selectedFile.name}`,
         {
           method: "POST",
