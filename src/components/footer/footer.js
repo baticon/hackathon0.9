@@ -1,4 +1,3 @@
-import MiniFooter from "./miniFooter";
 import style from "./footer.module.css";
 
 const footer = () => {
@@ -25,7 +24,14 @@ const footer = () => {
           <span className={style.grayFooterText}>08:00 - 22:00</span>
         </div>
       </div>
-      <MiniFooter></MiniFooter>
+      <div className={style.copyrightContainer}>
+        <div className={style.copyrightSubContainer}>
+          <span className={style.copyrightText}>
+            © 2022 - Jusan Singularity Hackathon - HR project
+          </span>
+        </div>
+      </div>
+      {/* <MiniFooter></MiniFooter> */}
     </div>
   );
 };

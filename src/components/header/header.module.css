@@ -35,6 +35,22 @@
   color: #ea4335;
   text-align: left;
   list-style-type: none;
+  border: none;
+  background: none;
+}
+
+.exitButton {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  font-size: 150%;
+  font-family: Arial, Helvetica, serif;
+  color: #ea4335;
+}
+
+.exitIcon {
+  width: 5%;
 }
 
 @media (max-width: 414px) {
@@ -74,5 +90,16 @@
     color: #ea4335;
     text-align: right;
     list-style-type: none;
+    width: 100%;
+  }
+
+  .exitButton {
+    width: 100%;
+    text-align: right;
+    font-size: 70%;
+  }
+
+  .exitIcon {
+    width: 3.5%;
   }
 }

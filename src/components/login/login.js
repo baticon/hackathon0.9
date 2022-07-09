@@ -49,7 +49,7 @@ const Login = () => {
               className={style.inputField}
               placeholder="Логин"
               pattern="^(?=.{3,15}$)(?=.*[a-zA-Z])([a-zA-Z\d-]+)$"
-              title={errors.username && errors.username.message}
+              title="Логин — от 3 до 15 символов, только латиница. Без пробелов, без спецсимволов, кроме нижнего подчеркивания и дефиса. Может содержать числа, но не полностью состоять из них."
               {...register("username", {
                 required: "Поле обязательно для заполнения",
                 pattern: {
@@ -65,7 +65,8 @@ const Login = () => {
               className={style.inputField}
               placeholder="Пароль"
               pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}"
-              title={errors.password && errors.password.message}
+              title="Пароль — от 8 до 30 символов, обязательно хотя бы один спецсимвол и цифра."
+              // title={errors.password && errors.password.message}
               {...register("password", {
                 required: "Поле обязательно для заполнения",
                 pattern: {

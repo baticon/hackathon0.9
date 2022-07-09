@@ -34,6 +34,25 @@
   color: gray;
 }
 
+.copyrightContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.copyrightSubContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-flow: column wrap;
+}
+
+.copyrightText {
+  font-size: 80%;
+  color: black;
+}
+
 @media (max-width: 414px) {
   .subContainer {
     display: flex;
@@ -53,5 +72,17 @@
     font-family: Roboto;
     font-size: 30%;
     color: gray;
+  }
+
+  .copyrightContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1%;
+    margin-right: 0;
+  }
+
+  .copyrightText {
+    font-size: 60%;
+    color: black;
   }
 }
