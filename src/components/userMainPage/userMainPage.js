@@ -1,33 +1,12 @@
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import InputFile from "./inputFile";
-// import PostFile from "../services/postFile";
+import postFile from "../services/postFile";
 import question from "../media/question.png";
 import style from "./userMainPage.module.css";
 import { useState } from "react";
 
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
-
-// const files = {
-//   id: {
-//     file: null,
-//   },
-//   diploma: {
-//     file: null,
-//   },
-//   experience: {
-//     file: null,
-//   },
-//   medical: {
-//     file: null,
-//   },
-//   military: {
-//     file: null,
-//   },
-//   photo: {
-//     file: null,
-//   },
-// };
 
 const stringid = "id";
 const stringdiploma = "diploma";
@@ -63,12 +42,14 @@ const UserMainPage = () => {
       <div className={style.container}>
         <form className={style.formContainer}>
           <div className={style.uploadContainer}>
-            <span style={{ fontSize: "160%", marginTop: "2%" }}>
+            <span className={style.formheader}>
               Пожалуйста приложите следующие документы
             </span>
             <div className={style.fileUploadContainer}>
               <div className={style.documentType}>
-                <span>1. Вид на жительство или удостоверение</span>
+                <span className={style.documentTypeText}>
+                  1. Вид на жительство или удостоверение
+                </span>
                 <img
                   src={question}
                   alt=""
@@ -83,7 +64,9 @@ const UserMainPage = () => {
             </div>
             <div className={style.fileUploadContainer}>
               <div className={style.documentType}>
-                <span>2. Документ об образовании</span>
+                <span className={style.documentTypeText}>
+                  2. Документ об образовании
+                </span>
                 <img
                   src={question}
                   alt=""
@@ -95,7 +78,9 @@ const UserMainPage = () => {
             </div>
             <div className={style.fileUploadContainer}>
               <div className={style.documentType}>
-                <span>3. Документ, подтверждающий трудовую деятельность</span>
+                <span className={style.documentTypeText}>
+                  3. Документ, подтверждающий трудовую деятельность
+                </span>
                 <img
                   src={question}
                   alt=""
@@ -107,7 +92,9 @@ const UserMainPage = () => {
             </div>
             <div className={style.fileUploadContainer}>
               <div className={style.documentType}>
-                <span>4. Медицинская справка</span>
+                <span className={style.documentTypeText}>
+                  4. Медицинская справка
+                </span>
                 <img
                   src={question}
                   alt=""
@@ -119,7 +106,7 @@ const UserMainPage = () => {
             </div>
             <div className={style.fileUploadContainer}>
               <div className={style.documentType}>
-                <span>5. Военный билет</span>
+                <span className={style.documentTypeText}>5. Военный билет</span>
                 <img
                   src={question}
                   alt=""
@@ -131,16 +118,22 @@ const UserMainPage = () => {
             </div>
             <div className={style.fileUploadContainer}>
               <div className={style.documentType}>
-                <span>6. Фото</span>
+                <span className={style.documentTypeText}>6. Фото</span>
                 <img
                   src={question}
                   alt=""
                   className={style.hint}
-                  title="Фото 3*4 (1 шт) + электронное в формате Jpeg для оформления служебного пропуска"
+                  title="Фото 3*4 в формате Jpeg для оформления служебного пропуска"
                 ></img>
               </div>
               {InputFile(files, setFiles, stringphoto)}
             </div>
+            <button
+              className={style.submitButton}
+              onClick={() => postFile(files)}
+            >
+              Отправить
+            </button>
           </div>
         </form>
       </div>

@@ -12,10 +12,19 @@
   background-color: #f7f7f7;
 }
 
+.formHeader {
+  font-size: 160%;
+  margin-top: 2%;
+}
+
 .documentType {
   margin-top: 10%;
   display: flex;
   justify-content: space-between;
+}
+
+.documentTypeText {
+  font-size: 100%;
 }
 
 .hint {
@@ -80,4 +89,58 @@
 .submitButton:hover {
   background-color: #002ead;
   transition: 0.7s;
+}
+
+@media (max-width: 414px) {
+  .uploadContainer {
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  .formHeader {
+    font-size: 100%;
+  }
+
+  .hint {
+    height: 5%;
+    width: 5%;
+  }
+
+  .hint:hover {
+    background-color: #002ead;
+    border-radius: 60%;
+  }
+
+  .documentTypeText {
+    font-size: 90%;
+  }
+
+  .fileUploadContainer {
+    text-align: left;
+    width: 90%;
+  }
+
+  .fileInput {
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .paragraph {
+    font-size: 60%;
+  }
+
+  .submitButton {
+    font-size: 80%;
+    width: 80%;
+  }
+
+  .submitButton:hover {
+    background-color: #002ead;
+    transition: 0.7s;
+  }
 }

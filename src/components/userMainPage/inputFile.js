@@ -9,62 +9,32 @@ function InputFile(files, setFiles, identifier) {
     console.log(files);
     setSelectedFile(event.target.files[0]);
     if (identifier === "id") {
-      const newFile = {
-        ...files,
-        id: {
-          file: event.target.files[0],
-        },
-      };
+      const newFile = { ...files, id: { file: event.target.files[0] } };
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "diploma") {
-      const newFile = {
-        ...files,
-        diploma: {
-          file: event.target.files[0],
-        },
-      };
+      const newFile = { ...files, diploma: { file: event.target.files[0] } };
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "experience") {
-      const newFile = {
-        ...files,
-        experience: {
-          file: event.target.files[0],
-        },
-      };
+      const newFile = { ...files, experience: { file: event.target.files[0] } };
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "medical") {
-      const newFile = {
-        ...files,
-        medical: {
-          file: event.target.files[0],
-        },
-      };
+      const newFile = { ...files, medical: { file: event.target.files[0] } };
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "military") {
-      const newFile = {
-        ...files,
-        military: {
-          file: event.target.files[0],
-        },
-      };
+      const newFile = { ...files, military: { file: event.target.files[0] } };
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "photo") {
-      const newFile = {
-        ...files,
-        photo: {
-          file: event.target.files[0],
-        },
-      };
+      const newFile = { ...files, photo: { file: event.target.files[0] } };
       setFiles(newFile);
       console.log(files);
     }
@@ -80,7 +50,7 @@ function InputFile(files, setFiles, identifier) {
         name="file"
         onChange={changeHandler}
       />
-      {isFilePicked ? (
+      {isFilePicked && selectedFile !== undefined ? (
         <div>
           <p className={style.paragraph}>
             Наименование файла: {selectedFile.name}

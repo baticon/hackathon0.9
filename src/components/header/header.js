@@ -13,10 +13,10 @@ const Header = () => {
           className={style.exitButton}
           onClick={() => {
             console.log("Exit condition");
-            setBool(false);
+            setBool(false); //placeholder for sessionstorage
           }}
         >
-          <img src={exitIcon} className={style.exitIcon}></img>
+          <img src={exitIcon} className={style.exitIcon} alt=""></img>
           Выход
         </button>
       );
@@ -26,21 +26,21 @@ const Header = () => {
 
   return (
     <div className={style.container}>
-      <a className={style.jusan}>Модуль JUSAN Hire</a>
+      <a className={style.jusan} href="https://jusan.kz/">
+        Модуль JUSAN Hire
+      </a>
       <a href="https://jusan.kz/">
-        <img src={logo} className={style.logo}></img>
+        <img src={logo} className={style.logo} alt=""></img>
       </a>
       <ol>
-        <a className={style.menu} href="#">
+        <a className={style.menu} href="https://jusan.kz/">
           <li>Политика конфиденциальности</li>
         </a>
-        <a className={style.menu} href="#">
+        <a className={style.menu} href="https://jusan.kz/">
           <li>Вакансии в Jusan</li>
         </a>
         {button()}
       </ol>
-      {/* <a className={style.text}>Политика конфиденциальности</a>
-      <a className={style.text}>Вакансии в Jusan</a> */}
     </div>
   );
 };
