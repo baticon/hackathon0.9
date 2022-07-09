@@ -27,7 +27,7 @@ const UserMainForm = () => {
               <label className={style.labelOne}>ФИО</label>
               <input
                 className={style.inputOne}
-                placeholder="например, Дана Русланова Багдановна"
+                placeholder="например, Данов Руслан Багданович"
               ></input>
               <img
                 src={question}
@@ -55,8 +55,14 @@ const UserMainForm = () => {
               <label className={style.labelOne}>Место рождения</label>
               <input
                 className={style.inputOne}
-                placeholder="например, Астана"
+                placeholder="например, Казахстан, Астана"
               ></input>
+              <img
+                src={question}
+                alt=""
+                className={style.hint}
+                title="Пожалуйста укажите страну и город (или село/деревню)"
+              ></img>
             </div>
             <div className={style.inputContainerOne}>
               <label className={style.labelOne}>Национальность</label>
@@ -64,6 +70,12 @@ const UserMainForm = () => {
                 className={style.inputOne}
                 placeholder="например, казах"
               ></input>
+              <img
+                src={question}
+                alt=""
+                className={style.hint}
+                title="Пожалуйста укажите национальность"
+              ></img>
             </div>
             <div className={style.inputContainerOne}>
               <label className={style.labelOne}>Гражданство</label>
@@ -71,6 +83,12 @@ const UserMainForm = () => {
                 className={style.inputOne}
                 placeholder="например, Казахстан"
               ></input>
+              <img
+                src={question}
+                alt=""
+                className={style.hint}
+                title="Пожалуйста укажите гражданство"
+              ></img>
             </div>
             <div className={style.inputContainerOne}>
               <label className={style.labelOne}>
@@ -79,6 +97,12 @@ const UserMainForm = () => {
               <input></input>
               <input></input>
               <input></input>
+              <img
+                src={question}
+                alt=""
+                className={style.hint}
+                title="Какая-нибудь подсказка"
+              ></img>
             </div>
           </div>
           <div>

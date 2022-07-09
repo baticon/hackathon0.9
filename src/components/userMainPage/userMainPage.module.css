@@ -98,7 +98,8 @@
   }
 
   .formHeader {
-    font-size: 100%;
+    margin-top: 2%;
+    font-size: 150%;
   }
 
   .hint {

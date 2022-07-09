@@ -42,7 +42,7 @@ const UserMainPage = () => {
       <div className={style.container}>
         <form className={style.formContainer}>
           <div className={style.uploadContainer}>
-            <span className={style.formheader}>
+            <span className={style.formHeader}>
               Пожалуйста приложите следующие документы
             </span>
             <div className={style.fileUploadContainer}>
