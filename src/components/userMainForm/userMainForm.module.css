@@ -20,7 +20,7 @@
 
 .labelOne {
   width: 30%;
-  /* margin-left: 2%; */
+  margin-left: 2%;
   font-size: 100%;
   font-family: Arial, Helvetica, serif;
   font-weight: normal;
@@ -29,7 +29,6 @@
 
 .inputOne {
   width: 70%;
-  /* margin-right: 2%; */
   font-size: 90%;
   font-family: Arial, Helvetica, serif;
   font-weight: normal;
@@ -41,6 +40,7 @@
 .hint {
   height: 2%;
   width: 2%;
+  margin-right: 2%;
 }
 
 .hint:hover {
