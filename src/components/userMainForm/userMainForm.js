@@ -44,6 +44,21 @@ const defaultRelative = {
   phone: null,
 };
 
+const defaultCommerceOrg = {
+  name: null,
+  inn: null,
+  address: null,
+  type: null,
+  phone: null,
+};
+
+const defaultJusanRelative = {
+  relationship: null,
+  name: null,
+  department: null,
+  title: null,
+};
+
 const options = [
   { value: "chocolate", label: "Chocolate" },
   { value: "strawberry", label: "Strawberry" },
@@ -55,6 +70,8 @@ const UserMainForm = () => {
   const [courses, setCourses] = useState([defaultCourse]);
   const [children, setChildren] = useState([defaultChild]);
   const [relatives, setRelatives] = useState([defaultRelative]);
+  const [commerceOrg, setCommerceOrg] = useState([defaultCommerceOrg]);
+  const [jusanRelatives, setJusanRelatives] = useState([defaultJusanRelative]);
 
   const { control, register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
@@ -1313,7 +1330,7 @@ const UserMainForm = () => {
               Ближайшие родственники
             </label>
             <div className={style.UNIVERSITYSubContainer}>
-              {children.map(
+              {relatives.map(
                 (
                   { relationship, name, dob, place, title, home, phone },
                   index
@@ -1407,17 +1424,208 @@ const UserMainForm = () => {
               src={question}
               alt=""
               className={style.hint}
-              title="Пожалуйста укажите детали детей"
+              title="Пожалуйста укажите детали родственников"
             ></img>
           </div>
           <button
             type="button"
             onClick={() =>
-              setChildren((children) => [...children, defaultChild])
+              setRelatives((relatives) => [...relatives, defaultRelative])
             }
           >
             Добавить родственника
           </button>
+          <div className={style.UNIVERSITYContainer}>
+            <label className={style.UNIVERSITYlabel}>
+              Дополнительная информация
+            </label>
+            <div className={style.UNIVERSITYSubContainer}>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Являетесь ли Вы руководителем/учредителем (соучредителем),
+                  членом совета директоров и/или правления коммерческих
+                  организаций (ИП/ТОО)
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, да/нет"
+                  {...register(`CommerceOrgAnswer`)}
+                ></input>
+              </div>
+              {commerceOrg.map(
+                ({ answer, name, inn, address, type, phone }, index) => {
+                  return (
+                    <div
+                      className={style.UNIVERSITYContainerTwo}
+                      key={commerceOrg.id}
+                    >
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Наименование
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, ТОО Балтех"
+                          value={name}
+                          {...register(`CommerceOrgName.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Идентификационный Номер Налогоплательщика
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, 123456789012"
+                          value={inn}
+                          {...register(`CommerceOrgINN.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Адрес
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, Шевченко 51, город Шымкент"
+                          value={address}
+                          {...register(`CommerceOrgAddress.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Вид деятельности
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, строительство"
+                          value={type}
+                          {...register(`CommerceOrgType.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Телефон
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, +7-777-777-7777"
+                          value={phone}
+                          {...register(`CommerceOrgPhone.${index}`)}
+                        ></input>
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+            <img
+              src={question}
+              alt=""
+              className={style.hint}
+              title="Пожалуйста укажите соучредительские детали"
+            ></img>
+          </div>
+          <button
+            type="button"
+            onClick={() =>
+              setCommerceOrg((commerceOrg) => [
+                ...commerceOrg,
+                defaultCommerceOrg,
+              ])
+            }
+          >
+            Добавить организацию
+          </button>
+          <div className={style.UNIVERSITYContainer}>
+            <label className={style.UNIVERSITYlabel}>
+              Дополнительная информация
+            </label>
+            <div className={style.UNIVERSITYSubContainer}>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Имеете ли Вы родственников, членов семьи, работающих в АО "
+                  Jusan Bank" или связанных с деятельностью АО "Jusan Bank"
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, да/нет"
+                  {...register(`JusanRelativeAnswer`)}
+                ></input>
+              </div>
+              {commerceOrg.map(
+                ({ relationship, name, department, title }, index) => {
+                  return (
+                    <div
+                      className={style.UNIVERSITYContainerTwo}
+                      key={jusanRelatives.id}
+                    >
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Степень родства
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, брат"
+                          value={relationship}
+                          {...register(`JusanRelativesRelationship.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, Бахытжанов Аскар Иманович"
+                          value={name}
+                          {...register(`JusanRelativesName.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Подразделение
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, бухгалтерия"
+                          value={department}
+                          {...register(`JusanRelativesDepartment.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Должность
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, бухгалтер"
+                          value={title}
+                          {...register(`JusanRelativesTitle.${index}`)}
+                        ></input>
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+            <img
+              src={question}
+              alt=""
+              className={style.hint}
+              title="Пожалуйста укажите родственников, членов семьи, работающих в АО Jusan Bank или связанных с деятельностью  АО Jusan Bank"
+            ></img>
+          </div>
+          <button
+            type="button"
+            onClick={() =>
+              setJusanRelatives((jusanRelatives) => [
+                ...jusanRelatives,
+                defaultJusanRelative,
+              ])
+            }
+          >
+            Добавить аффилированное лицо
+          </button>
+
           <input type="submit" />
 
           <div>
