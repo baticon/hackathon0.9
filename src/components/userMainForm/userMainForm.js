@@ -99,21 +99,21 @@ const UserMainForm = () => {
                   className={style.IDCARDinput}
                   placeholder="например, N07080900"
                 ></input>
-                <label style={{ fontSize: "80%" }}>Серия</label>
+                <label style={{ fontSize: "70%" }}>Серия</label>
               </div>
-              <div className={style.inputContainerTwo}>
+              <div className={style.IDCARDContainerTwo}>
                 <input
                   className={style.IDCARDinput}
                   placeholder="например, 044332211"
                 ></input>
-                <label style={{ fontSize: "80%" }}>Номер</label>
+                <label style={{ fontSize: "70%" }}>Номер</label>
               </div>
-              <div className={style.inputContainerTwo}>
+              <div className={style.IDCARDContainerTwo}>
                 <input
                   className={style.IDCARDinput}
                   placeholder="например, МВД РК"
                 ></input>
-                <label style={{ fontSize: "80%" }}>Кем выдан</label>
+                <label style={{ fontSize: "70%" }}>Кем выдан</label>
               </div>
               <img
                 src={question}
@@ -196,16 +196,224 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите актуальные контактные данные по которым отдел кадров Jusan сможет установить контакт с Вами и Вашим ближайшим контактным лицом.  Контактные данные будут использоваться для рабочих и экстренных случаев"
               ></img>
             </div>
+            <div className={style.HOMEContainer}>
+              <label className={style.HOMElabel}>Местожительство</label>
+              <div className={style.HOMEContainerTwo}>
+                <label className={style.HOMEContainerTwoLabel}>
+                  Адрес постоянной регистрации
+                </label>
+                <div className={style.HOMEContainerThree}>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Город
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Караганда"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Область
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Карагандинская"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Район
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Казыбекбийский"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Улица
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Степная"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>Дом</label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, 1"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Корпус
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, А1"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Квартира
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, 101"
+                    ></input>
+                  </div>
+                </div>
+                <label className={style.HOMEContainerTwoLabel}>
+                  Адрес фактического проживания
+                </label>
+                <div className={style.HOMEContainerFive} style={{}}>
+                  <input type="checkbox"></input>
+                  <label className={style.HOMEContainerTwoLabel}>
+                    Cовпадает с адресом постоянной регистрации
+                  </label>
+                </div>
+                <div className={style.HOMEContainerThree}>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Город
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Караганда"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Область
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Карагандинская"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Район
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Казыбекбийский"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Улица
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Степная"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>Дом</label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, 1"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Корпус
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, А1"
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Квартира
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, 101"
+                    ></input>
+                  </div>
+                </div>
+              </div>
+              <img
+                src={question}
+                alt=""
+                className={style.hint}
+                title="Пожалуйста укажите актуальные контактные данные по которым отдел кадров Jusan сможет установить контакт с Вами и Вашим ближайшим контактным лицом.  Контактные данные будут использоваться для рабочих и экстренных случаев"
+              ></img>
+            </div>
+            <div className={style.UNIVERSITYContainer}>
+              <label className={style.UNIVERSITYlabel}>
+                Образование (в том числе неоконченное)
+              </label>
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата начала обучения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1990"
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата конца обучения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1994"
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Полное название учебного заведения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Евразийский Национальный Университет имени Л.Н. Гумилева"
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Специальность
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, информатика"
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Форма обучения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, очная"
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Квалификация
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, бакалавр"
+                  ></input>
+                </div>
+              </div>
+              <img
+                src={question}
+                alt=""
+                className={style.hint}
+                title="Пожалуйста укажите актуальные контактные данные по которым отдел кадров Jusan сможет установить контакт с Вами и Вашим ближайшим контактным лицом.  Контактные данные будут использоваться для рабочих и экстренных случаев"
+              ></img>
+            </div>
           </div>
 
-          <div>
-            <label></label>
-            <input></input>
-          </div>
-          <div>
-            <label></label>
-            <input></input>
-          </div>
           <div>
             <label></label>
             <input></input>
