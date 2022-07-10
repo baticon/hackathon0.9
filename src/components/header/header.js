@@ -2,8 +2,10 @@ import logo from "../media/jusan_logo.png";
 import exitIcon from "../media/exit.png";
 import style from "./header.module.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [bool, setBool] = useState(true); //placeholder for sessionstorage
 
   function button() {
@@ -13,7 +15,8 @@ const Header = () => {
           className={style.exitButton}
           onClick={() => {
             console.log("Exit condition");
-            setBool(false); //placeholder for sessionstorage
+            window.localStorage.clear();
+            navigate("/login");
           }}
         >
           <img src={exitIcon} className={style.exitIcon} alt=""></img>

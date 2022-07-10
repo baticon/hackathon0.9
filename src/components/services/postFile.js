@@ -25,7 +25,8 @@
 async function FileUpload(files) {
   try {
     const data = await fetch(
-      `http://164.92.192.48:9095/upload/file/database?name=test`,
+      // `http://164.92.192.48:9095/upload/file/database?name=test`,
+      "https://app-hr-project.herokuapp.com/login",
       {
         method: "POST",
         body: files,

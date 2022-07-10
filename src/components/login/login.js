@@ -1,8 +1,8 @@
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import style from "./login.module.css";
-import loginFetch from "../services/login";
-
+import FetchLogin from "../services/fetchLogin";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -18,16 +18,13 @@ const Login = () => {
 
   const onSubmit = async (info) => {
     try {
-      const response = await loginFetch(info);
-      const resJson = await response.json();
-      sessionStorage.setItem("Token", resJson.body.accessToken);
-      if (response.status === 401 || response.status === 400) {
-        throw new Error(response.error);
-      }
-      navigate("/admin");
+      const response = await FetchLogin(info);
+      const resJson = await response;
+
+      navigate("/mainpage");
       console.log(info);
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
     reset();
   };
@@ -48,15 +45,15 @@ const Login = () => {
               type="text"
               className={style.inputField}
               placeholder="Логин"
-              pattern="^(?=.{3,15}$)(?=.*[a-zA-Z])([a-zA-Z\d-]+)$"
-              title="Логин — от 3 до 15 символов, только латиница. Без пробелов, без спецсимволов, кроме нижнего подчеркивания и дефиса. Может содержать числа, но не полностью состоять из них."
+              // pattern="^(?=.{3,15}$)(?=.*[a-zA-Z])([a-zA-Z\d-]+)$"
+              // title="Логин — от 3 до 15 символов, только латиница. Без пробелов, без спецсимволов, кроме нижнего подчеркивания и дефиса. Может содержать числа, но не полностью состоять из них."
               {...register("username", {
                 required: "Поле обязательно для заполнения",
-                pattern: {
-                  value: /^(?=.{3,15}$)(?=.*[a-zA-Z])([a-zA-Z\d-]+)$/i,
-                  message:
-                    "Логин — от 3 до 15 символов, только латиница. Без пробелов, без спецсимволов, кроме нижнего подчеркивания и дефиса. Может содержать числа, но не полностью состоять из них.",
-                },
+                // pattern: {
+                //   value: /^(?=.{3,15}$)(?=.*[a-zA-Z])([a-zA-Z\d-]+)$/i,
+                //   message:
+                //     "Логин — от 3 до 15 символов, только латиница. Без пробелов, без спецсимволов, кроме нижнего подчеркивания и дефиса. Может содержать числа, но не полностью состоять из них.",
+                // },
               })}
             />
 
@@ -64,17 +61,17 @@ const Login = () => {
               type="password"
               className={style.inputField}
               placeholder="Пароль"
-              pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}"
-              title="Пароль — от 8 до 30 символов, обязательно хотя бы один спецсимвол и цифра."
+              // pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}"
+              // title="Пароль — от 8 до 30 символов, обязательно хотя бы один спецсимвол и цифра."
               // title={errors.password && errors.password.message}
               {...register("password", {
                 required: "Поле обязательно для заполнения",
-                pattern: {
-                  value:
-                    /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$/i,
-                  message:
-                    "Пароль — от 8 до 30 символов, обязательно хотя бы один спецсимвол и цифра.",
-                },
+                // pattern: {
+                //   value:
+                //     /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$/i,
+                //   message:
+                //     "Пароль — от 8 до 30 символов, обязательно хотя бы один спецсимвол и цифра.",
+                // },
               })}
             />
             <button className={style.button} type="submit">

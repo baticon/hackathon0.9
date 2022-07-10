@@ -2,11 +2,12 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import style from "./userMainForm.module.css";
 import question from "../media/question.png";
-import addUniversity from "./addUniversity";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 
 //use https://react-hook-form.com/
+
+// <input {...register("lastName", { pattern: /^[A-Za-z]+$/i })} />
 
 const defaultUniversity = {
   start: null,
@@ -19,8 +20,15 @@ const defaultUniversity = {
 
 const UserMainForm = () => {
   const [universities, setUniversities] = useState([defaultUniversity]);
+
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
+
+  // const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
+  //   {
+  //     name: "test", // unique name for your Field Array
+  //   }
+  // );
 
   return (
     <div>
@@ -425,7 +433,7 @@ const UserMainForm = () => {
                             className={style.UNIVERSITYinputTwo}
                             placeholder="например, 01-01-1990"
                             value={start}
-                            {...register("UniversityStart")}
+                            {...register(`UniversityStart`)}
                           ></input>
                         </div>
                         <div className={style.UNIVERSITYContainerThree}>
