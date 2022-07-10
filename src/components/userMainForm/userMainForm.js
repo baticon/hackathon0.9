@@ -2,8 +2,23 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import style from "./userMainForm.module.css";
 import question from "../media/question.png";
+import addUniversity from "./addUniversity";
+import { useState } from "react";
+
+//use https://react-hook-form.com/
+
+const defaultUniversity = {
+  start: null,
+  end: null,
+  universityname: "",
+  major: "",
+  attendance: "",
+  degree: "",
+};
 
 const UserMainForm = () => {
+  const [universities, setUniversities] = useState([defaultUniversity]);
+
   return (
     <div>
       <Header />
@@ -349,62 +364,75 @@ const UserMainForm = () => {
               <label className={style.UNIVERSITYlabel}>
                 Образование (в том числе неоконченное)
               </label>
-              <div className={style.UNIVERSITYContainerTwo}>
-                <div className={style.UNIVERSITYContainerThree}>
-                  <label className={style.UNIVERSITYlabelTwo}>
-                    Дата начала обучения
-                  </label>
-                  <input
-                    className={style.UNIVERSITYinputTwo}
-                    placeholder="например, 01-01-1990"
-                  ></input>
-                </div>
-                <div className={style.UNIVERSITYContainerThree}>
-                  <label className={style.UNIVERSITYlabelTwo}>
-                    Дата конца обучения
-                  </label>
-                  <input
-                    className={style.UNIVERSITYinputTwo}
-                    placeholder="например, 01-01-1994"
-                  ></input>
-                </div>
-                <div className={style.UNIVERSITYContainerThree}>
-                  <label className={style.UNIVERSITYlabelTwo}>
-                    Полное название учебного заведения
-                  </label>
-                  <input
-                    className={style.UNIVERSITYinputTwo}
-                    placeholder="например, Евразийский Национальный Университет имени Л.Н. Гумилева"
-                  ></input>
-                </div>
-                <div className={style.UNIVERSITYContainerThree}>
-                  <label className={style.UNIVERSITYlabelTwo}>
-                    Специальность
-                  </label>
-                  <input
-                    className={style.UNIVERSITYinputTwo}
-                    placeholder="например, информатика"
-                  ></input>
-                </div>
-                <div className={style.UNIVERSITYContainerThree}>
-                  <label className={style.UNIVERSITYlabelTwo}>
-                    Форма обучения
-                  </label>
-                  <input
-                    className={style.UNIVERSITYinputTwo}
-                    placeholder="например, очная"
-                  ></input>
-                </div>
-                <div className={style.UNIVERSITYContainerThree}>
-                  <label className={style.UNIVERSITYlabelTwo}>
-                    Квалификация
-                  </label>
-                  <input
-                    className={style.UNIVERSITYinputTwo}
-                    placeholder="например, бакалавр"
-                  ></input>
-                </div>
-              </div>
+              {universities.map(
+                ({ start, end, major, universityname, attendance, degree }) => {
+                  return (
+                    <div className={style.UNIVERSITYContainerTwo}>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Дата начала обучения
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, 01-01-1990"
+                          value={start}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Дата конца обучения
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, 01-01-1994"
+                          value={end}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Полное название учебного заведения
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, Евразийский Национальный Университет имени Л.Н. Гумилева"
+                          value={universityname}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Специальность
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, информатика"
+                          value={major}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Форма обучения
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, очная"
+                          value={attendance}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Квалификация
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, бакалавр"
+                          value={degree}
+                        ></input>
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+
               <img
                 src={question}
                 alt=""
@@ -412,6 +440,17 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите актуальные контактные данные по которым отдел кадров Jusan сможет установить контакт с Вами и Вашим ближайшим контактным лицом.  Контактные данные будут использоваться для рабочих и экстренных случаев"
               ></img>
             </div>
+            <button
+              type="button"
+              onClick={() =>
+                setUniversities((universities) => [
+                  ...universities,
+                  defaultUniversity,
+                ])
+              }
+            >
+              Добавить
+            </button>
           </div>
 
           <div>
