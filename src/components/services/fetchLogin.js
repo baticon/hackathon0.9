@@ -1,4 +1,4 @@
-const url = "https://app-hr-project.herokuapp.com/login";
+const url = "https://jusanhr.herokuapp.com/login";
 
 async function FetchLogin(obj) {
   try {

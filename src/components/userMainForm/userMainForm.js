@@ -13,18 +13,34 @@ import { useForm, useFieldArray } from "react-hook-form";
 const defaultUniversity = {
   start: null,
   end: null,
-  universityname: "",
-  major: "",
-  attendance: "",
-  degree: "",
+  universityname: null,
+  major: null,
+  attendance: null,
+  degree: null,
 };
 
 const defaultCourse = {
   end: null,
   duration: null,
-  coursename: "",
-  type: "",
-  degree: "",
+  coursename: null,
+  type: null,
+  degree: null,
+};
+
+const defaultChild = {
+  name: null,
+  dob: null,
+  phone: null,
+  place: null,
+};
+
+const defaultRelative = {
+  relationship: null,
+  name: null,
+  dob: null,
+  place: null,
+  home: null,
+  phone: null,
 };
 
 const options = [
@@ -36,6 +52,8 @@ const options = [
 const UserMainForm = () => {
   const [universities, setUniversities] = useState([defaultUniversity]);
   const [courses, setCourses] = useState([defaultCourse]);
+  const [children, setChildren] = useState([defaultChild]);
+  const [relatives, setRelatives] = useState([defaultRelative]);
 
   const { control, register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
@@ -629,7 +647,7 @@ const UserMainForm = () => {
               <label className={style.HOMElabel}>
                 Укажите предшествующие 3 (три) места работы в обратном
                 хронологическом порядке, начиная с последнего или действующего
-                места работы:
+                места работы
               </label>
               <div className={style.HOMEContainerTwo}>
                 <label className={style.HOMEContainerTwoLabel}>
@@ -952,10 +970,344 @@ const UserMainForm = () => {
                 src={question}
                 alt=""
                 className={style.hint}
-                title="Пожалуйста укажите актуальные контактные данные по которым отдел кадров Jusan сможет установить контакт с Вами и Вашим ближайшим контактным лицом.  Контактные данные будут использоваться для рабочих и экстренных случаев"
+                title="Пожалуйста укажите предшествующие 3 (три) места работы в обратном хронологическом порядке, начиная с последнего или действующего места работы"
+              ></img>
+            </div>
+            <div className={style.HOMEContainer}>
+              <label className={style.HOMElabel}>
+                Укажите не менее 3 (трёх) лиц, которые могут дать Вам
+                профессиональную рекомендацию (бывшие и/или настоящие
+                руководители, коллеги)
+              </label>
+              <div className={style.HOMEContainerTwo}>
+                <label className={style.HOMEContainerTwoLabel}>
+                  Первый рекомендатель
+                </label>
+                <div className={style.HOMEContainerThree}>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      ФИО рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Рахимбаев Талгат Ильясович"
+                      {...register("RecommenderName1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Место работы рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, АО First Heartland Jusan Bank"
+                      {...register("RecommenderWork1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Должность рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, бухгалтер"
+                      {...register("RecommenderTitle1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Телефон рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, например, +7-7172-777-888"
+                      {...register("RecommenderPhone1")}
+                    ></input>
+                  </div>
+                </div>
+                <label className={style.HOMEContainerTwoLabel}>
+                  Второй рекомендатель
+                </label>
+                <div className={style.HOMEContainerThree}>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      ФИО рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Рахимбаев Талгат Ильясович"
+                      {...register("RecommenderName2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Место работы рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, АО First Heartland Jusan Bank"
+                      {...register("RecommenderWork2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Должность рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, бухгалтер"
+                      {...register("RecommenderTitle2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Телефон рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, например, +7-7172-777-888"
+                      {...register("RecommenderPhone2")}
+                    ></input>
+                  </div>
+                </div>
+                <label className={style.HOMEContainerTwoLabel}>
+                  Третий рекомендатель
+                </label>
+                <div className={style.HOMEContainerThree}>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      ФИО рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Рахимбаев Талгат Ильясович"
+                      {...register("RecommenderName3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Место работы рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, АО First Heartland Jusan Bank"
+                      {...register("RecommenderWork3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Должность рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, бухгалтер"
+                      {...register("RecommenderTitle3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Телефон рекомендателя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, например, +7-7172-777-888"
+                      {...register("RecommenderPhone3")}
+                    ></input>
+                  </div>
+                </div>
+              </div>
+              <img
+                src={question}
+                alt=""
+                className={style.hint}
+                title="Пожалуйста укажите не менее 3 (трёх) лиц, которые могут дать Вам профессиональную рекомендацию (бывшие и/или настоящие руководители, коллеги)"
+              ></img>
+            </div>
+            <div className={style.NATIONALITYContainer}>
+              <label className={style.NATIONALITYlabel}>
+                Семейное положение
+              </label>
+              <select
+                className={style.NATIONALITYinput}
+                {...register("RelationshipStatus")}
+              >
+                <option value="">выберите статус</option>
+                <option value="Зарегистрированный брак">
+                  Зарегистрированный брак
+                </option>
+                <option value="Не состою в браке">Не состою в браке</option>
+                <option value="Незарегистрированный брак">
+                  Незарегистрированный брак
+                </option>
+                <option value="В разводе">В разводе</option>
+                <option value="Вдова (ец)">Вдова (ец)</option>
+              </select>
+              <img
+                src={question}
+                alt=""
+                className={style.hint}
+                title="Пожалуйста укажите семейное положение"
               ></img>
             </div>
           </div>
+          <div className={style.HOMEContainer}>
+            <label className={style.HOMElabel}>Супруг (-а)</label>
+            <div className={style.HOMEContainerTwo}>
+              <div className={style.HOMEContainerThree}>
+                <div className={style.HOMEContainerFour}>
+                  <label className={style.HOMEContainerFourLabel}>
+                    ФИО супруга (-и)
+                  </label>
+                  <input
+                    className={style.HOMEContainerFourInput}
+                    placeholder="например, Рахимбаев Талгат Ильясович"
+                    {...register("SpouseName")}
+                  ></input>
+                </div>
+                <div className={style.HOMEContainerFour}>
+                  <label className={style.HOMEContainerFourLabel}>
+                    Дата рождения супруга (-и)
+                  </label>
+                  <input
+                    className={style.HOMEContainerFourInput}
+                    placeholder="например, 01-01-1990"
+                    {...register("SpouseDOB")}
+                  ></input>
+                </div>
+                <div className={style.HOMEContainerFour}>
+                  <label className={style.HOMEContainerFourLabel}>
+                    Место работы супруга (-и)
+                  </label>
+                  <input
+                    className={style.HOMEContainerFourInput}
+                    placeholder="например, АО First Heartland Jusan Bank"
+                    {...register("SpouseWork")}
+                  ></input>
+                </div>
+                <div className={style.HOMEContainerFour}>
+                  <label className={style.HOMEContainerFourLabel}>
+                    Должность супруга (-и)
+                  </label>
+                  <input
+                    className={style.HOMEContainerFourInput}
+                    placeholder="например, бухгалтер"
+                    {...register("SpouseWorkTitle")}
+                  ></input>
+                </div>
+                <div className={style.HOMEContainerFour}>
+                  <label className={style.HOMEContainerFourLabel}>
+                    Адрес места жительства супруга (-и)
+                  </label>
+                  <input
+                    className={style.HOMEContainerFourInput}
+                    placeholder="например, Кабанбай Батыра 205"
+                    {...register("SpouseAddress")}
+                  ></input>
+                </div>
+                <div className={style.HOMEContainerFour}>
+                  <label className={style.HOMEContainerFourLabel}>
+                    Гражданство супруга (-и)
+                  </label>
+                  <select
+                    className={style.CITIZENSHIPinput}
+                    {...register("SpouseNationality")}
+                  >
+                    <option value="">выберите гражданство</option>
+                    <option value="Казахстан">Казахстан</option>
+                    <option value="Россия">Россия</option>
+                    <option value="беженец">беженец</option>
+                  </select>
+                </div>
+                <div className={style.HOMEContainerFour}>
+                  <label className={style.HOMEContainerFourLabel}>
+                    Контакты супруга (-и)
+                  </label>
+                  <input
+                    className={style.HOMEContainerFourInput}
+                    placeholder="например, +7-777-777-7777"
+                    {...register("SpousePhone")}
+                  ></input>
+                </div>
+              </div>
+            </div>
+            <img
+              src={question}
+              alt=""
+              className={style.hint}
+              title="Пожалуйста укажите актуальные данные семейного положения"
+            ></img>
+          </div>
+          <div className={style.UNIVERSITYContainer}>
+            <label className={style.UNIVERSITYlabel}>Дети</label>
+            <div className={style.UNIVERSITYSubContainer}>
+              {children.map(({ name, dob, phone, place }, index) => {
+                return (
+                  <div
+                    className={style.UNIVERSITYContainerTwo}
+                    key={children.id}
+                  >
+                    <div className={style.UNIVERSITYContainerThree}>
+                      <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                      <input
+                        className={style.UNIVERSITYinputTwo}
+                        placeholder="например, Муса Темирлан Аскарович"
+                        value={name}
+                        {...register(`ChildName.${index}`)}
+                      ></input>
+                    </div>
+                    <div className={style.UNIVERSITYContainerThree}>
+                      <label className={style.UNIVERSITYlabelTwo}>
+                        Дата рождения
+                      </label>
+                      <input
+                        className={style.UNIVERSITYinputTwo}
+                        placeholder="например, 01-01-1994"
+                        value={dob}
+                        {...register(`ChildDOB.${index}`)}
+                      ></input>
+                    </div>
+                    <div className={style.UNIVERSITYContainerThree}>
+                      <label className={style.UNIVERSITYlabelTwo}>
+                        Телефон
+                      </label>
+                      <input
+                        className={style.UNIVERSITYinputTwo}
+                        placeholder="например, +7-777-777-7777"
+                        value={phone}
+                        {...register(`ChildPhone.${index}`)}
+                      ></input>
+                    </div>
+                    <div className={style.UNIVERSITYContainerThree}>
+                      <label className={style.UNIVERSITYlabelTwo}>
+                        Место учебы, работы
+                      </label>
+                      <input
+                        className={style.UNIVERSITYinputTwo}
+                        placeholder="например, информатика"
+                        value={place}
+                        {...register(`ChildPlace.${index}`)}
+                      ></input>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <img
+              src={question}
+              alt=""
+              className={style.hint}
+              title="Пожалуйста укажите детали детей"
+            ></img>
+          </div>
+          <button
+            type="button"
+            onClick={() =>
+              setChildren((children) => [...children, defaultChild])
+            }
+          >
+            Добавить ребенка
+          </button>
           <input type="submit" />
 
           <div>
