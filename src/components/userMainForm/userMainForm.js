@@ -21,14 +21,13 @@ const defaultUniversity = {
 const UserMainForm = () => {
   const [universities, setUniversities] = useState([defaultUniversity]);
 
-  const { register, handleSubmit } = useForm();
+  const { control, register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
 
-  // const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
-  //   {
-  //     name: "test", // unique name for your Field Array
-  //   }
-  // );
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: `items`,
+  });
 
   return (
     <div>
@@ -415,16 +414,15 @@ const UserMainForm = () => {
               </label>
               <div className={style.UNIVERSITYSubContainer}>
                 {universities.map(
-                  ({
-                    start,
-                    end,
-                    major,
-                    universityname,
-                    attendance,
-                    degree,
-                  }) => {
+                  (
+                    { start, end, major, universityname, attendance, degree },
+                    index
+                  ) => {
                     return (
-                      <div className={style.UNIVERSITYContainerTwo}>
+                      <div
+                        className={style.UNIVERSITYContainerTwo}
+                        key={universities.id}
+                      >
                         <div className={style.UNIVERSITYContainerThree}>
                           <label className={style.UNIVERSITYlabelTwo}>
                             Дата начала обучения
@@ -433,7 +431,7 @@ const UserMainForm = () => {
                             className={style.UNIVERSITYinputTwo}
                             placeholder="например, 01-01-1990"
                             value={start}
-                            {...register(`UniversityStart`)}
+                            {...register(`UniversityStart.${index}`)}
                           ></input>
                         </div>
                         <div className={style.UNIVERSITYContainerThree}>
@@ -444,7 +442,7 @@ const UserMainForm = () => {
                             className={style.UNIVERSITYinputTwo}
                             placeholder="например, 01-01-1994"
                             value={end}
-                            {...register("UniversityEnd")}
+                            {...register(`UniversityEnd.${index}`)}
                           ></input>
                         </div>
                         <div className={style.UNIVERSITYContainerThree}>
@@ -455,7 +453,7 @@ const UserMainForm = () => {
                             className={style.UNIVERSITYinputTwo}
                             placeholder="например, Назарбаев Университет"
                             value={universityname}
-                            {...register("UniversityName")}
+                            {...register(`UniversityName.${index}`)}
                           ></input>
                         </div>
                         <div className={style.UNIVERSITYContainerThree}>
@@ -466,7 +464,7 @@ const UserMainForm = () => {
                             className={style.UNIVERSITYinputTwo}
                             placeholder="например, информатика"
                             value={major}
-                            {...register("UniversityMajor")}
+                            {...register(`UniversityMajor.${index}`)}
                           ></input>
                         </div>
                         <div className={style.UNIVERSITYContainerThree}>
@@ -477,7 +475,7 @@ const UserMainForm = () => {
                             className={style.UNIVERSITYinputTwo}
                             placeholder="например, очная"
                             value={attendance}
-                            {...register("UniversityAttendance")}
+                            {...register(`UniversityAttendance.${index}`)}
                           ></input>
                         </div>
                         <div className={style.UNIVERSITYContainerThree}>
@@ -488,7 +486,7 @@ const UserMainForm = () => {
                             className={style.UNIVERSITYinputTwo}
                             placeholder="например, бакалавр"
                             value={degree}
-                            {...register("UniversityDegree")}
+                            {...register(`UniversityDegree.${index}`)}
                           ></input>
                         </div>
                       </div>
