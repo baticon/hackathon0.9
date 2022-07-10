@@ -12,6 +12,185 @@
   background-color: #f7f7f7;
 }
 
+label {
+  font-family: Arial, Helvetica, serif;
+  font-weight: normal;
+}
+
+input {
+  font-family: Arial, Helvetica, serif;
+  font-weight: normal;
+}
+
+.IINContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2%;
+}
+.IINlabel {
+  width: 30%;
+  margin-left: 2%;
+  font-size: 100%;
+  text-align: left;
+}
+.IINinput {
+  width: 70%;
+  font-size: 90%;
+  text-indent: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.NAMEContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2%;
+}
+.NAMElabel {
+  width: 30%;
+  margin-left: 2%;
+  font-size: 100%;
+  text-align: left;
+}
+.NAMEinput {
+  width: 70%;
+  font-size: 90%;
+  text-indent: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.DOBContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2%;
+}
+.DOBlabel {
+  width: 30%;
+  margin-left: 2%;
+  font-size: 100%;
+  text-align: left;
+}
+.DOBinput {
+  width: 70%;
+  font-size: 90%;
+  text-indent: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.POBContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2%;
+}
+.POBlabel {
+  width: 30%;
+  margin-left: 2%;
+  font-size: 100%;
+  text-align: left;
+}
+.POBinput {
+  width: 70%;
+  font-size: 90%;
+  text-indent: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.NATIONALITYContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2%;
+}
+.NATIONALITYlabel {
+  width: 30%;
+  margin-left: 2%;
+  font-size: 100%;
+  text-align: left;
+}
+.NATIONALITYinput {
+  width: 70%;
+  font-size: 90%;
+  text-indent: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.CITIZENSHIPContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2%;
+}
+.CITIZENSHIPlabel {
+  width: 30%;
+  margin-left: 2%;
+  font-size: 100%;
+  text-align: left;
+}
+.CITIZENSHIPinput {
+  width: 70%;
+  font-size: 90%;
+  text-indent: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.IDCARDContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2%;
+}
+.IDCARDlabel {
+  width: 30%;
+  margin-left: 2%;
+  font-size: 100%;
+  text-align: left;
+}
+.IDCARDContainerTwo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 23.3%;
+}
+.IDCARDinput {
+  width: 100%;
+  font-size: 90%;
+  text-indent: 5%;
+  padding-top: 8%;
+  padding-bottom: 8%;
+}
+
+.CONTACTSContainer {
+  width: 100%;
+  display: flex;
+}
+.CONTACTSlabel {
+  width: 30%;
+  margin-left: 2%;
+  font-size: 100%;
+  text-align: left;
+}
+.CONTACTSContainerTwo {
+  width: 70%;
+  font-size: 70%;
+  text-align: left;
+}
+.CONTACTSContainerThree {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1%;
+}
+.CONTACTSlabelTwo {
+  width: 30%;
+}
+.CONTACTSinputTwo {
+  width: 70%;
+  text-indent: 2%;
+  padding: 2%;
+}
+
 .inputContainerOne {
   display: flex;
   justify-content: space-between;
@@ -33,6 +212,26 @@
   font-family: Arial, Helvetica, serif;
   font-weight: normal;
   text-indent: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.inputContainerTwo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 23.3%;
+}
+
+.labelTwo {
+}
+
+.inputTwo {
+  width: 100%;
+  font-size: 90%;
+  font-family: Arial, Helvetica, serif;
+  font-weight: normal;
+  text-indent: 5%;
   padding-top: 2%;
   padding-bottom: 2%;
 }
