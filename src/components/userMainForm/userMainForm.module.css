@@ -247,14 +247,17 @@ input {
   display: flex;
   padding-bottom: 2%;
 }
+.UNIVERSITYSubContainer {
+  width: 100%;
+}
 .UNIVERSITYlabel {
-  width: 30%;
+  width: 42.5%;
   margin-left: 2%;
   font-size: 100%;
   text-align: left;
 }
 .UNIVERSITYContainerTwo {
-  width: 70%;
+  width: 100%;
   font-size: 70%;
   text-align: left;
 }

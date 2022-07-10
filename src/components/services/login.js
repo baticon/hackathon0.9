@@ -13,6 +13,7 @@ async function LoginFetch(obj) {
     const data = await res.json;
     console.log(data);
     // sessionStorage.setItem("access_token", data.access_token);
+    // window.localStorage.setItem("access_token", data.access_token);
     console.log(data.access_token);
   } catch (error) {
     console.log(error);

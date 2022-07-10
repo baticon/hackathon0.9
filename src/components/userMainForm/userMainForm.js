@@ -3,7 +3,8 @@ import Footer from "../footer/footer";
 import style from "./userMainForm.module.css";
 import question from "../media/question.png";
 import addUniversity from "./addUniversity";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 //use https://react-hook-form.com/
 
@@ -18,18 +19,21 @@ const defaultUniversity = {
 
 const UserMainForm = () => {
   const [universities, setUniversities] = useState([defaultUniversity]);
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
 
   return (
     <div>
       <Header />
       <div>
-        <form className={style.formContainer}>
+        <form className={style.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <div style={{ marginTop: "2%" }}>
             <div className={style.IINContainer}>
               <label className={style.IINlabel}>ИИН</label>
               <input
                 className={style.IINinput}
                 placeholder="например, 900101250050"
+                {...register("IIN")}
               ></input>
               <img
                 src={question}
@@ -43,6 +47,7 @@ const UserMainForm = () => {
               <input
                 className={style.NAMEinput}
                 placeholder="например, Данов Руслан Багданович"
+                {...register("Name")}
               ></input>
               <img
                 src={question}
@@ -58,6 +63,7 @@ const UserMainForm = () => {
               <input
                 className={style.DOBinput}
                 placeholder="например, 01-01-1900"
+                {...register("DOB")}
               ></input>
               <img
                 src={question}
@@ -71,6 +77,7 @@ const UserMainForm = () => {
               <input
                 className={style.POBinput}
                 placeholder="например, Казахстан, Астана"
+                {...register("POB")}
               ></input>
               <img
                 src={question}
@@ -81,10 +88,15 @@ const UserMainForm = () => {
             </div>
             <div className={style.NATIONALITYContainer}>
               <label className={style.NATIONALITYlabel}>Национальность</label>
-              <input
+              <select
                 className={style.NATIONALITYinput}
-                placeholder="например, казах"
-              ></input>
+                {...register("Nationality")}
+              >
+                <option value="">выберите национальность</option>
+                <option value="казах">казах</option>
+                <option value="русский">русский</option>
+                <option value="другое">другое</option>
+              </select>
               <img
                 src={question}
                 alt=""
@@ -94,10 +106,15 @@ const UserMainForm = () => {
             </div>
             <div className={style.CITIZENSHIPContainer}>
               <label className={style.CITIZENSHIPlabel}>Гражданство</label>
-              <input
+              <select
                 className={style.CITIZENSHIPinput}
-                placeholder="например, Казахстан"
-              ></input>
+                {...register("Citizenship")}
+              >
+                <option value="">выберите гражданство</option>
+                <option value="Казахстан">Казахстан</option>
+                <option value="Россия">Россия</option>
+                <option value="беженец">беженец</option>
+              </select>
               <img
                 src={question}
                 alt=""
@@ -113,6 +130,7 @@ const UserMainForm = () => {
                 <input
                   className={style.IDCARDinput}
                   placeholder="например, N07080900"
+                  {...register("IDcardPassportID")}
                 ></input>
                 <label style={{ fontSize: "70%" }}>Серия</label>
               </div>
@@ -120,6 +138,7 @@ const UserMainForm = () => {
                 <input
                   className={style.IDCARDinput}
                   placeholder="например, 044332211"
+                  {...register("IDcardID")}
                 ></input>
                 <label style={{ fontSize: "70%" }}>Номер</label>
               </div>
@@ -127,6 +146,7 @@ const UserMainForm = () => {
                 <input
                   className={style.IDCARDinput}
                   placeholder="например, МВД РК"
+                  {...register("IDcardIssue")}
                 ></input>
                 <label style={{ fontSize: "70%" }}>Кем выдан</label>
               </div>
@@ -147,6 +167,7 @@ const UserMainForm = () => {
                   <input
                     className={style.CONTACTSinputTwo}
                     placeholder="например, +7-7172-111-222"
+                    {...register("HomeNumber")}
                   ></input>
                 </div>
                 <div className={style.CONTACTSContainerThree}>
@@ -156,6 +177,7 @@ const UserMainForm = () => {
                   <input
                     className={style.CONTACTSinputTwo}
                     placeholder="например, +7-777-111-2222"
+                    {...register("WorkNumber")}
                   ></input>
                 </div>
                 <div className={style.CONTACTSContainerThree}>
@@ -165,6 +187,7 @@ const UserMainForm = () => {
                   <input
                     className={style.CONTACTSinputTwo}
                     placeholder="например, +7-777-333-4444"
+                    {...register("MobileNumber")}
                   ></input>
                 </div>
                 <div className={style.CONTACTSContainerThree}>
@@ -174,6 +197,7 @@ const UserMainForm = () => {
                   <input
                     className={style.CONTACTSinputTwo}
                     placeholder="например, jusan@gmail.com"
+                    {...register("Email")}
                   ></input>
                 </div>
                 <div className={style.CONTACTSContainerThree}>
@@ -183,6 +207,7 @@ const UserMainForm = () => {
                   <input
                     className={style.CONTACTSinputTwo}
                     placeholder="например, Баглан Данов"
+                    {...register("RelativeContactName")}
                   ></input>
                 </div>
                 <div className={style.CONTACTSContainerThree}>
@@ -192,6 +217,7 @@ const UserMainForm = () => {
                   <input
                     className={style.CONTACTSinputTwo}
                     placeholder="например, +7-777-555-6677"
+                    {...register("RelativeContactNumber")}
                   ></input>
                 </div>
                 <div className={style.CONTACTSContainerThree}>
@@ -201,6 +227,7 @@ const UserMainForm = () => {
                   <input
                     className={style.CONTACTSinputTwo}
                     placeholder="например, отец"
+                    {...register("RelativeContactType")}
                   ></input>
                 </div>
               </div>
@@ -225,6 +252,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Караганда"
+                      {...register("CityRegistration")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -234,6 +262,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Карагандинская"
+                      {...register("StateRegistration")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -243,6 +272,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Казыбекбийский"
+                      {...register("AreaRegistration")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -252,6 +282,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Степная"
+                      {...register("StreetRegistration")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -259,6 +290,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 1"
+                      {...register("BuildingRegistration")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -268,6 +300,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, А1"
+                      {...register("BlockRegistration")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -277,6 +310,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 101"
+                      {...register("ApartmentRegistration")}
                     ></input>
                   </div>
                 </div>
@@ -297,6 +331,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Караганда"
+                      {...register("CityRegistrationFactual")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -306,6 +341,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Карагандинская"
+                      {...register("StateRegistrationFactual")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -315,6 +351,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Казыбекбийский"
+                      {...register("AreaRegistrationFactual")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -324,6 +361,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Степная"
+                      {...register("StreetRegistrationFactual")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -331,6 +369,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 1"
+                      {...register("BuildingRegistrationFactual")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -340,6 +379,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, А1"
+                      {...register("BlockRegistrationFactual")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -349,6 +389,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 101"
+                      {...register("ApartmentRegistrationFactual")}
                     ></input>
                   </div>
                 </div>
@@ -364,74 +405,89 @@ const UserMainForm = () => {
               <label className={style.UNIVERSITYlabel}>
                 Образование (в том числе неоконченное)
               </label>
-              {universities.map(
-                ({ start, end, major, universityname, attendance, degree }) => {
-                  return (
-                    <div className={style.UNIVERSITYContainerTwo}>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>
-                          Дата начала обучения
-                        </label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, 01-01-1990"
-                          value={start}
-                        ></input>
+              <div className={style.UNIVERSITYSubContainer}>
+                {universities.map(
+                  ({
+                    start,
+                    end,
+                    major,
+                    universityname,
+                    attendance,
+                    degree,
+                  }) => {
+                    return (
+                      <div className={style.UNIVERSITYContainerTwo}>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Дата начала обучения
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, 01-01-1990"
+                            value={start}
+                            {...register("UniversityStart")}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Дата конца обучения
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, 01-01-1994"
+                            value={end}
+                            {...register("UniversityEnd")}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Полное название учебного заведения
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, Назарбаев Университет"
+                            value={universityname}
+                            {...register("UniversityName")}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Специальность
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, информатика"
+                            value={major}
+                            {...register("UniversityMajor")}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Форма обучения
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, очная"
+                            value={attendance}
+                            {...register("UniversityAttendance")}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Квалификация
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, бакалавр"
+                            value={degree}
+                            {...register("UniversityDegree")}
+                          ></input>
+                        </div>
                       </div>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>
-                          Дата конца обучения
-                        </label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, 01-01-1994"
-                          value={end}
-                        ></input>
-                      </div>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>
-                          Полное название учебного заведения
-                        </label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, Евразийский Национальный Университет имени Л.Н. Гумилева"
-                          value={universityname}
-                        ></input>
-                      </div>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>
-                          Специальность
-                        </label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, информатика"
-                          value={major}
-                        ></input>
-                      </div>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>
-                          Форма обучения
-                        </label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, очная"
-                          value={attendance}
-                        ></input>
-                      </div>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>
-                          Квалификация
-                        </label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, бакалавр"
-                          value={degree}
-                        ></input>
-                      </div>
-                    </div>
-                  );
-                }
-              )}
+                    );
+                  }
+                )}
+              </div>
 
               <img
                 src={question}
@@ -452,6 +508,7 @@ const UserMainForm = () => {
               Добавить
             </button>
           </div>
+          <input type="submit" />
 
           <div>
             <label></label>
