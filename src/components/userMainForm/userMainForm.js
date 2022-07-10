@@ -523,7 +523,7 @@ const UserMainForm = () => {
                 src={question}
                 alt=""
                 className={style.hint}
-                title="Пожалуйста укажите актуальные контактные данные по которым отдел кадров Jusan сможет установить контакт с Вами и Вашим ближайшим контактным лицом.  Контактные данные будут использоваться для рабочих и экстренных случаев"
+                title="Пожалуйста укажите места высшего и среднеспециального образования, которые Вы окончили."
               ></img>
             </div>
             <button
@@ -625,6 +625,336 @@ const UserMainForm = () => {
             >
               Добавить курс
             </button>
+            <div className={style.HOMEContainer}>
+              <label className={style.HOMElabel}>
+                Укажите предшествующие 3 (три) места работы в обратном
+                хронологическом порядке, начиная с последнего или действующего
+                места работы:
+              </label>
+              <div className={style.HOMEContainerTwo}>
+                <label className={style.HOMEContainerTwoLabel}>
+                  Последнее (3/3) место работы
+                </label>
+                <div className={style.HOMEContainerThree}>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Начало рабочего периода
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, 01-1990"
+                      {...register("WorkStart1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Конец рабочего периода
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, 01-1991"
+                      {...register("WorkEnd1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Полное название организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, АО First Heartland Jusan Bank"
+                      {...register("WorkName1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Вид деятельности организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, банкинг и финансы"
+                      {...register("WorkType1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Адрес организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Кабанбай Батыра 205"
+                      {...register("WorkAddress1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Телефон организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, +7-7172-777-888"
+                      {...register("WorkPhone1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Наименование должности
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, бухгалтер"
+                      {...register("WorkTitle1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      ФИО руководителя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Рахимбаев Талгат Ильясович"
+                      {...register("WorkManager1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Телефон руководителя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, например, +7-7172-777-888"
+                      {...register("WorkManagerPhone1")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Причина увольнения
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, по собственному желанию"
+                      {...register("WorkLeaveReason1")}
+                    ></input>
+                  </div>
+                </div>
+                <label className={style.HOMEContainerTwoLabel}>
+                  2/3 место работы
+                </label>
+                <div className={style.HOMEContainerThree}>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Начало рабочего периода
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, 01-1990"
+                      {...register("WorkStart2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Конец рабочего периода
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, 01-1991"
+                      {...register("WorkEnd2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Полное название организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, АО First Heartland Jusan Bank"
+                      {...register("WorkName2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Вид деятельности организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, банкинг и финансы"
+                      {...register("WorkType2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Адрес организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Кабанбай Батыра 205"
+                      {...register("WorkAddress2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Телефон организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, +7-7172-777-888"
+                      {...register("WorkPhone2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Наименование должности
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, бухгалтер"
+                      {...register("WorkTitle2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      ФИО руководителя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Рахимбаев Талгат Ильясович"
+                      {...register("WorkManager2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Телефон руководителя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, например, +7-7172-777-888"
+                      {...register("WorkManagerPhone2")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Причина увольнения
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, по собственному желанию"
+                      {...register("WorkLeaveReason2")}
+                    ></input>
+                  </div>
+                </div>
+                <label className={style.HOMEContainerTwoLabel}>
+                  1/3 место работы
+                </label>
+                <div className={style.HOMEContainerThree}>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Начало рабочего периода
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, 01-1990"
+                      {...register("WorkStart3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Конец рабочего периода
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, 01-1991"
+                      {...register("WorkEnd3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Полное название организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, АО First Heartland Jusan Bank"
+                      {...register("WorkName3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Вид деятельности организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, банкинг и финансы"
+                      {...register("WorkType3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Адрес организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Кабанбай Батыра 205"
+                      {...register("WorkAddress3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Телефон организации
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, +7-7172-777-888"
+                      {...register("WorkPhone3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Наименование должности
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, бухгалтер"
+                      {...register("WorkTitle3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      ФИО руководителя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, Рахимбаев Талгат Ильясович"
+                      {...register("WorkManager3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Телефон руководителя
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, например, +7-7172-777-888"
+                      {...register("WorkManagerPhone3")}
+                    ></input>
+                  </div>
+                  <div className={style.HOMEContainerFour}>
+                    <label className={style.HOMEContainerFourLabel}>
+                      Причина увольнения
+                    </label>
+                    <input
+                      className={style.HOMEContainerFourInput}
+                      placeholder="например, по собственному желанию"
+                      {...register("WorkLeaveReason3")}
+                    ></input>
+                  </div>
+                </div>
+              </div>
+              <img
+                src={question}
+                alt=""
+                className={style.hint}
+                title="Пожалуйста укажите актуальные контактные данные по которым отдел кадров Jusan сможет установить контакт с Вами и Вашим ближайшим контактным лицом.  Контактные данные будут использоваться для рабочих и экстренных случаев"
+              ></img>
+            </div>
           </div>
           <input type="submit" />
 
