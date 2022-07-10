@@ -3,6 +3,7 @@ import Footer from "../footer/footer";
 import style from "./userMainForm.module.css";
 import question from "../media/question.png";
 import React, { useState } from "react";
+import Select from "react-select";
 import { useForm, useFieldArray } from "react-hook-form";
 
 //use https://react-hook-form.com/
@@ -18,8 +19,23 @@ const defaultUniversity = {
   degree: "",
 };
 
+const defaultCourse = {
+  end: null,
+  duration: null,
+  coursename: "",
+  type: "",
+  degree: "",
+};
+
+const options = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+];
+
 const UserMainForm = () => {
   const [universities, setUniversities] = useState([defaultUniversity]);
+  const [courses, setCourses] = useState([defaultCourse]);
 
   const { control, register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
@@ -28,6 +44,8 @@ const UserMainForm = () => {
     control,
     name: `items`,
   });
+
+  const [nationality, setNationality] = useState("");
 
   return (
     <div>
@@ -95,6 +113,12 @@ const UserMainForm = () => {
             </div>
             <div className={style.NATIONALITYContainer}>
               <label className={style.NATIONALITYlabel}>Национальность</label>
+              {/* <Select
+                options={options}
+                className={style.NATIONALITYinput}
+                control={control}
+                onChange={(choice) => setNationality(choice)}
+              /> */}
               <select
                 className={style.NATIONALITYinput}
                 {...register("Nationality")}
@@ -511,7 +535,95 @@ const UserMainForm = () => {
                 ])
               }
             >
-              Добавить
+              Добавить университет
+            </button>
+
+            <div className={style.UNIVERSITYContainer}>
+              <label className={style.UNIVERSITYlabel}>
+                Специальные курсы, школы, стажировки, семинары
+              </label>
+              <div className={style.UNIVERSITYSubContainer}>
+                {courses.map(
+                  ({ end, duration, coursename, type, degree }, index) => {
+                    return (
+                      <div
+                        className={style.UNIVERSITYContainerTwo}
+                        key={courses.id}
+                      >
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Год окончания
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, 1990"
+                            value={end}
+                            {...register(`CourseEnd.${index}`)}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Длительность обучения
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, 1 год"
+                            value={duration}
+                            {...register(`CourseDuration.${index}`)}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Полное наименование курсов
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, Курсы инженерной квалификации"
+                            value={coursename}
+                            {...register(`CourseName.${index}`)}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Специальность
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например,инженер"
+                            value={type}
+                            {...register(`CourseType.${index}`)}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Учёная степень, сертификаты
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, разряд/грейд"
+                            value={degree}
+                            {...register(`CourseGrade.${index}`)}
+                          ></input>
+                        </div>
+                      </div>
+                    );
+                  }
+                )}
+              </div>
+              <img
+                src={question}
+                alt=""
+                className={style.hint}
+                title="Пожалуйста укажите курсы"
+              ></img>
+            </div>
+            <button
+              type="button"
+              onClick={() =>
+                setCourses((courses) => [...courses, defaultCourse])
+              }
+            >
+              Добавить курс
             </button>
           </div>
           <input type="submit" />
