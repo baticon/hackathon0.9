@@ -1553,7 +1553,7 @@ const UserMainForm = () => {
                   {...register(`JusanRelativeAnswer`)}
                 ></input>
               </div>
-              {commerceOrg.map(
+              {jusanRelatives.map(
                 ({ relationship, name, department, title }, index) => {
                   return (
                     <div
