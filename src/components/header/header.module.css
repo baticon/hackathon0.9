@@ -1,8 +1,6 @@
 .container {
   display: flex;
-  /* width: 70%; */
   width: 85%;
-  text-align: center;
   justify-content: space-between;
   align-items: center;
   text-align: center;
@@ -33,20 +31,42 @@
   font-family: Arial, Helvetica, serif;
   text-decoration: none;
   color: #ea4335;
-  text-align: left;
+  text-align: right;
   list-style-type: none;
   border: none;
   background: none;
 }
+.menuHidden {
+  font-size: 150%;
+  font-family: Arial, Helvetica, serif;
+  text-decoration: none;
+  color: #ea4335;
+  text-align: left;
+  list-style-type: none;
+  border: none;
+  background: none;
+  visibility: hidden;
+}
 
 .exitButton {
   width: 100%;
-  text-align: left;
+  text-align: right;
   border: none;
   background: none;
   font-size: 150%;
   font-family: Arial, Helvetica, serif;
   color: #ea4335;
+}
+
+.exitButtonHidden {
+  width: 100%;
+  text-align: right;
+  border: none;
+  background: none;
+  font-size: 150%;
+  font-family: Arial, Helvetica, serif;
+  color: #ea4335;
+  visibility: hidden;
 }
 
 .exitIcon {
