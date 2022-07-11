@@ -5,6 +5,7 @@ import question from "../media/question.png";
 import React, { useState } from "react";
 import Select from "react-select";
 import { useForm, useFieldArray } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 //use https://react-hook-form.com/
 
@@ -72,6 +73,8 @@ const options = [
 ];
 
 const UserMainForm = () => {
+  const navigate = useNavigate();
+
   const [universities, setUniversities] = useState([defaultUniversity]);
   const [courses, setCourses] = useState([defaultCourse]);
   const [children, setChildren] = useState([defaultChild]);
@@ -93,6 +96,9 @@ const UserMainForm = () => {
   return (
     <div>
       <Header />
+      <button type="button" onClick={() => navigate("/profile")}>
+        Назад в профиль
+      </button>
       <div>
         <form className={style.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <div style={{ marginTop: "2%" }}>

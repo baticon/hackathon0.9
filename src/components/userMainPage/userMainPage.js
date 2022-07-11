@@ -5,6 +5,7 @@ import postFile from "../services/postFile";
 import question from "../media/question.png";
 import style from "./userMainPage.module.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
 
@@ -16,6 +17,8 @@ const stringmilitary = "military";
 const stringphoto = "photo";
 
 const UserMainPage = () => {
+  const navigate = useNavigate();
+
   const [files, setFiles] = useState({
     id: {
       file: null,
@@ -39,6 +42,9 @@ const UserMainPage = () => {
   return (
     <div>
       <Header />
+      <button type="button" onClick={() => navigate("/profile")}>
+        Назад в профиль
+      </button>
       <div className={style.container}>
         <form className={style.formContainer}>
           <div className={style.uploadContainer}>

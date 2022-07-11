@@ -21,7 +21,7 @@ const Login = () => {
       const response = await FetchLogin(info);
       const resJson = await response;
 
-      navigate("/mainpage");
+      navigate("/profile");
       console.log(info);
     } catch (error) {
       console.log(error);
