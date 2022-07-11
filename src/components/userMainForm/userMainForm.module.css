@@ -287,3 +287,12 @@ input {
   background-color: #002ead;
   border-radius: 60%;
 }
+
+.dataProcessingConfirmation {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, serif;
+  font-weight: normal;
+  font-size: 80%;
+  width: 80%;
+}

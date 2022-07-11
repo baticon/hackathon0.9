@@ -1546,7 +1546,7 @@ const UserMainForm = () => {
           </button>
           <div className={style.UNIVERSITYContainer}>
             <label className={style.UNIVERSITYlabel}>
-              Дополнительная информация
+              Дополнительная информация - связь с АО "Jusan Bank"
             </label>
             <div className={style.UNIVERSITYSubContainer}>
               <div className={style.UNIVERSITYContainerThree}>
@@ -1635,7 +1635,7 @@ const UserMainForm = () => {
 
           <div className={style.UNIVERSITYContainer}>
             <label className={style.UNIVERSITYlabel}>
-              Дополнительная информация
+              Дополнительная информация - наличие автомобиля
             </label>
             <div className={style.UNIVERSITYSubContainer}>
               <div className={style.UNIVERSITYContainerThree}>
@@ -1696,12 +1696,274 @@ const UserMainForm = () => {
             Добавить машину
           </button>
 
-          <input type="submit" />
-
-          <div>
-            <label></label>
-            <input></input>
+          <div className={style.UNIVERSITYContainer}>
+            <label className={style.UNIVERSITYlabel}>
+              Дополнительная информация - военный статус
+            </label>
+            <div className={style.UNIVERSITYContainerTwo} key={cars.id}>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Отношение к воинской службе
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, 1990"
+                  {...register(`CarYear`)}
+                ></input>
+              </div>
+            </div>
+            <img
+              src={question}
+              alt=""
+              className={style.hint}
+              title="Пожалуйста укажите актуальные данные по отношению к воинской службе"
+            ></img>
           </div>
+
+          <div className={style.UNIVERSITYContainer}>
+            <label className={style.UNIVERSITYlabel}>
+              Дополнительная информация - льготы
+            </label>
+            <div className={style.UNIVERSITYContainerTwo} key={cars.id}>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Имеете ли Вы право на льготы согласно действующему
+                  законодательству?
+                </label>
+                <select
+                  className={style.NATIONALITYinput}
+                  {...register("BenefitsAnswer")}
+                >
+                  <option value="">выберите статус</option>
+                  <option value="да">да</option>
+                  <option value="нет">нет</option>
+                </select>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Если да, то уточните
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, инвалид"
+                  {...register(`BenefitsDetails`)}
+                ></input>
+              </div>
+            </div>
+            <img
+              src={question}
+              alt=""
+              className={style.hint}
+              title="Пожалуйста укажите актуальные данные по наличию льгот"
+            ></img>
+          </div>
+
+          <div className={style.UNIVERSITYContainer}>
+            <label className={style.UNIVERSITYlabel}>
+              Внимательно прочитайте и ответьте, пожалуйста, на следующие
+              вопросы
+            </label>
+            <div className={style.UNIVERSITYContainerTwo} key={cars.id}>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Имеете ли Вы просроченный заем?
+                </label>
+                <select
+                  className={style.NATIONALITYinput}
+                  {...register("AdditionalQuestionOneAnswer")}
+                >
+                  <option value="">выберите опцию</option>
+                  <option value="да">да</option>
+                  <option value="нет">нет</option>
+                </select>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Если да, то уточните
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, невозможность оплатить заем"
+                  {...register(`AdditionalQuestionOneDetails`)}
+                ></input>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Привлекались ли Вы к уголовной ответственности?
+                </label>
+                <select
+                  className={style.NATIONALITYinput}
+                  {...register("AdditionalQuestionTwoAnswer")}
+                >
+                  <option value="">выберите опцию</option>
+                  <option value="да">да</option>
+                  <option value="нет">нет</option>
+                </select>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Если да, то уточните
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, ДТП в 2000 году"
+                  {...register(`AdditionalQuestionTwoDetails`)}
+                ></input>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Привлекались ли Ваши близкие родственники, члены семьи к
+                  уголовной ответственности?
+                </label>
+                <select
+                  className={style.NATIONALITYinput}
+                  {...register("AdditionalQuestionThreeAnswer")}
+                >
+                  <option value="">выберите опцию</option>
+                  <option value="да">да</option>
+                  <option value="нет">нет</option>
+                </select>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Если да, то уточните
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, ДТП в 2000 году"
+                  {...register(`AdditionalQuestionThreeDetails`)}
+                ></input>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Против Вас когда-либо возбуждалось уголовное дело?
+                </label>
+                <select
+                  className={style.NATIONALITYinput}
+                  {...register("AdditionalQuestionFourAnswer")}
+                >
+                  <option value="">выберите опцию</option>
+                  <option value="да">да</option>
+                  <option value="нет">нет</option>
+                </select>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Если да, то уточните
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, ДТП в 2000 году"
+                  {...register(`AdditionalQuestionFourDetails`)}
+                ></input>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Выплачиваете ли Вы алименты?
+                </label>
+                <select
+                  className={style.NATIONALITYinput}
+                  {...register("AdditionalQuestionFiveAnswer")}
+                >
+                  <option value="">выберите опцию</option>
+                  <option value="да">да</option>
+                  <option value="нет">нет</option>
+                </select>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Если да, то уточните
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, в разводе"
+                  {...register(`AdditionalQuestionFiveDetails`)}
+                ></input>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Привлекались ли Вы к административной ответственности?
+                </label>
+                <select
+                  className={style.NATIONALITYinput}
+                  {...register("AdditionalQuestionSixAnswer")}
+                >
+                  <option value="">выберите опцию</option>
+                  <option value="да">да</option>
+                  <option value="нет">нет</option>
+                </select>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Если да, то уточните
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, мелкое хулиганство"
+                  {...register(`AdditionalQuestionSixDetails`)}
+                ></input>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Есть ли у Вас дополнительный доход (работа,
+                  дистрибьютерство/представительство в торговых компаниях)
+                </label>
+                <select
+                  className={style.NATIONALITYinput}
+                  {...register("AdditionalQuestionSixAnswer")}
+                >
+                  <option value="">выберите опцию</option>
+                  <option value="да">да</option>
+                  <option value="нет">нет</option>
+                </select>
+              </div>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Если да, то уточните
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, подработка"
+                  {...register(`AdditionalQuestionSixDetails`)}
+                ></input>
+              </div>
+            </div>
+            <img
+              src={question}
+              alt=""
+              className={style.hint}
+              title="Пожалуйста укажите актуальные данные по наличию льгот"
+            ></img>
+          </div>
+          <div className={style.dataProcessingConfirmation}>
+            <span>
+              В соответствии с требованиями Закона Республики Казахстан «О
+              персональных данных и их защите» даю АО " Jusan Bank" (далее –
+              «Банк») безусловное согласие на сбор, обработку, хранение и
+              распространение Банком информации обо мне [и представляемом мной
+              лице], включая мои персональные данные [и персональные данные
+              представляемого мной лица], в том числе биометрические,
+              зафиксированные на электронном, бумажном и любом ином носителе, а
+              также происходящие в них в будущем изменения и дополнения, в связи
+              с возникновением с Банком, в том числе в будущем, любых
+              правоотношений, связанных, включая, но не ограничиваясь, с
+              банковским и/или иным обслуживанием. При этом мои персональные
+              данные [и персональные данные представляемого мной лица] должны
+              распространяться Банком с учетом ограничений, установленных
+              законодательством Республики Казахстан, в том числе, ст. 50 Закона
+              Республики Казахстан «О банках и банковской деятельности в
+              Республике Казахстан».
+            </span>
+            <div>
+              <input type="checkbox"></input>
+              <span>
+                Даю безусловное согласие на сбор, обработку, хранение и
+                распространение Банком информации обо мне{" "}
+              </span>
+            </div>
+          </div>
+
+          <input type="submit" />
         </form>
       </div>
       <Footer />
