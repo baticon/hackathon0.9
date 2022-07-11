@@ -5,6 +5,7 @@ import UserProfilePage from "./components/userProfilePage/userProfiePage";
 import UserMainPage from "./components/userMainPage/userMainPage";
 import UserMainForm from "./components/userMainForm/userMainForm";
 import { Routes, Route } from "react-router-dom";
+import FormOne from "./components/userMainForm/formOne";
 
 function App() {
   return (
@@ -15,9 +16,11 @@ function App() {
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/mainpage" element={<UserMainPage />} />
         <Route path="/mainform" element={<UserMainForm />} />
+        <Route path="/mainform/formone" element={<FormOne />} />
       </Routes>
     </div>
   );
 }
 
+//TODO - create routes for pages of the form (use subroutes)
 export default App;

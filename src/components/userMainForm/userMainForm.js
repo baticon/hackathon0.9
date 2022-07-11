@@ -2,7 +2,7 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import style from "./userMainForm.module.css";
 import question from "../media/question.png";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const defaultUniversity = {
   start: null,
   end: null,
-  universityname: null,
+  universityname: "Hello",
   major: null,
   attendance: null,
   degree: null,
@@ -75,7 +75,6 @@ const options = [
 const UserMainForm = () => {
   const navigate = useNavigate();
 
-  const [universities, setUniversities] = useState([defaultUniversity]);
   const [courses, setCourses] = useState([defaultCourse]);
   const [children, setChildren] = useState([defaultChild]);
   const [relatives, setRelatives] = useState([defaultRelative]);
@@ -83,13 +82,46 @@ const UserMainForm = () => {
   const [jusanRelatives, setJusanRelatives] = useState([defaultJusanRelative]);
   const [cars, setCars] = useState([defaultCar]);
 
-  const { control, register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: `items`,
+  const { control, register, handleSubmit, setValue } = useForm({
+    defaultValues: { universities: [defaultUniversity] },
   });
+  const onSubmit = (data) => console.log(data); //do fetch to server here to post data
+
+  //get data from backend when user returns to certain page
+
+  useEffect(() => {
+    // insert data from back end here
+    setValue(`universities`, [
+      {
+        start: null,
+        end: null,
+        universityname: "Harvard",
+        major: "CS",
+        attendance: null,
+        degree: null,
+      },
+    ]);
+  }, []);
+
+  const {
+    fields: universityFields,
+    append: universityAppend,
+    remove: universityRemove,
+  } = useFieldArray({
+    control,
+    name: `universities`,
+  });
+
+  const {
+    fields: courseFields,
+    append: courseAppend,
+    remove: courseRemove,
+  } = useFieldArray({
+    control,
+    name: `courses`,
+  });
+
+  console.log(universityFields);
 
   const [nationality, setNationality] = useState("");
 
@@ -509,86 +541,77 @@ const UserMainForm = () => {
                   Образование (в том числе неоконченное)
                 </label>
                 <div className={style.UNIVERSITYSubContainer}>
-                  {universities.map(
-                    (
-                      { start, end, major, universityname, attendance, degree },
-                      index
-                    ) => {
-                      return (
-                        <div
-                          className={style.UNIVERSITYContainerTwo}
-                          key={universities.id}
-                        >
-                          <div className={style.UNIVERSITYContainerThree}>
-                            <label className={style.UNIVERSITYlabelTwo}>
-                              Дата начала обучения
-                            </label>
-                            <input
-                              className={style.UNIVERSITYinputTwo}
-                              placeholder="например, 01-01-1990"
-                              value={start}
-                              {...register(`UniversityStart.${index}`)}
-                            ></input>
-                          </div>
-                          <div className={style.UNIVERSITYContainerThree}>
-                            <label className={style.UNIVERSITYlabelTwo}>
-                              Дата конца обучения
-                            </label>
-                            <input
-                              className={style.UNIVERSITYinputTwo}
-                              placeholder="например, 01-01-1994"
-                              value={end}
-                              {...register(`UniversityEnd.${index}`)}
-                            ></input>
-                          </div>
-                          <div className={style.UNIVERSITYContainerThree}>
-                            <label className={style.UNIVERSITYlabelTwo}>
-                              Полное название учебного заведения
-                            </label>
-                            <input
-                              className={style.UNIVERSITYinputTwo}
-                              placeholder="например, Назарбаев Университет"
-                              value={universityname}
-                              {...register(`UniversityName.${index}`)}
-                            ></input>
-                          </div>
-                          <div className={style.UNIVERSITYContainerThree}>
-                            <label className={style.UNIVERSITYlabelTwo}>
-                              Специальность
-                            </label>
-                            <input
-                              className={style.UNIVERSITYinputTwo}
-                              placeholder="например, информатика"
-                              value={major}
-                              {...register(`UniversityMajor.${index}`)}
-                            ></input>
-                          </div>
-                          <div className={style.UNIVERSITYContainerThree}>
-                            <label className={style.UNIVERSITYlabelTwo}>
-                              Форма обучения
-                            </label>
-                            <input
-                              className={style.UNIVERSITYinputTwo}
-                              placeholder="например, очная"
-                              value={attendance}
-                              {...register(`UniversityAttendance.${index}`)}
-                            ></input>
-                          </div>
-                          <div className={style.UNIVERSITYContainerThree}>
-                            <label className={style.UNIVERSITYlabelTwo}>
-                              Квалификация
-                            </label>
-                            <input
-                              className={style.UNIVERSITYinputTwo}
-                              placeholder="например, бакалавр"
-                              value={degree}
-                              {...register(`UniversityDegree.${index}`)}
-                            ></input>
-                          </div>
+                  {universityFields.map((field, index) => {
+                    return (
+                      <div
+                        className={style.UNIVERSITYContainerTwo}
+                        key={field.id}
+                      >
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Дата начала обучения
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, 01-01-1990"
+                            {...register(`universities.${index}.start`)}
+                          ></input>
                         </div>
-                      );
-                    }
-                  )}
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Дата конца обучения
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, 01-01-1994"
+                            {...register(`universities.${index}.end`)}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Полное название учебного заведения
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, Назарбаев Университет"
+                            {...register(
+                              `universities.${index}.universityname`
+                            )}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Специальность
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, информатика"
+                            {...register(`universities.${index}.major`)}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Форма обучения
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, очная"
+                            {...register(`universities.${index}.attendance`)}
+                          ></input>
+                        </div>
+                        <div className={style.UNIVERSITYContainerThree}>
+                          <label className={style.UNIVERSITYlabelTwo}>
+                            Квалификация
+                          </label>
+                          <input
+                            className={style.UNIVERSITYinputTwo}
+                            placeholder="например, бакалавр"
+                            {...register(`universities.${index}.degree`)}
+                          ></input>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
 
                 <img
@@ -600,12 +623,7 @@ const UserMainForm = () => {
               </div>
               <button
                 type="button"
-                onClick={() =>
-                  setUniversities((universities) => [
-                    ...universities,
-                    defaultUniversity,
-                  ])
-                }
+                onClick={() => universityAppend({ ...defaultUniversity })}
               >
                 Добавить университет
               </button>
@@ -2030,7 +2048,7 @@ const UserMainForm = () => {
                 </div>
               </div>
 
-              <input type="submit" />
+              <button>Отправить</button>
             </div>
           )}
         </form>
