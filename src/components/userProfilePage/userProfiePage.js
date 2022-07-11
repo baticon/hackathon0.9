@@ -48,7 +48,7 @@ const UserProfilePage = () => {
             </div>
           </div>
           <div className={style.profileContainer}>
-            <span>User profile</span>
+            <span>Профиль</span>
             <div className={style.profile}>
               <img className={style.profilePic} src={person}></img>
               <div className={style.profileInfo}>
