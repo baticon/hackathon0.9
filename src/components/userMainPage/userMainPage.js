@@ -39,6 +39,7 @@ const UserMainPage = () => {
       file: null,
     },
   });
+
   return (
     <div>
       <Header />

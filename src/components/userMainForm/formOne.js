@@ -6,17 +6,23 @@ import React, { useEffect, useState, useCallback } from "react";
 import Select from "react-select";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import dataUpload from "../services/postData";
+import dataUpload from "../services/postData.js";
+import dataDownload from "../services/getData.js";
+
+const userId = window.localStorage.getItem("user_id");
+const token = window.localStorage.getItem("access_token");
 
 const personalData = {
-  iin: null,
-  dob: null,
-  pob: "Hello",
-  nationality: null,
-  citizenship: null,
-  passportSeries: null,
-  passportNumber: null,
-  passportIssued: null,
+  iin: "asd",
+  dateOfBirthday: "asd",
+  placeOfBirth: "asd",
+  nationality: "string",
+  citizenship: "string",
+  passportSeries: "string",
+  passportIssued: "string",
+  identityCardNumber: "string",
+  identityCardIssued: "string",
+  fio: "string",
 };
 
 const FormOne = () => {
@@ -25,23 +31,28 @@ const FormOne = () => {
     defaultValues: personalData,
   });
 
-  const onSubmit = (data) => console.log(data); //do fetch to server here to post data
+  const onSubmit = (data) => {
+    console.log(data);
+    dataUpload(data, userId, token);
+  }; //do fetch to server here to post data
 
   //get data from backend when user returns to certain page
 
   const resetAsyncForm = useCallback(async () => {
-    // const result = await fetch("./api/formValues.json"); // result: { firstName: 'test', lastName: 'test2' }
-    // reset(result); // asynchronously reset your form values
-    reset({
-      iin: "bye",
-      dob: "howdy",
-      pob: "Hello",
-      nationality: null,
-      citizenship: null,
-      passportSeries: null,
-      passportNumber: null,
-      passportIssued: null,
-    });
+    const result = await dataDownload(userId, token); // result: { firstName: 'test', lastName: 'test2' }
+    reset(result); // asynchronously reset your form values
+    // reset({
+    //   iin: "string",
+    //   dateOfBirthday: "string",
+    //   placeOfBirth: "string",
+    //   nationality: "string",
+    //   citizenship: "string",
+    //   passportSeries: "string",
+    //   passportIssued: "string",
+    //   identityCardNumber: "string",
+    //   identityCardIssued: "string",
+    //   fio: "string",
+    // });
   }, [reset]);
 
   useEffect(() => {
@@ -56,6 +67,20 @@ const FormOne = () => {
       </button>
       <form className={style.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <div style={{ marginTop: "2%" }}>
+          <div className={style.IINContainer}>
+            <label className={style.IINlabel}>ФИО</label>
+            <input
+              className={style.IINinput}
+              placeholder="например, 900101250050"
+              {...register(`fio`)}
+            ></input>
+            <img
+              src={question}
+              alt=""
+              className={style.hint}
+              title="ИИН расположен на лицевой стороне удостоверения личности гражданина Республики Казахстан, ниже даты рождения в виде комбинации из 12-ти цифр, в паспорте гражданина Республики Казахстан ИИН указан на 2 странице.  Иностранцы и лица без гражданства, постоянно проживающие в Казахстане, у которых на лицевой стороне вида на жительство иностранца в Республике Казахстан ниже даты рождения или на 2 странице удостоверения лица без гражданства ИИН не указан, должны обратиться в органы внутренних дел по месту пребывания для переоформления документов."
+            ></img>
+          </div>
           <div className={style.IINContainer}>
             <label className={style.IINlabel}>ИИН</label>
             <input
@@ -77,7 +102,7 @@ const FormOne = () => {
             <input
               className={style.DOBinput}
               placeholder="например, 01-01-1900"
-              {...register(`dob`)}
+              {...register(`dateOfBirthday`)}
             ></input>
             <img
               src={question}
@@ -91,7 +116,7 @@ const FormOne = () => {
             <input
               className={style.POBinput}
               placeholder="например, Казахстан, Астана"
-              {...register(`pob`)}
+              {...register(`placeOfBirth`)}
             ></input>
             <img
               src={question}
@@ -152,7 +177,7 @@ const FormOne = () => {
               <input
                 className={style.IDCARDinput}
                 placeholder="например, 044332211"
-                {...register(`passportNumber`)}
+                {...register(`identityCardNumber`)}
               ></input>
               <label style={{ fontSize: "70%" }}>Номер</label>
             </div>
@@ -176,13 +201,7 @@ const FormOne = () => {
 
         <button>Hello</button>
       </form>
-      <button
-        onClick={(data) => {
-          dataUpload();
-        }}
-      >
-        Сохранить
-      </button>
+
       <Footer />
     </div>
   );

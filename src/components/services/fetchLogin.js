@@ -11,6 +11,7 @@ async function FetchLogin(obj) {
     });
     let data = await res.json();
     window.localStorage.setItem("access_token", data.token);
+    window.localStorage.setItem("user_id", data.id);
   } catch (error) {
     console.log(error.message);
   }
