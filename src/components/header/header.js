@@ -3,6 +3,7 @@ import exitIcon from "../media/exit.png";
 import style from "./header.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import menu from "./menu";
 
 const Header = () => {
   const navigate = useNavigate();
