@@ -59,6 +59,12 @@ const defaultJusanRelative = {
   title: null,
 };
 
+const defaultCar = {
+  model: null,
+  year: null,
+  number: null,
+};
+
 const options = [
   { value: "chocolate", label: "Chocolate" },
   { value: "strawberry", label: "Strawberry" },
@@ -72,6 +78,7 @@ const UserMainForm = () => {
   const [relatives, setRelatives] = useState([defaultRelative]);
   const [commerceOrg, setCommerceOrg] = useState([defaultCommerceOrg]);
   const [jusanRelatives, setJusanRelatives] = useState([defaultJusanRelative]);
+  const [cars, setCars] = useState([defaultCar]);
 
   const { control, register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
@@ -1624,6 +1631,69 @@ const UserMainForm = () => {
             }
           >
             Добавить аффилированное лицо
+          </button>
+
+          <div className={style.UNIVERSITYContainer}>
+            <label className={style.UNIVERSITYlabel}>
+              Дополнительная информация
+            </label>
+            <div className={style.UNIVERSITYSubContainer}>
+              <div className={style.UNIVERSITYContainerThree}>
+                <label className={style.UNIVERSITYlabelTwo}>
+                  Наличие автомобиля
+                </label>
+                <input
+                  className={style.UNIVERSITYinputTwo}
+                  placeholder="например, да/нет"
+                  {...register(`carAnswer`)}
+                ></input>
+              </div>
+              {cars.map(({ model, year, number }, index) => {
+                return (
+                  <div className={style.UNIVERSITYContainerTwo} key={cars.id}>
+                    <div className={style.UNIVERSITYContainerThree}>
+                      <label className={style.UNIVERSITYlabelTwo}>Модель</label>
+                      <input
+                        className={style.UNIVERSITYinputTwo}
+                        placeholder="например, Лада 9"
+                        value={model}
+                        {...register(`CarModel.${index}`)}
+                      ></input>
+                    </div>
+                    <div className={style.UNIVERSITYContainerThree}>
+                      <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                      <input
+                        className={style.UNIVERSITYinputTwo}
+                        placeholder="например, 1990"
+                        value={year}
+                        {...register(`CarYear.${index}`)}
+                      ></input>
+                    </div>
+                    <div className={style.UNIVERSITYContainerThree}>
+                      <label className={style.UNIVERSITYlabelTwo}>Номер</label>
+                      <input
+                        className={style.UNIVERSITYinputTwo}
+                        placeholder="например, A88801KZ"
+                        value={number}
+                        {...register(`CarNumber.${index}`)}
+                      ></input>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <img
+              src={question}
+              alt=""
+              className={style.hint}
+              title="Пожалуйста укажите детали машины"
+            ></img>
+          </div>
+          <button
+            type="button"
+            onClick={() => setCars((cars) => [...cars, defaultCar])}
+          >
+            Добавить машину
           </button>
 
           <input type="submit" />
