@@ -12,9 +12,7 @@ async function DataDownload(userId, token) {
       }
     );
     const dataJson = await data.json();
-    console.log("testblah");
-    console.log(data);
-    console.log(dataJson);
+    return dataJson;
   } catch (error) {
     console.error("Error:", error);
   }

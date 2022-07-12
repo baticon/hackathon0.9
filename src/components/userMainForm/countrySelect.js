@@ -1,324 +1,46 @@
-import Header from "../header/header";
-import Footer from "../footer/footer";
-import style from "./userMainForm.module.css";
-import question from "../media/question.png";
-import React, { useEffect, useState, useCallback } from "react";
-import Select from "react-select";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import dataUpload from "../services/postData.js";
-import dataDownload from "../services/getData.js";
-import Button from "@mui/material/Button";
-import CountrySelect from "./countrySelect";
-
+import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-import { Input } from "@chakra-ui/react";
-
-const userId = window.localStorage.getItem("user_id");
-const token = window.localStorage.getItem("access_token");
-
-const personalData = {
-  iin: "asd",
-  dateOfBirthday: "asd",
-  placeOfBirth: "asd",
-  nationality: "",
-  citizenship: "Kazakhstan",
-  passportSeries: "string",
-  passportIssued: "string",
-  identityCardNumber: "string",
-  identityCardIssued: "string",
-  fio: "string",
-};
-
-const FormOne = () => {
-  const navigate = useNavigate();
-  const { control, register, handleSubmit, reset } = useForm({
-    defaultValues: personalData,
-  });
-
-  const onSubmit = useCallback((data) => {
-    console.log(data);
-    dataUpload(data, userId, token);
-  }, []);
-
-  const resetAsyncForm = useCallback(async () => {
-    const result = await dataDownload(userId, token);
-    reset(result);
-  }, [reset]);
-
-  useEffect(() => {
-    resetAsyncForm();
-  }, [resetAsyncForm]);
-
-  const [valid, setValid] = useState();
-  const [value, setValue] = useState();
-  const handleValidation = (e) => {
-    const reg = new RegExp("[a-z]");
-    setValid(reg.test(e.target.value));
-    setValue(e.target.value);
-  };
-
+export default function CountrySelect() {
   return (
-    <div>
-      <Header />
-      <Button
-        variant="contained"
-        style={{ width: "50%", height: "100%" }}
-        onClick={() => navigate("/profile")}
-      >
-        Назад в профиль
-      </Button>
-      <form className={style.formContainer} onSubmit={handleSubmit(onSubmit)}>
-        <div style={{ marginTop: "2%" }}>
-          <div className={style.IINContainer}>
-            <label className={style.IINlabel}>ФИО</label>
-            {/* https://blog.logrocket.com/using-material-ui-with-react-hook-form/ */}
-            <Controller
-              name={"textValue"}
-              control={control}
-              render={({ field: { handleValidation, value } }) => (
-                //https://codesandbox.io/s/xvr9f?file=/src/App.js:597-701
-                <TextField
-                  name="fio"
-                  type="text"
-                  className={style.IINinput}
-                  placeholder="например, Багданов Нурасыл Серикович"
-                  variant="outlined"
-                  // onChange={onChange}
-                  onChange={(e) => handleValidation(e)}
-                  value={value}
-                  {...register(`fio`)}
-                  // inputRef={register({
-                  //   required: true,
-                  //   pattern: /\S+@\S+\.\S+/,
-                  // })}
-                />
-              )}
-            />
-            <img
-              src={question}
-              alt=""
-              className={style.hint}
-              title="ИИН расположен на лицевой стороне удостоверения личности гражданина Республики Казахстан, ниже даты рождения в виде комбинации из 12-ти цифр, в паспорте гражданина Республики Казахстан ИИН указан на 2 странице.  Иностранцы и лица без гражданства, постоянно проживающие в Казахстане, у которых на лицевой стороне вида на жительство иностранца в Республике Казахстан ниже даты рождения или на 2 странице удостоверения лица без гражданства ИИН не указан, должны обратиться в органы внутренних дел по месту пребывания для переоформления документов."
-            ></img>
-          </div>
-          <div className={style.IINContainer}>
-            <label className={style.IINlabel}>ИИН</label>
-            <Controller
-              name={"textValue"}
-              control={control}
-              render={({ field: { handleValidation, value } }) => (
-                <TextField
-                  name="iin"
-                  type="text"
-                  className={style.IINinput}
-                  placeholder="например, 900101250050"
-                  variant="outlined"
-                  onChange={(e) => handleValidation(e)}
-                  value={value}
-                  {...register(`iin`)}
-                />
-              )}
-            />
-            <img
-              src={question}
-              alt=""
-              className={style.hint}
-              title="ИИН расположен на лицевой стороне удостоверения личности гражданина Республики Казахстан, ниже даты рождения в виде комбинации из 12-ти цифр, в паспорте гражданина Республики Казахстан ИИН указан на 2 странице.  Иностранцы и лица без гражданства, постоянно проживающие в Казахстане, у которых на лицевой стороне вида на жительство иностранца в Республике Казахстан ниже даты рождения или на 2 странице удостоверения лица без гражданства ИИН не указан, должны обратиться в органы внутренних дел по месту пребывания для переоформления документов."
-            ></img>
-          </div>
-          <div className={style.DOBContainer}>
-            <label className={style.DOBlabel}>
-              Число, месяц и год рождения
-            </label>
-            <Controller
-              name={"textValue"}
-              control={control}
-              render={({ field: { handleValidation, value } }) => (
-                <TextField
-                  name="dateOfBirthday"
-                  type="text"
-                  className={style.DOBinput}
-                  placeholder="например, 01-01-1990"
-                  variant="outlined"
-                  onChange={(e) => handleValidation(e)}
-                  value={value}
-                  {...register(`dateOfBirthday`)}
-                />
-              )}
-            />
-            <img
-              src={question}
-              alt=""
-              className={style.hint}
-              title="Дата рождения в формате ЧЧ-ММ-ГГГГ"
-            ></img>
-          </div>
-          <div className={style.POBContainer}>
-            <label className={style.POBlabel}>Место рождения</label>
-            <Controller
-              name={"textValue"}
-              control={control}
-              render={({ field: { handleValidation, value } }) => (
-                <TextField
-                  name="placeOfBirth"
-                  type="text"
-                  className={style.POBinput}
-                  placeholder="например, Шымкент"
-                  variant="outlined"
-                  onChange={(e) => handleValidation(e)}
-                  value={value}
-                  {...register(`placeOfBirth`)}
-                />
-              )}
-            />
-            <img
-              src={question}
-              alt=""
-              className={style.hint}
-              title="Пожалуйста укажите страну и город (или село/деревню)"
-            ></img>
-          </div>
-          <div className={style.NATIONALITYContainer}>
-            <label className={style.NATIONALITYlabel}>Национальность</label>
-            <Autocomplete
-              className={style.NATIONALITYinput}
-              onChange={(event, value) => console.log(Object.values(value))}
-              {...register(`nationality`)}
-              id="country-select-demo"
-              options={countries}
-              autoHighlight
-              getOptionLabel={(option) => option.label}
-              renderOption={(props, option) => (
-                <Box
-                  component="li"
-                  sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                  {...props}
-                >
-                  <img loading="lazy" width="20" alt="" />
-                  {option.label} ({option.code}) +{option.phone}
-                </Box>
-              )}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  placeholder="Выберите национальность"
-                  inputProps={{
-                    ...params.inputProps,
-                    autoComplete: "new-password", // disable autocomplete and autofill
-                  }}
-                />
-              )}
-            />
-            <img
-              src={question}
-              alt=""
-              className={style.hint}
-              title="Пожалуйста укажите национальность"
-            ></img>
-          </div>
-          <div className={style.CITIZENSHIPContainer}>
-            <label className={style.CITIZENSHIPlabel}>Гражданство</label>
-            <select
-              className={style.CITIZENSHIPinput}
-              {...register(`citizenship`)}
-            >
-              <option value="">выберите гражданство</option>
-              <option value="Казахстан">Казахстан</option>
-              <option value="Россия">Россия</option>
-              <option value="беженец">беженец</option>
-            </select>
-            <img
-              src={question}
-              alt=""
-              className={style.hint}
-              title="Пожалуйста укажите гражданство"
-            ></img>
-          </div>
-          <div className={style.IDCARDContainer}>
-            <label className={style.IDCARDlabel}>
-              Паспорт, удостоверение личности
-            </label>
-            <div className={style.IDCARDContainerTwo}>
-              <Controller
-                name={"textValue"}
-                control={control}
-                render={({ field: { handleValidation, value } }) => (
-                  <TextField
-                    name="passportSeries"
-                    type="text"
-                    className={style.IDCARDinput}
-                    placeholder="например, N9191919191"
-                    variant="outlined"
-                    onChange={(e) => handleValidation(e)}
-                    value={value}
-                    {...register(`passportSeries`)}
-                  />
-                )}
-              />
-              <label style={{ fontSize: "70%" }}>Серия</label>
-            </div>
-            <div className={style.IDCARDContainerTwo}>
-              <Controller
-                name={"textValue"}
-                control={control}
-                render={({ field: { handleValidation, value } }) => (
-                  <TextField
-                    name="identityCardNumber"
-                    type="text"
-                    className={style.IDCARDinput}
-                    placeholder="например, 04112323"
-                    variant="outlined"
-                    onChange={(e) => handleValidation(e)}
-                    value={value}
-                    {...register(`identityCardNumber`)}
-                  />
-                )}
-              />
-              <label style={{ fontSize: "70%" }}>Номер</label>
-            </div>
-            <div className={style.IDCARDContainerTwo}>
-              <Controller
-                name={"textValue"}
-                control={control}
-                render={({ field: { handleValidation, value } }) => (
-                  <TextField
-                    name="identityCardNumber"
-                    type="text"
-                    className={style.passportIssued}
-                    placeholder="например, 04112323"
-                    variant="outlined"
-                    onChange={(e) => handleValidation(e)}
-                    value={value}
-                    {...register(`passportIssued`)}
-                  />
-                )}
-              />
-              <label style={{ fontSize: "70%" }}>Кем выдан</label>
-            </div>
-
-            <img
-              src={question}
-              alt=""
-              className={style.hint}
-              title="1. Серия паспорта указана в паспорте гражданина РК и начинается с латинской буквы N. 2. Номер удостоверения указан на тыльной стороне удостоверения гражданина РК.  3. Орган выдачи удостоверения указан на передней части удостоверения гражданина РК"
-            ></img>
-          </div>
-        </div>
-        <Button variant="contained" style={{ width: "100%", height: "100%" }}>
-          Сохранить➤
-        </Button>
-      </form>
-
-      <Footer />
-    </div>
+    <Autocomplete
+      onChange={(event, value) => console.log(Object.values(value))}
+      id="country-select-demo"
+      sx={{ width: 300 }}
+      options={countries}
+      autoHighlight
+      getOptionLabel={(option) => option.label}
+      renderOption={(props, option) => (
+        <Box
+          component="li"
+          sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+          {...props}
+        >
+          <img
+            loading="lazy"
+            width="20"
+            src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+            srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+            alt=""
+          />
+          {option.label} ({option.code}) +{option.phone}
+        </Box>
+      )}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Choose a country"
+          inputProps={{
+            ...params.inputProps,
+            autoComplete: "new-password", // disable autocomplete and autofill
+          }}
+        />
+      )}
+    />
   );
-};
-
-export default FormOne;
+}
 
 const countries = [
   { code: "AD", label: "Andorra", phone: "376" },
