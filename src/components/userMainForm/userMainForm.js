@@ -67,24 +67,21 @@ const defaultCar = {
   number: null,
 };
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
-
 const UserMainForm = () => {
   const navigate = useNavigate();
 
-  const [courses, setCourses] = useState([defaultCourse]);
-  const [children, setChildren] = useState([defaultChild]);
-  const [relatives, setRelatives] = useState([defaultRelative]);
-  const [commerceOrg, setCommerceOrg] = useState([defaultCommerceOrg]);
   const [jusanRelatives, setJusanRelatives] = useState([defaultJusanRelative]);
   const [cars, setCars] = useState([defaultCar]);
 
   const { control, register, handleSubmit, setValue, watch } = useForm({
-    defaultValues: { universities: [defaultUniversity] },
+    defaultValues: {
+      universities: [defaultUniversity],
+      courses: [defaultCourse],
+      children: [defaultChild],
+      relatives: [defaultRelative],
+      commerces: [defaultCommerceOrg],
+      jusanRelatives: [defaultJusanRelative],
+    },
   });
   const onSubmit = (data) => console.log(data); //do fetch to server here to post data
 
@@ -120,6 +117,42 @@ const UserMainForm = () => {
   } = useFieldArray({
     control,
     name: `courses`,
+  });
+
+  const {
+    fields: childFields,
+    append: childAppend,
+    remove: childRemove,
+  } = useFieldArray({
+    control,
+    name: `children`,
+  });
+
+  const {
+    fields: relativeFields,
+    append: relativeAppend,
+    remove: relativeRemove,
+  } = useFieldArray({
+    control,
+    name: `relatives`,
+  });
+
+  const {
+    fields: commerceFields,
+    append: commerceAppend,
+    remove: commerceRemove,
+  } = useFieldArray({
+    control,
+    name: `commerces`,
+  });
+
+  const {
+    fields: jusanRelativeFields,
+    append: jusanRelativeAppend,
+    remove: jusanRelativeRemove,
+  } = useFieldArray({
+    control,
+    name: `jusanRelatives`,
   });
 
   const [boolLivingPlace, setBoolLivingPlace] = useState(false);
@@ -270,6 +303,15 @@ const UserMainForm = () => {
           {...register("actualAddressApartment")}
         ></input>
       );
+    }
+  }
+
+  const [boolAdditionalInfoToo, setAdditionalInfoTOO] = useState(false);
+  const additionalInfoToo = watch("CommerceOrgAnswer");
+
+  function additionalInfoTOOFunc(boolAdditionalInfoToo) {
+    if (boolAdditionalInfoToo === true) {
+    } else {
     }
   }
 
@@ -869,7 +911,7 @@ const UserMainForm = () => {
             </div>
           </div>
 
-          <div style={{ marginTop: "2%" }}>
+          <div style={{ marginTop: "2%", width: "100%" }}>
             <div className={style.CONTACTSContainer}>
               <label className={style.CONTACTSlabel}>Контактные данные</label>
               <div className={style.CONTACTSContainerTwo}>
@@ -1165,74 +1207,69 @@ const UserMainForm = () => {
                 Специальные курсы, школы, стажировки, семинары
               </label>
               <div className={style.UNIVERSITYSubContainer}>
-                {courses.map(
-                  ({ end, duration, coursename, type, degree }, index) => {
-                    return (
-                      <div
-                        className={style.UNIVERSITYContainerTwo}
-                        key={courses.id}
-                      >
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Год окончания
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, 1990"
-                            value={end}
-                            {...register(`yearOfGraduation.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Длительность обучения
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, 1 год"
-                            value={duration}
-                            {...register(`durationOfTraining.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Полное наименование курсов
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, Курсы инженерной квалификации"
-                            value={coursename}
-                            {...register(`nameOfCourse.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Специальность
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например,инженер"
-                            value={type}
-                            {...register(`speciality.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Учёная степень, сертификаты
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, разряд/грейд"
-                            value={degree}
-                            {...register(
-                              `AcademicDegreeOrCertificates.${index}`
-                            )}
-                          ></input>
-                        </div>
-                      </div>
-                    );
+                {courseFields.map((field, index) => {
+                  {
+                    /* {courses.map(
+                  ({ end, duration, coursename, type, degree }, index) => { */
                   }
-                )}
+                  return (
+                    <div
+                      className={style.UNIVERSITYContainerTwo}
+                      key={field.id}
+                    >
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Год окончания
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, 1990"
+                          {...register(`yearOfGraduation.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Длительность обучения
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, 1 год"
+                          {...register(`durationOfTraining.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Полное наименование курсов
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, Курсы инженерной квалификации"
+                          {...register(`nameOfCourse.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Специальность
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например,инженер"
+                          {...register(`speciality.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Учёная степень, сертификаты
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, разряд/грейд"
+                          {...register(`AcademicDegreeOrCertificates.${index}`)}
+                        ></input>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
               <img
                 src={question}
@@ -1241,14 +1278,22 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите курсы"
               ></img>
             </div>
-            <button
+            {/* <button
               type="button"
               onClick={() =>
                 setCourses((courses) => [...courses, defaultCourse])
               }
             >
               Добавить курс
-            </button>
+            </button> */}
+            <div>
+              <Button onClick={() => courseAppend({ ...defaultUniversity })}>
+                Добавить курс
+              </Button>
+              <Button onClick={() => courseRemove({ ...defaultUniversity })}>
+                Удалить курс
+              </Button>
+            </div>
           </div>
 
           <div style={{ marginTop: "2%" }}>
@@ -1734,26 +1779,32 @@ const UserMainForm = () => {
             </div>
           </div>
 
-          <div style={{ marginTop: "2%" }}>
-            <div className={style.NATIONALITYContainer}>
-              <label className={style.NATIONALITYlabel}>
-                Семейное положение
-              </label>
-              <select
-                className={style.NATIONALITYinput}
-                {...register("maritalStatus")}
-              >
-                <option value="">выберите статус</option>
-                <option value="Зарегистрированный брак">
-                  Зарегистрированный брак
-                </option>
-                <option value="Не состою в браке">Не состою в браке</option>
-                <option value="Незарегистрированный брак">
-                  Незарегистрированный брак
-                </option>
-                <option value="В разводе">В разводе</option>
-                <option value="Вдова (ец)">Вдова (ец)</option>
-              </select>
+          <div style={{ marginTop: "2%", width: "100%" }}>
+            <div className={style.HOMEContainer}>
+              <label className={style.HOMElabel}>Семейное положение</label>
+              <div className={style.HOMEContainerTwo}>
+                <div className={style.HOMEContainerThree}></div>
+                <div className={style.HOMEContainerFour}>
+                  <label className={style.HOMEContainerFourLabel}>
+                    Семейное положение
+                  </label>
+                  <select
+                    className={style.CITIZENSHIPinput}
+                    {...register("maritalStatus")}
+                  >
+                    <option value="">выберите статус</option>
+                    <option value="Зарегистрированный брак">
+                      Зарегистрированный брак
+                    </option>
+                    <option value="Не состою в браке">Не состою в браке</option>
+                    <option value="Незарегистрированный брак">
+                      Незарегистрированный брак
+                    </option>
+                    <option value="В разводе">В разводе</option>
+                    <option value="Вдова (ец)">Вдова (ец)</option>
+                  </select>
+                </div>
+              </div>
               <img
                 src={question}
                 alt=""
@@ -1841,18 +1892,17 @@ const UserMainForm = () => {
             <div className={style.UNIVERSITYContainer}>
               <label className={style.UNIVERSITYlabel}>Дети</label>
               <div className={style.UNIVERSITYSubContainer}>
-                {children.map(({ name, dob, phone, place }, index) => {
+                {childFields.map((field, index) => {
                   return (
                     <div
                       className={style.UNIVERSITYContainerTwo}
-                      key={children.id}
+                      key={field.id}
                     >
                       <div className={style.UNIVERSITYContainerThree}>
                         <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, Муса Темирлан Аскарович"
-                          value={name}
                           {...register(`ChildName.${index}`)}
                         ></input>
                       </div>
@@ -1863,7 +1913,6 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 01-01-1994"
-                          value={dob}
                           {...register(`ChildDOB.${index}`)}
                         ></input>
                       </div>
@@ -1874,7 +1923,6 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, +7-777-777-7777"
-                          value={phone}
                           {...register(`ChildPhone.${index}`)}
                         ></input>
                       </div>
@@ -1885,7 +1933,6 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, информатика"
-                          value={place}
                           {...register(`ChildPlace.${index}`)}
                         ></input>
                       </div>
@@ -1900,110 +1947,97 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите детали детей"
               ></img>
             </div>
-            <button
-              type="button"
-              onClick={() =>
-                setChildren((children) => [...children, defaultChild])
-              }
-            >
-              Добавить ребенка
-            </button>
+            <div>
+              <Button onClick={() => childAppend({ ...defaultChild })}>
+                Добавить ребенка
+              </Button>
+              <Button onClick={() => childRemove({ ...defaultChild })}>
+                Удалить ребенка
+              </Button>
+            </div>
+
             <div className={style.UNIVERSITYContainer}>
               <label className={style.UNIVERSITYlabel}>
                 Ближайшие родственники
               </label>
               <div className={style.UNIVERSITYSubContainer}>
-                {relatives.map(
-                  (
-                    { relationship, name, dob, place, title, home, phone },
-                    index
-                  ) => {
-                    return (
-                      <div
-                        className={style.UNIVERSITYContainerTwo}
-                        key={relatives.id}
-                      >
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Степень родства
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, тесть"
-                            value={relationship}
-                            {...register(`RelativeRelationship.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            ФИО
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, Айдынов Аскар Макарович"
-                            value={name}
-                            {...register(`RelativeName.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Дата рождения
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, 01-01-1994"
-                            value={dob}
-                            {...register(`RelativeDOB.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Место работы
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, АО First Heartland Jusan Bank"
-                            value={place}
-                            {...register(`RelativePlace.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Должность
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, бухгалтер"
-                            value={title}
-                            {...register(`RelativeTitle.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Домашний адрес
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, Кирова 21/1 горож Нур-Султан"
-                            value={home}
-                            {...register(`RelativeAddress.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Телефон
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, +7-777-777-7777"
-                            value={phone}
-                            {...register(`RelativePhone.${index}`)}
-                          ></input>
-                        </div>
+                {relativeFields.map((field, index) => {
+                  return (
+                    <div
+                      className={style.UNIVERSITYContainerTwo}
+                      key={field.id}
+                    >
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Степень родства
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, тесть"
+                          {...register(`RelativeRelationship.${index}`)}
+                        ></input>
                       </div>
-                    );
-                  }
-                )}
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, Айдынов Аскар Макарович"
+                          {...register(`RelativeName.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Дата рождения
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, 01-01-1994"
+                          {...register(`RelativeDOB.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Место работы
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, АО First Heartland Jusan Bank"
+                          {...register(`RelativePlace.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Должность
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, бухгалтер"
+                          {...register(`RelativeTitle.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Домашний адрес
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, Кирова 21/1 горож Нур-Султан"
+                          {...register(`RelativeAddress.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Телефон
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, +7-777-777-7777"
+                          {...register(`RelativePhone.${index}`)}
+                        ></input>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
               <img
                 src={question}
@@ -2012,100 +2046,94 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите детали родственников"
               ></img>
             </div>
-            <button
-              type="button"
-              onClick={() =>
-                setRelatives((relatives) => [...relatives, defaultRelative])
-              }
-            >
-              Добавить родственника
-            </button>
+            <div>
+              <Button onClick={() => relativeAppend({ ...defaultRelative })}>
+                Добавить родственника
+              </Button>
+              <Button onClick={() => relativeRemove({ ...defaultRelative })}>
+                Удалить родственника
+              </Button>
+            </div>
           </div>
 
           <div style={{ marginTop: "2%" }}>
-            <div className={style.UNIVERSITYContainer}>
-              <label className={style.UNIVERSITYlabel}>
+            <div className={style.ADDITIONALINFOContainer}>
+              <label className={style.ADDITIONALINFOlabel}>
                 Дополнительная информация
               </label>
-              <div className={style.UNIVERSITYSubContainer}>
-                <div className={style.UNIVERSITYContainerThree}>
-                  <label className={style.UNIVERSITYlabelTwo}>
+              <div className={style.ADDITIONALINFOSubContainer}>
+                <div className={style.ADDITIONALINFOContainerThree}>
+                  <label className={style.ADDITIONALINFOlabelTwo}>
                     Являетесь ли Вы руководителем/учредителем (соучредителем),
                     членом совета директоров и/или правления коммерческих
                     организаций (ИП/ТОО)
                   </label>
                   <input
-                    className={style.UNIVERSITYinputTwo}
+                    type="checkbox"
+                    className={style.ADDITIONALINFOcheckbox}
                     placeholder="например, да/нет"
                     {...register(`CommerceOrgAnswer`)}
                   ></input>
                 </div>
-                {commerceOrg.map(
-                  ({ answer, name, inn, address, type, phone }, index) => {
-                    return (
-                      <div
-                        className={style.UNIVERSITYContainerTwo}
-                        key={commerceOrg.id}
-                      >
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Наименование
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, ТОО Балтех"
-                            value={name}
-                            {...register(`CommerceOrgName.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Идентификационный Номер Налогоплательщика
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, 123456789012"
-                            value={inn}
-                            {...register(`CommerceOrgINN.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Адрес
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, Шевченко 51, город Шымкент"
-                            value={address}
-                            {...register(`CommerceOrgAddress.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Вид деятельности
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, строительство"
-                            value={type}
-                            {...register(`CommerceOrgType.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Телефон
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, +7-777-777-7777"
-                            value={phone}
-                            {...register(`CommerceOrgPhone.${index}`)}
-                          ></input>
-                        </div>
+                {commerceFields.map((field, index) => {
+                  return (
+                    <div
+                      className={style.ADDITIONALINFOontainerTwo}
+                      key={field.id}
+                    >
+                      <div className={style.ADDITIONALINFOContainerThree}>
+                        <label className={style.ADDITIONALINFOlabelThree}>
+                          Наименование
+                        </label>
+                        <input
+                          className={style.ADDITIONALINFOinputTwo}
+                          placeholder="например, ТОО Балтех"
+                          {...register(`CommerceOrgName.${index}`)}
+                        ></input>
                       </div>
-                    );
-                  }
-                )}
+                      <div className={style.ADDITIONALINFOContainerThree}>
+                        <label className={style.ADDITIONALINFOlabelThree}>
+                          Идентификационный Номер Налогоплательщика
+                        </label>
+                        <input
+                          className={style.ADDITIONALINFOinputTwo}
+                          placeholder="например, 123456789012"
+                          {...register(`CommerceOrgINN.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.ADDITIONALINFOContainerThree}>
+                        <label className={style.ADDITIONALINFOlabelThree}>
+                          Адрес
+                        </label>
+                        <input
+                          className={style.ADDITIONALINFOinputTwo}
+                          placeholder="например, Шевченко 51, город Шымкент"
+                          {...register(`CommerceOrgAddress.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.ADDITIONALINFOContainerThree}>
+                        <label className={style.ADDITIONALINFOlabelThree}>
+                          Вид деятельности
+                        </label>
+                        <input
+                          className={style.ADDITIONALINFOinputTwo}
+                          placeholder="например, строительство"
+                          {...register(`CommerceOrgType.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.ADDITIONALINFOContainerThree}>
+                        <label className={style.ADDITIONALINFOlabelThree}>
+                          Телефон
+                        </label>
+                        <input
+                          className={style.ADDITIONALINFOinputTwo}
+                          placeholder="например, +7-777-777-7777"
+                          {...register(`CommerceOrgPhone.${index}`)}
+                        ></input>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
               <img
                 src={question}
@@ -2114,17 +2142,15 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите соучредительские детали"
               ></img>
             </div>
-            <button
-              type="button"
-              onClick={() =>
-                setCommerceOrg((commerceOrg) => [
-                  ...commerceOrg,
-                  defaultCommerceOrg,
-                ])
-              }
-            >
-              Добавить организацию
-            </button>
+
+            <div>
+              <Button onClick={() => commerceAppend({ ...defaultCommerceOrg })}>
+                Добавить коммерческую организацию
+              </Button>
+              <Button onClick={() => commerceRemove({ ...defaultCommerceOrg })}>
+                Удалить коммерческую организацию
+              </Button>
+            </div>
             <div className={style.UNIVERSITYContainer}>
               <label className={style.UNIVERSITYlabel}>
                 Дополнительная информация - связь с АО "Jusan Bank"
@@ -2141,61 +2167,53 @@ const UserMainForm = () => {
                     {...register(`JusanRelativeAnswer`)}
                   ></input>
                 </div>
-                {jusanRelatives.map(
-                  ({ relationship, name, department, title }, index) => {
-                    return (
-                      <div
-                        className={style.UNIVERSITYContainerTwo}
-                        key={jusanRelatives.id}
-                      >
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Степень родства
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, брат"
-                            value={relationship}
-                            {...register(`JusanRelativesRelationship.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            ФИО
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, Бахытжанов Аскар Иманович"
-                            value={name}
-                            {...register(`JusanRelativesName.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Подразделение
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, бухгалтерия"
-                            value={department}
-                            {...register(`JusanRelativesDepartment.${index}`)}
-                          ></input>
-                        </div>
-                        <div className={style.UNIVERSITYContainerThree}>
-                          <label className={style.UNIVERSITYlabelTwo}>
-                            Должность
-                          </label>
-                          <input
-                            className={style.UNIVERSITYinputTwo}
-                            placeholder="например, бухгалтер"
-                            value={title}
-                            {...register(`JusanRelativesTitle.${index}`)}
-                          ></input>
-                        </div>
+                {jusanRelativeFields.map((field, index) => {
+                  return (
+                    <div
+                      className={style.UNIVERSITYContainerTwo}
+                      key={jusanRelatives.id}
+                    >
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Степень родства
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, брат"
+                          {...register(`JusanRelativesRelationship.${index}`)}
+                        ></input>
                       </div>
-                    );
-                  }
-                )}
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, Бахытжанов Аскар Иманович"
+                          {...register(`JusanRelativesName.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Подразделение
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, бухгалтерия"
+                          {...register(`JusanRelativesDepartment.${index}`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Должность
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, бухгалтер"
+                          {...register(`JusanRelativesTitle.${index}`)}
+                        ></input>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
               <img
                 src={question}
@@ -2204,17 +2222,18 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите родственников, членов семьи, работающих в АО Jusan Bank или связанных с деятельностью  АО Jusan Bank"
               ></img>
             </div>
-            <button
-              type="button"
-              onClick={() =>
-                setJusanRelatives((jusanRelatives) => [
-                  ...jusanRelatives,
-                  defaultJusanRelative,
-                ])
-              }
-            >
-              Добавить аффилированное лицо
-            </button>
+            <div>
+              <Button
+                onClick={() => jusanRelativeAppend({ ...defaultJusanRelative })}
+              >
+                Добавить родственника
+              </Button>
+              <Button
+                onClick={() => jusanRelativeRemove({ ...defaultJusanRelative })}
+              >
+                Удалить родственника
+              </Button>
+            </div>
 
             <div className={style.UNIVERSITYContainer}>
               <label className={style.UNIVERSITYlabel}>

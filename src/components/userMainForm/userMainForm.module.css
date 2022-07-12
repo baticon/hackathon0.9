@@ -268,6 +268,35 @@ select:focus {
   font-size: 90%;
 }
 
+.MARITALSTATUSContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2%;
+}
+.MARITALSTATUSlabel {
+  width: 40%;
+  margin-left: 2%;
+  font-size: 100%;
+  text-align: left;
+}
+.MARITALSTATUSinput {
+  width: 65%;
+  font-size: 90%;
+  text-indent: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+.MARITALSTATUSContainerTwo {
+  display: flex;
+  width: 100%;
+  font-size: 70%;
+  text-align: left;
+  margin-bottom: 1%;
+}
+.HOMEContainerTwoLabel {
+  width: 30%;
+}
+
 .UNIVERSITYContainer {
   width: 100%;
   display: flex;
@@ -301,6 +330,53 @@ select:focus {
   text-indent: 2%;
   padding-top: 2%;
   padding-bottom: 2%;
+}
+
+.ADDITIONALINFOContainer {
+  width: 100%;
+  display: flex;
+  padding-bottom: 2%;
+}
+.ADDITIONALINFOSubContainer {
+  width: 100%;
+}
+.ADDITIONALINFOlabel {
+  width: 42.5%;
+  margin-left: 2%;
+  font-size: 100%;
+  text-align: left;
+}
+.ADDITIONALINFOContainerTwo {
+  width: 100%;
+  font-size: 70%;
+  text-align: left;
+}
+.ADDITIONALINFOContainerThree {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1%;
+  align-items: center;
+}
+.ADDITIONALINFOlabelTwo {
+  width: 100%;
+  font-size: 80%;
+}
+.ADDITIONALINFOlabelThree {
+  width: 30%;
+  text-align: left;
+  font-size: 80%;
+}
+.ADDITIONALINFOinputTwo {
+  width: 70%;
+  text-indent: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-size: 70%;
+}
+.ADDITIONALINFOcheckbox {
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 .hint {
