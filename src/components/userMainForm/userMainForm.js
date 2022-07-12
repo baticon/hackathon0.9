@@ -306,14 +306,9 @@ const UserMainForm = () => {
     }
   }
 
-  const [boolAdditionalInfoToo, setAdditionalInfoTOO] = useState(false);
-  const additionalInfoToo = watch("CommerceOrgAnswer");
-
-  function additionalInfoTOOFunc(boolAdditionalInfoToo) {
-    if (boolAdditionalInfoToo === true) {
-    } else {
-    }
-  }
+  const [boolAdditionalInfoToo, setBoolAdditionalInfoToo] = useState(false);
+  const [boolAdditionalInfoRelatives, setBoolAdditionalInfoRelatives] =
+    useState(false);
 
   return (
     <div>
@@ -2070,6 +2065,9 @@ const UserMainForm = () => {
                   </label>
                   <input
                     type="checkbox"
+                    onClick={() =>
+                      setBoolAdditionalInfoToo(!boolAdditionalInfoToo)
+                    }
                     className={style.ADDITIONALINFOcheckbox}
                     placeholder="например, да/нет"
                     {...register(`CommerceOrgAnswer`)}
@@ -2081,56 +2079,118 @@ const UserMainForm = () => {
                       className={style.ADDITIONALINFOontainerTwo}
                       key={field.id}
                     >
-                      <div className={style.ADDITIONALINFOContainerThree}>
-                        <label className={style.ADDITIONALINFOlabelThree}>
-                          Наименование
-                        </label>
-                        <input
-                          className={style.ADDITIONALINFOinputTwo}
-                          placeholder="например, ТОО Балтех"
-                          {...register(`CommerceOrgName.${index}`)}
-                        ></input>
-                      </div>
-                      <div className={style.ADDITIONALINFOContainerThree}>
-                        <label className={style.ADDITIONALINFOlabelThree}>
-                          Идентификационный Номер Налогоплательщика
-                        </label>
-                        <input
-                          className={style.ADDITIONALINFOinputTwo}
-                          placeholder="например, 123456789012"
-                          {...register(`CommerceOrgINN.${index}`)}
-                        ></input>
-                      </div>
-                      <div className={style.ADDITIONALINFOContainerThree}>
-                        <label className={style.ADDITIONALINFOlabelThree}>
-                          Адрес
-                        </label>
-                        <input
-                          className={style.ADDITIONALINFOinputTwo}
-                          placeholder="например, Шевченко 51, город Шымкент"
-                          {...register(`CommerceOrgAddress.${index}`)}
-                        ></input>
-                      </div>
-                      <div className={style.ADDITIONALINFOContainerThree}>
-                        <label className={style.ADDITIONALINFOlabelThree}>
-                          Вид деятельности
-                        </label>
-                        <input
-                          className={style.ADDITIONALINFOinputTwo}
-                          placeholder="например, строительство"
-                          {...register(`CommerceOrgType.${index}`)}
-                        ></input>
-                      </div>
-                      <div className={style.ADDITIONALINFOContainerThree}>
-                        <label className={style.ADDITIONALINFOlabelThree}>
-                          Телефон
-                        </label>
-                        <input
-                          className={style.ADDITIONALINFOinputTwo}
-                          placeholder="например, +7-777-777-7777"
-                          {...register(`CommerceOrgPhone.${index}`)}
-                        ></input>
-                      </div>
+                      {boolAdditionalInfoToo ? (
+                        <>
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
+                              Наименование
+                            </label>
+                            <input
+                              className={style.ADDITIONALINFOinputTwo}
+                              placeholder="например, ТОО Балтех"
+                              {...register(`CommerceOrgName.${index}`)}
+                            ></input>
+                          </div>
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
+                              Идентификационный Номер Налогоплательщика
+                            </label>
+                            <input
+                              className={style.ADDITIONALINFOinputTwo}
+                              placeholder="например, 123456789012"
+                              {...register(`CommerceOrgINN.${index}`)}
+                            ></input>
+                          </div>
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
+                              Адрес
+                            </label>
+                            <input
+                              className={style.ADDITIONALINFOinputTwo}
+                              placeholder="например, Шевченко 51, город Шымкент"
+                              {...register(`CommerceOrgAddress.${index}`)}
+                            ></input>
+                          </div>
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
+                              Вид деятельности
+                            </label>
+                            <input
+                              className={style.ADDITIONALINFOinputTwo}
+                              placeholder="например, строительство"
+                              {...register(`CommerceOrgType.${index}`)}
+                            ></input>
+                          </div>
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
+                              Телефон
+                            </label>
+                            <input
+                              className={style.ADDITIONALINFOinputTwo}
+                              placeholder="например, +7-777-777-7777"
+                              {...register(`CommerceOrgPhone.${index}`)}
+                            ></input>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
+                              Наименование
+                            </label>
+                            <input
+                              readOnly
+                              value=""
+                              className={style.ADDITIONALINFOinputTwo}
+                              placeholder="например, ТОО Балтех"
+                            ></input>
+                          </div>
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
+                              Идентификационный Номер Налогоплательщика
+                            </label>
+                            <input
+                              readOnly
+                              value=""
+                              className={style.ADDITIONALINFOinputTwo}
+                              placeholder="например, 123456789012"
+                            ></input>
+                          </div>
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
+                              Адрес
+                            </label>
+                            <input
+                              readOnly
+                              value=""
+                              className={style.ADDITIONALINFOinputTwo}
+                              placeholder="например, Шевченко 51, город Шымкент"
+                            ></input>
+                          </div>
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
+                              Вид деятельности
+                            </label>
+                            <input
+                              readOnly
+                              value=""
+                              className={style.ADDITIONALINFOinputTwo}
+                              placeholder="например, строительство"
+                            ></input>
+                          </div>
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
+                              Телефон
+                            </label>
+                            <input
+                              readOnly
+                              value=""
+                              className={style.ADDITIONALINFOinputTwo}
+                              placeholder="например, +7-777-777-7777"
+                            ></input>
+                          </div>
+                        </>
+                      )}
                     </div>
                   );
                 })}
@@ -2151,66 +2211,194 @@ const UserMainForm = () => {
                 Удалить коммерческую организацию
               </Button>
             </div>
-            <div className={style.UNIVERSITYContainer}>
-              <label className={style.UNIVERSITYlabel}>
+            <div className={style.ADDITIONALINFORELATIVESContainer}>
+              <label className={style.ADDITIONALINFORELATIVESlabel}>
                 Дополнительная информация - связь с АО "Jusan Bank"
               </label>
-              <div className={style.UNIVERSITYSubContainer}>
-                <div className={style.UNIVERSITYContainerThree}>
-                  <label className={style.UNIVERSITYlabelTwo}>
+              <div className={style.ADDITIONALINFORELATIVESSubContainer}>
+                <div className={style.ADDITIONALINFORELATIVESContainerThree}>
+                  <label className={style.ADDITIONALINFORELATIVESlabelTwo}>
                     Имеете ли Вы родственников, членов семьи, работающих в АО "
                     Jusan Bank" или связанных с деятельностью АО "Jusan Bank"
                   </label>
+
                   <input
-                    className={style.UNIVERSITYinputTwo}
-                    placeholder="например, да/нет"
+                    type="checkbox"
+                    onClick={() =>
+                      setBoolAdditionalInfoRelatives(
+                        !boolAdditionalInfoRelatives
+                      )
+                    }
+                    className={style.ADDITIONALINFORELATIVEScheckbox}
                     {...register(`JusanRelativeAnswer`)}
                   ></input>
                 </div>
                 {jusanRelativeFields.map((field, index) => {
                   return (
                     <div
-                      className={style.UNIVERSITYContainerTwo}
-                      key={jusanRelatives.id}
+                      className={style.ADDITIONALINFORELATIVESContainerTwo}
+                      key={field.id}
                     >
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>
-                          Степень родства
-                        </label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, брат"
-                          {...register(`JusanRelativesRelationship.${index}`)}
-                        ></input>
-                      </div>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, Бахытжанов Аскар Иманович"
-                          {...register(`JusanRelativesName.${index}`)}
-                        ></input>
-                      </div>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>
-                          Подразделение
-                        </label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, бухгалтерия"
-                          {...register(`JusanRelativesDepartment.${index}`)}
-                        ></input>
-                      </div>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>
-                          Должность
-                        </label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, бухгалтер"
-                          {...register(`JusanRelativesTitle.${index}`)}
-                        ></input>
-                      </div>
+                      {boolAdditionalInfoRelatives === true ? (
+                        <>
+                          <div
+                            className={
+                              style.ADDITIONALINFORELATIVESContainerThree
+                            }
+                          >
+                            <label
+                              className={
+                                style.ADDITIONALINFORELATIVESlabelThree
+                              }
+                            >
+                              Степень родства
+                            </label>
+                            <input
+                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              placeholder="например, брат"
+                              {...register(
+                                `JusanRelativesRelationship.${index}`
+                              )}
+                            ></input>
+                          </div>
+                          <div
+                            className={
+                              style.ADDITIONALINFORELATIVESContainerThree
+                            }
+                          >
+                            <label
+                              className={
+                                style.ADDITIONALINFORELATIVESlabelThree
+                              }
+                            >
+                              ФИО
+                            </label>
+                            <input
+                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              placeholder="например, Бахытжанов Аскар Иманович"
+                              {...register(`JusanRelativesName.${index}`)}
+                            ></input>
+                          </div>
+                          <div
+                            className={
+                              style.ADDITIONALINFORELATIVESContainerThree
+                            }
+                          >
+                            <label
+                              className={
+                                style.ADDITIONALINFORELATIVESlabelThree
+                              }
+                            >
+                              Подразделение
+                            </label>
+                            <input
+                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              placeholder="например, бухгалтерия"
+                              {...register(`JusanRelativesDepartment.${index}`)}
+                            ></input>
+                          </div>
+                          <div
+                            className={
+                              style.ADDITIONALINFORELATIVESContainerThree
+                            }
+                          >
+                            <label
+                              className={
+                                style.ADDITIONALINFORELATIVESlabelThree
+                              }
+                            >
+                              Должность
+                            </label>
+                            <input
+                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              placeholder="например, бухгалтер"
+                              {...register(`JusanRelativesTitle.${index}`)}
+                            ></input>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div
+                            className={
+                              style.ADDITIONALINFORELATIVESContainerThree
+                            }
+                          >
+                            <label
+                              className={
+                                style.ADDITIONALINFORELATIVESlabelThree
+                              }
+                            >
+                              Степень родства
+                            </label>
+                            <input
+                              readOnly
+                              value=""
+                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              placeholder="например, брат"
+                            ></input>
+                          </div>
+                          <div
+                            className={
+                              style.ADDITIONALINFORELATIVESContainerThree
+                            }
+                          >
+                            <label
+                              className={
+                                style.ADDITIONALINFORELATIVESlabelThree
+                              }
+                            >
+                              ФИО
+                            </label>
+                            <input
+                              readOnly
+                              value=""
+                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              placeholder="например, Бахытжанов Аскар Иманович"
+                              {...register(`JusanRelativesName.${index}`)}
+                            ></input>
+                          </div>
+                          <div
+                            className={
+                              style.ADDITIONALINFORELATIVESContainerThree
+                            }
+                          >
+                            <label
+                              className={
+                                style.ADDITIONALINFORELATIVESlabelThree
+                              }
+                            >
+                              Подразделение
+                            </label>
+                            <input
+                              readOnly
+                              value=""
+                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              placeholder="например, бухгалтерия"
+                              {...register(`JusanRelativesDepartment.${index}`)}
+                            ></input>
+                          </div>
+                          <div
+                            className={
+                              style.ADDITIONALINFORELATIVESContainerThree
+                            }
+                          >
+                            <label
+                              className={
+                                style.ADDITIONALINFORELATIVESlabelThree
+                              }
+                            >
+                              Должность
+                            </label>
+                            <input
+                              readOnly
+                              value=""
+                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              placeholder="например, бухгалтер"
+                              {...register(`JusanRelativesTitle.${index}`)}
+                            ></input>
+                          </div>
+                        </>
+                      )}
                     </div>
                   );
                 })}
