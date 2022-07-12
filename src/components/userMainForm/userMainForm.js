@@ -131,7 +131,147 @@ const UserMainForm = () => {
   const blockName = watch("permanentRegistrationAddressCorpus");
   const apartmentName = watch("permanentRegistrationAddressApartment");
 
-  console.log(cityName);
+  function cityNameFunc(boolLivingPlace) {
+    if (boolLivingPlace === true) {
+      return (
+        <input
+          value={cityName}
+          className={style.HOMEContainerFourInput}
+          placeholder="например, Караганда"
+          {...register("actualAddressCity")}
+        ></input>
+      );
+    } else {
+      return (
+        <input
+          className={style.HOMEContainerFourInput}
+          placeholder="например, Караганда"
+          {...register("actualAddressCity")}
+        ></input>
+      );
+    }
+  }
+
+  function stateNameFunc(boolLivingPlace) {
+    if (boolLivingPlace === true) {
+      return (
+        <input
+          value={stateName}
+          className={style.HOMEContainerFourInput}
+          placeholder="например, Карагандинская"
+          {...register("actualAddressDistrict")}
+        ></input>
+      );
+    } else {
+      return (
+        <input
+          className={style.HOMEContainerFourInput}
+          placeholder="например, Карагандинская"
+          {...register("actualAddressDistrict")}
+        ></input>
+      );
+    }
+  }
+  function areaNameFunc(boolLivingPlace) {
+    if (boolLivingPlace === true) {
+      return (
+        <input
+          value={areaName}
+          className={style.HOMEContainerFourInput}
+          placeholder="например, Казыбекбийский"
+          {...register("actualAddressRegion")}
+        ></input>
+      );
+    } else {
+      return (
+        <input
+          className={style.HOMEContainerFourInput}
+          placeholder="например, Казыбекбийский"
+          {...register("actualAddressRegion")}
+        ></input>
+      );
+    }
+  }
+  function streetNameFunc(boolLivingPlace) {
+    if (boolLivingPlace === true) {
+      return (
+        <input
+          value={streetName}
+          className={style.HOMEContainerFourInput}
+          placeholder="например, Степная"
+          {...register("actualAddressStreet")}
+        ></input>
+      );
+    } else {
+      return (
+        <input
+          className={style.HOMEContainerFourInput}
+          placeholder="например, Степная"
+          {...register("actualAddressStreet")}
+        ></input>
+      );
+    }
+  }
+  function buildingNameFunc(boolLivingPlace) {
+    if (boolLivingPlace === true) {
+      return (
+        <input
+          value={buildingName}
+          className={style.HOMEContainerFourInput}
+          placeholder="например, 1"
+          {...register("actualAddressHouseNumber")}
+        ></input>
+      );
+    } else {
+      return (
+        <input
+          className={style.HOMEContainerFourInput}
+          placeholder="например, 1"
+          {...register("actualAddressHouseNumber")}
+        ></input>
+      );
+    }
+  }
+  function blockNameFunc(boolLivingPlace) {
+    if (boolLivingPlace === true) {
+      return (
+        <input
+          value={blockName}
+          className={style.HOMEContainerFourInput}
+          placeholder="например, А1"
+          {...register("actualAddressCorpus")}
+        ></input>
+      );
+    } else {
+      return (
+        <input
+          className={style.HOMEContainerFourInput}
+          placeholder="например, А1"
+          {...register("actualAddressCorpus")}
+        ></input>
+      );
+    }
+  }
+  function apartmentNameFunc(boolLivingPlace) {
+    if (boolLivingPlace === true) {
+      return (
+        <input
+          value={apartmentName}
+          className={style.HOMEContainerFourInput}
+          placeholder="например, 101"
+          {...register("actualAddressApartment")}
+        ></input>
+      );
+    } else {
+      return (
+        <input
+          className={style.HOMEContainerFourInput}
+          placeholder="например, 101"
+          {...register("actualAddressApartment")}
+        ></input>
+      );
+    }
+  }
 
   return (
     <div>
@@ -887,70 +1027,41 @@ const UserMainForm = () => {
                     <label className={style.HOMEContainerFourLabel}>
                       Город
                     </label>
-                    <input
-                      value={boolLivingPlace ? cityName : ""}
-                      className={style.HOMEContainerFourInput}
-                      placeholder="например, Караганда"
-                      {...register("actualAddressCity")}
-                    ></input>
+                    {cityNameFunc(boolLivingPlace)}
                   </div>
                   <div className={style.HOMEContainerFour}>
                     <label className={style.HOMEContainerFourLabel}>
                       Область
                     </label>
-                    <input
-                      className={style.HOMEContainerFourInput}
-                      placeholder="например, Карагандинская"
-                      {...register("actualAddressDistrict")}
-                    ></input>
+                    {stateNameFunc(boolLivingPlace)}
                   </div>
                   <div className={style.HOMEContainerFour}>
                     <label className={style.HOMEContainerFourLabel}>
                       Район
                     </label>
-                    <input
-                      className={style.HOMEContainerFourInput}
-                      placeholder="например, Казыбекбийский"
-                      {...register("actualAddressRegion")}
-                    ></input>
+                    {areaNameFunc(boolLivingPlace)}
                   </div>
                   <div className={style.HOMEContainerFour}>
                     <label className={style.HOMEContainerFourLabel}>
                       Улица
                     </label>
-                    <input
-                      className={style.HOMEContainerFourInput}
-                      placeholder="например, Степная"
-                      {...register("actualAddressStreet")}
-                    ></input>
+                    {streetNameFunc(boolLivingPlace)}
                   </div>
                   <div className={style.HOMEContainerFour}>
                     <label className={style.HOMEContainerFourLabel}>Дом</label>
-                    <input
-                      className={style.HOMEContainerFourInput}
-                      placeholder="например, 1"
-                      {...register("actualAddressHouseNumber")}
-                    ></input>
+                    {buildingNameFunc(boolLivingPlace)}
                   </div>
                   <div className={style.HOMEContainerFour}>
                     <label className={style.HOMEContainerFourLabel}>
                       Корпус
                     </label>
-                    <input
-                      className={style.HOMEContainerFourInput}
-                      placeholder="например, А1"
-                      {...register("actualAddressCorpus")}
-                    ></input>
+                    {blockNameFunc(boolLivingPlace)}
                   </div>
                   <div className={style.HOMEContainerFour}>
                     <label className={style.HOMEContainerFourLabel}>
                       Квартира
                     </label>
-                    <input
-                      className={style.HOMEContainerFourInput}
-                      placeholder="например, 101"
-                      {...register("actualAddressApartment")}
-                    ></input>
+                    {apartmentNameFunc(boolLivingPlace)}
                   </div>
                 </div>
               </div>
