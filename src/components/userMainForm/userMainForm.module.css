@@ -294,7 +294,7 @@ select:focus {
   margin-bottom: 1%;
 }
 .HOMEContainerTwoLabel {
-  width: 30%;
+  width: 100%;
 }
 
 .UNIVERSITYContainer {
@@ -372,56 +372,9 @@ select:focus {
   text-indent: 2%;
   padding-top: 2%;
   padding-bottom: 2%;
-  font-size: 100%;
+  font-size: 70%;
 }
 .ADDITIONALINFOcheckbox {
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-.ADDITIONALINFORELATIVESContainer {
-  width: 100%;
-  display: flex;
-  padding-bottom: 2%;
-}
-.ADDITIONALINFORELATIVESSubContainer {
-  width: 100%;
-}
-.ADDITIONALINFORELATIVESlabel {
-  width: 42.5%;
-  margin-left: 2%;
-  font-size: 100%;
-  text-align: left;
-}
-.ADDITIONALINFORELATIVESContainerTwo {
-  width: 100%;
-  font-size: 70%;
-  text-align: left;
-}
-.ADDITIONALINFORELATIVESContainerThree {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1%;
-  align-items: center;
-}
-.ADDITIONALINFORELATIVESlabelTwo {
-  width: 90%;
-  font-size: 80%;
-}
-.ADDITIONALINFORELATIVESlabelThree {
-  width: 30%;
-  text-align: left;
-  font-size: 80%;
-}
-.ADDITIONALINFORELATIVESinputTwo {
-  width: 70%;
-  text-indent: 2%;
-  padding-top: 2%;
-  padding-bottom: 2%;
-  font-size: 100%;
-}
-.ADDITIONALINFORELATIVEScheckbox {
   margin-left: 2%;
   margin-right: 2%;
 }
@@ -438,10 +391,15 @@ select:focus {
 }
 
 .dataProcessingConfirmation {
+  margin: auto;
   display: flex;
   flex-direction: column;
   font-family: Arial, Helvetica, serif;
   font-weight: normal;
   font-size: 80%;
-  width: 80%;
+  width: 90%;
+}
+
+.confirmation {
+  margin: 2%;
 }

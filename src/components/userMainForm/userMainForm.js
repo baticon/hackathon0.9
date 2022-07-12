@@ -7,10 +7,14 @@ import Select from "react-select";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "@chakra-ui/react";
+import { textAlign } from "@mui/system";
 
 //use https://react-hook-form.com/
 
 // <input {...register("lastName", { pattern: /^[A-Za-z]+$/i })} />
+
+const timeElapsed = Date.now();
+const today = new Date(timeElapsed);
 
 const defaultUniversity = {
   start: null,
@@ -69,6 +73,11 @@ const defaultCar = {
 
 const UserMainForm = () => {
   const navigate = useNavigate();
+
+  const [dateState, setDateState] = useState(new Date());
+  useEffect(() => {
+    setInterval(() => setDateState(new Date()), 30000);
+  }, []);
 
   const [jusanRelatives, setJusanRelatives] = useState([defaultJusanRelative]);
   const [cars, setCars] = useState([defaultCar]);
@@ -307,8 +316,7 @@ const UserMainForm = () => {
   }
 
   const [boolAdditionalInfoToo, setBoolAdditionalInfoToo] = useState(false);
-  const [boolAdditionalInfoRelatives, setBoolAdditionalInfoRelatives] =
-    useState(false);
+  const [boolADDITIONALINFO, setBoolADDITIONALINFO] = useState(false);
 
   return (
     <div>
@@ -358,14 +366,13 @@ const UserMainForm = () => {
               ></img>
             </div>
 
-            <div className={style.DOBContainer}>
-              <label className={style.DOBlabel}>
+            <div className={style.IINContainer}>
+              <label className={style.IINlabel}>
                 Число, месяц и год рождения
               </label>
               <input
-                className={style.DOBinput}
+                className={style.IINinput}
                 type="date"
-                readOnly
                 {...register("dateOfBirthday")}
               ></input>
               <img
@@ -375,10 +382,10 @@ const UserMainForm = () => {
                 title="Дата рождения в формате ММ-ЧЧ-ГГГГ"
               ></img>
             </div>
-            <div className={style.POBContainer}>
-              <label className={style.POBlabel}>Место рождения</label>
+            <div className={style.IINContainer}>
+              <label className={style.IINlabel}>Место рождения</label>
               <input
-                className={style.POBinput}
+                className={style.IINinput}
                 placeholder="например, Казахстан, Астана"
                 {...register("placeOfBirth")}
               ></input>
@@ -389,8 +396,8 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите страну и город (или село/деревню)"
               ></img>
             </div>
-            <div className={style.NATIONALITYContainer}>
-              <label className={style.NATIONALITYlabel}>Национальность</label>
+            <div className={style.IINContainer}>
+              <label className={style.IINlabel}>Национальность</label>
               <select
                 className={style.NATIONALITYinput}
                 {...register("nationality")}
@@ -629,8 +636,8 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите национальность"
               ></img>
             </div>
-            <div className={style.CITIZENSHIPContainer}>
-              <label className={style.CITIZENSHIPlabel}>Гражданство</label>
+            <div className={style.IINContainer}>
+              <label className={style.IINlabel}>Гражданство</label>
               <select
                 className={style.CITIZENSHIPinput}
                 {...register("citizenship")}
@@ -1128,6 +1135,7 @@ const UserMainForm = () => {
                           Дата начала обучения
                         </label>
                         <input
+                          type="date"
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 01-01-1990"
                           {...register(`startDateOfEducation.${index}`)}
@@ -1138,6 +1146,7 @@ const UserMainForm = () => {
                           Дата конца обучения
                         </label>
                         <input
+                          type="date"
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 01-01-1994"
                           {...register(`endDateOfEducation.${index}`)}
@@ -1217,6 +1226,7 @@ const UserMainForm = () => {
                           Год окончания
                         </label>
                         <input
+                          type="date"
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 1990"
                           {...register(`yearOfGraduation.${index}`)}
@@ -1308,6 +1318,7 @@ const UserMainForm = () => {
                       Начало рабочего периода
                     </label>
                     <input
+                      type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1990"
                       {...register("startOfWorking1")}
@@ -1318,6 +1329,7 @@ const UserMainForm = () => {
                       Конец рабочего периода
                     </label>
                     <input
+                      type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1991"
                       {...register("endOfWorking1")}
@@ -1413,6 +1425,7 @@ const UserMainForm = () => {
                       Начало рабочего периода
                     </label>
                     <input
+                      type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1990"
                       {...register("WorkStart2")}
@@ -1423,6 +1436,7 @@ const UserMainForm = () => {
                       Конец рабочего периода
                     </label>
                     <input
+                      type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1991"
                       {...register("WorkEnd2")}
@@ -1518,6 +1532,7 @@ const UserMainForm = () => {
                       Начало рабочего периода
                     </label>
                     <input
+                      type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1990"
                       {...register("WorkStart3")}
@@ -1528,6 +1543,7 @@ const UserMainForm = () => {
                       Конец рабочего периода
                     </label>
                     <input
+                      type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1991"
                       {...register("WorkEnd3")}
@@ -1906,6 +1922,7 @@ const UserMainForm = () => {
                           Дата рождения
                         </label>
                         <input
+                          type="date"
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 01-01-1994"
                           {...register(`ChildDOB.${index}`)}
@@ -1985,6 +2002,7 @@ const UserMainForm = () => {
                           Дата рождения
                         </label>
                         <input
+                          type="date"
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 01-01-1994"
                           {...register(`RelativeDOB.${index}`)}
@@ -2211,106 +2229,70 @@ const UserMainForm = () => {
                 Удалить коммерческую организацию
               </Button>
             </div>
-            <div className={style.ADDITIONALINFORELATIVESContainer}>
-              <label className={style.ADDITIONALINFORELATIVESlabel}>
+            <div className={style.ADDITIONALINFOContainer}>
+              <label className={style.ADDITIONALINFOlabel}>
                 Дополнительная информация - связь с АО "Jusan Bank"
               </label>
-              <div className={style.ADDITIONALINFORELATIVESSubContainer}>
-                <div className={style.ADDITIONALINFORELATIVESContainerThree}>
-                  <label className={style.ADDITIONALINFORELATIVESlabelTwo}>
+              <div className={style.ADDITIONALINFOSubContainer}>
+                <div className={style.ADDITIONALINFOContainerThree}>
+                  <label className={style.ADDITIONALINFOlabelTwo}>
                     Имеете ли Вы родственников, членов семьи, работающих в АО "
                     Jusan Bank" или связанных с деятельностью АО "Jusan Bank"
                   </label>
 
                   <input
                     type="checkbox"
-                    onClick={() =>
-                      setBoolAdditionalInfoRelatives(
-                        !boolAdditionalInfoRelatives
-                      )
-                    }
-                    className={style.ADDITIONALINFORELATIVEScheckbox}
+                    onClick={() => setBoolADDITIONALINFO(!boolADDITIONALINFO)}
+                    className={style.ADDITIONALINFOcheckbox}
                     {...register(`JusanRelativeAnswer`)}
                   ></input>
                 </div>
                 {jusanRelativeFields.map((field, index) => {
                   return (
                     <div
-                      className={style.ADDITIONALINFORELATIVESContainerTwo}
+                      className={style.ADDITIONALINFOContainerTwo}
                       key={field.id}
                     >
-                      {boolAdditionalInfoRelatives === true ? (
+                      {boolADDITIONALINFO === true ? (
                         <>
-                          <div
-                            className={
-                              style.ADDITIONALINFORELATIVESContainerThree
-                            }
-                          >
-                            <label
-                              className={
-                                style.ADDITIONALINFORELATIVESlabelThree
-                              }
-                            >
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
                               Степень родства
                             </label>
                             <input
-                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, брат"
                               {...register(
                                 `JusanRelativesRelationship.${index}`
                               )}
                             ></input>
                           </div>
-                          <div
-                            className={
-                              style.ADDITIONALINFORELATIVESContainerThree
-                            }
-                          >
-                            <label
-                              className={
-                                style.ADDITIONALINFORELATIVESlabelThree
-                              }
-                            >
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
                               ФИО
                             </label>
                             <input
-                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, Бахытжанов Аскар Иманович"
                               {...register(`JusanRelativesName.${index}`)}
                             ></input>
                           </div>
-                          <div
-                            className={
-                              style.ADDITIONALINFORELATIVESContainerThree
-                            }
-                          >
-                            <label
-                              className={
-                                style.ADDITIONALINFORELATIVESlabelThree
-                              }
-                            >
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
                               Подразделение
                             </label>
                             <input
-                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              className={style.ADDITIONALINFinputTwo}
                               placeholder="например, бухгалтерия"
                               {...register(`JusanRelativesDepartment.${index}`)}
                             ></input>
                           </div>
-                          <div
-                            className={
-                              style.ADDITIONALINFORELATIVESContainerThree
-                            }
-                          >
-                            <label
-                              className={
-                                style.ADDITIONALINFORELATIVESlabelThree
-                              }
-                            >
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
                               Должность
                             </label>
                             <input
-                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, бухгалтер"
                               {...register(`JusanRelativesTitle.${index}`)}
                             ></input>
@@ -2318,81 +2300,49 @@ const UserMainForm = () => {
                         </>
                       ) : (
                         <>
-                          <div
-                            className={
-                              style.ADDITIONALINFORELATIVESContainerThree
-                            }
-                          >
-                            <label
-                              className={
-                                style.ADDITIONALINFORELATIVESlabelThree
-                              }
-                            >
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
                               Степень родства
                             </label>
                             <input
                               readOnly
                               value=""
-                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, брат"
                             ></input>
                           </div>
-                          <div
-                            className={
-                              style.ADDITIONALINFORELATIVESContainerThree
-                            }
-                          >
-                            <label
-                              className={
-                                style.ADDITIONALINFORELATIVESlabelThree
-                              }
-                            >
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
                               ФИО
                             </label>
                             <input
                               readOnly
                               value=""
-                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, Бахытжанов Аскар Иманович"
                               {...register(`JusanRelativesName.${index}`)}
                             ></input>
                           </div>
-                          <div
-                            className={
-                              style.ADDITIONALINFORELATIVESContainerThree
-                            }
-                          >
-                            <label
-                              className={
-                                style.ADDITIONALINFORELATIVESlabelThree
-                              }
-                            >
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
                               Подразделение
                             </label>
                             <input
                               readOnly
                               value=""
-                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, бухгалтерия"
                               {...register(`JusanRelativesDepartment.${index}`)}
                             ></input>
                           </div>
-                          <div
-                            className={
-                              style.ADDITIONALINFORELATIVESContainerThree
-                            }
-                          >
-                            <label
-                              className={
-                                style.ADDITIONALINFORELATIVESlabelThree
-                              }
-                            >
+                          <div className={style.ADDITIONALINFOContainerThree}>
+                            <label className={style.ADDITIONALINFOlabelThree}>
                               Должность
                             </label>
                             <input
                               readOnly
                               value=""
-                              className={style.ADDITIONALINFORELATIVESinputTwo}
+                              className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, бухгалтер"
                               {...register(`JusanRelativesTitle.${index}`)}
                             ></input>
@@ -2433,48 +2383,37 @@ const UserMainForm = () => {
                     Наличие автомобиля
                   </label>
                   <input
+                    type="checkbox"
                     className={style.UNIVERSITYinputTwo}
-                    placeholder="например, да/нет"
                     {...register(`carAnswer`)}
                   ></input>
                 </div>
-                {cars.map(({ model, year, number }, index) => {
-                  return (
-                    <div className={style.UNIVERSITYContainerTwo} key={cars.id}>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>
-                          Модель
-                        </label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, Лада 9"
-                          value={model}
-                          {...register(`carModel.${index}`)}
-                        ></input>
-                      </div>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, 1990"
-                          value={year}
-                          {...register(`carYearOfManufacture.${index}`)}
-                        ></input>
-                      </div>
-                      <div className={style.UNIVERSITYContainerThree}>
-                        <label className={style.UNIVERSITYlabelTwo}>
-                          Номер
-                        </label>
-                        <input
-                          className={style.UNIVERSITYinputTwo}
-                          placeholder="например, A88801KZ"
-                          value={number}
-                          {...register(`carNumber.${index}`)}
-                        ></input>
-                      </div>
-                    </div>
-                  );
-                })}
+                <div className={style.UNIVERSITYContainerTwo} key={cars.id}>
+                  <div className={style.UNIVERSITYContainerThree}>
+                    <label className={style.UNIVERSITYlabelTwo}>Модель</label>
+                    <input
+                      className={style.UNIVERSITYinputTwo}
+                      placeholder="например, Лада 9"
+                      {...register(`carModel`)}
+                    ></input>
+                  </div>
+                  <div className={style.UNIVERSITYContainerThree}>
+                    <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                    <input
+                      className={style.UNIVERSITYinputTwo}
+                      placeholder="например, 1990"
+                      {...register(`carYearOfManufacture`)}
+                    ></input>
+                  </div>
+                  <div className={style.UNIVERSITYContainerThree}>
+                    <label className={style.UNIVERSITYlabelTwo}>Номер</label>
+                    <input
+                      className={style.UNIVERSITYinputTwo}
+                      placeholder="например, A88801KZ"
+                      {...register(`carNumber`)}
+                    ></input>
+                  </div>
+                </div>
               </div>
               <img
                 src={question}
@@ -2483,12 +2422,6 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите детали машины"
               ></img>
             </div>
-            <button
-              type="button"
-              onClick={() => setCars((cars) => [...cars, defaultCar])}
-            >
-              Добавить машину
-            </button>
           </div>
 
           <div style={{ marginTop: "2%" }}>
@@ -2525,7 +2458,7 @@ const UserMainForm = () => {
               <div className={style.UNIVERSITYContainerTwo} key={cars.id}>
                 <div className={style.UNIVERSITYContainerThree}>
                   <label className={style.UNIVERSITYlabelTwo}>
-                    ЕИмеете ли Вы право на льготы согласно действующему
+                    Имеете ли Вы право на льготы согласно действующему
                     законодательству?
                   </label>
                   <input
@@ -2701,7 +2634,6 @@ const UserMainForm = () => {
               ></img>
             </div>
           </div>
-          <input readOnly {...register(`dateOfFillingIn`)}></input>
 
           <div style={{ marginTop: "2%" }}>
             <div className={style.dataProcessingConfirmation}>
@@ -2723,13 +2655,28 @@ const UserMainForm = () => {
                 Закона Республики Казахстан «О банках и банковской деятельности
                 в Республике Казахстан».
               </span>
-              <div>
-                <input type="checkbox"></input>
+              <div className={style.confirmation}>
+                <input type="checkbox" style={{ margin: "2%" }}></input>
                 <span>
                   Даю безусловное согласие на сбор, обработку, хранение и
                   распространение Банком информации обо мне{" "}
                 </span>
               </div>
+              <input
+                readOnly
+                value={dateState.toLocaleString("en-US", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                })}
+                style={{ width: "100%", textAlign: "center", border: "none" }}
+                {...register(`dateOfFillingIn`)}
+              >
+                {}
+              </input>
             </div>
             <div
               style={{
