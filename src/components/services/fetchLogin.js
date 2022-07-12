@@ -1,5 +1,4 @@
-const url = "https://jusanhr.herokuapp.com/login";
-
+const url = "https://jusanhr.herokuapp.com/sign-in";
 async function FetchLogin(obj) {
   try {
     const res = await fetch(url, {

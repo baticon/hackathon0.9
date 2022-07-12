@@ -2,12 +2,14 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import style from "./userMainForm.module.css";
 import question from "../media/question.png";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Select from "react-select";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "@chakra-ui/react";
 import { textAlign } from "@mui/system";
+import dataUpload from "../services/postData.js";
+import dataDownload from "../services/getData.js";
 
 //use https://react-hook-form.com/
 
@@ -17,58 +19,58 @@ const timeElapsed = Date.now();
 const today = new Date(timeElapsed);
 
 const defaultUniversity = {
-  start: null,
-  end: null,
-  universityname: null,
-  major: null,
-  attendance: null,
-  degree: null,
+  start: "",
+  end: "",
+  universityname: "",
+  major: "",
+  attendance: "",
+  degree: "",
 };
 
 const defaultCourse = {
-  end: null,
-  duration: null,
-  coursename: null,
-  type: null,
-  degree: null,
+  end: "",
+  duration: "",
+  coursename: "",
+  type: "",
+  degree: "",
 };
 
 const defaultChild = {
-  name: null,
-  dob: null,
-  phone: null,
-  place: null,
+  name: "",
+  dob: "",
+  phone: "",
+  place: "",
 };
 
 const defaultRelative = {
-  relationship: null,
-  name: null,
-  dob: null,
-  place: null,
-  title: null,
-  home: null,
-  phone: null,
+  relationship: "",
+  name: "",
+  dob: "",
+  place: "",
+  title: "",
+  home: "",
+  phone: "",
 };
 
 const defaultCommerceOrg = {
-  name: null,
-  inn: null,
-  address: null,
-  type: null,
-  phone: null,
+  name: "",
+  inn: "",
+  address: "",
+  type: "",
+  phone: "",
 };
 
 const defaultJusanRelative = {
-  relationship: null,
-  name: null,
-  department: null,
-  title: null,
+  relationship: "",
+  name: "",
+  department: "",
+  title: "",
 };
 
 const defaultCar = {
-  model: null,
-  year: null,
-  number: null,
+  model: "",
+  year: "",
+  number: "",
 };
 
 const UserMainForm = () => {
@@ -79,36 +81,37 @@ const UserMainForm = () => {
     setInterval(() => setDateState(new Date()), 30000);
   }, []);
 
+  const [agree, setAgree] = useState(false);
+
   const [jusanRelatives, setJusanRelatives] = useState([defaultJusanRelative]);
   const [cars, setCars] = useState([defaultCar]);
 
-  const { control, register, handleSubmit, setValue, watch } = useForm({
+  const { control, register, handleSubmit, setValue, watch, reset } = useForm({
     defaultValues: {
-      universities: [defaultUniversity],
-      courses: [defaultCourse],
-      children: [defaultChild],
-      relatives: [defaultRelative],
-      commerces: [defaultCommerceOrg],
-      jusanRelatives: [defaultJusanRelative],
+      universityInfoDtos: [defaultUniversity],
+      additionalEducationInfoDtos: [defaultCourse],
+      childrenInfoDtos: [defaultChild],
+      relativesInfoDtos: [defaultRelative],
+      additionalWorkingInfoDtos: [defaultCommerceOrg],
+      relativesInJusanDtos: [defaultJusanRelative],
     },
   });
-  const onSubmit = (data) => console.log(data); //do fetch to server here to post data
+  const onSubmit = (data) => {
+    console.log(data);
+    dataUpload(data);
+  }; //do fetch to server here to post data
 
   //get data from backend when user returns to certain page
 
+  const resetAsyncForm = useCallback(async () => {
+    const result = await dataDownload();
+    console.log(result);
+    reset(result);
+  }, [reset]);
+
   useEffect(() => {
-    // insert data from back end here
-    setValue(`universities`, [
-      {
-        start: null,
-        end: null,
-        universityname: "Harvard",
-        major: "CS",
-        attendance: null,
-        degree: null,
-      },
-    ]);
-  }, []);
+    resetAsyncForm();
+  }, [resetAsyncForm]);
 
   const {
     fields: universityFields,
@@ -116,7 +119,7 @@ const UserMainForm = () => {
     remove: universityRemove,
   } = useFieldArray({
     control,
-    name: `universities`,
+    name: `universityInfoDtos`,
   });
 
   const {
@@ -125,7 +128,7 @@ const UserMainForm = () => {
     remove: courseRemove,
   } = useFieldArray({
     control,
-    name: `courses`,
+    name: `additionalEducationInfoDtos`,
   });
 
   const {
@@ -134,7 +137,7 @@ const UserMainForm = () => {
     remove: childRemove,
   } = useFieldArray({
     control,
-    name: `children`,
+    name: `childrenInfoDtos`,
   });
 
   const {
@@ -143,7 +146,7 @@ const UserMainForm = () => {
     remove: relativeRemove,
   } = useFieldArray({
     control,
-    name: `relatives`,
+    name: `relativesInfoDtos`,
   });
 
   const {
@@ -152,7 +155,7 @@ const UserMainForm = () => {
     remove: commerceRemove,
   } = useFieldArray({
     control,
-    name: `commerces`,
+    name: `additionalWorkingInfoDtos`,
   });
 
   const {
@@ -161,7 +164,7 @@ const UserMainForm = () => {
     remove: jusanRelativeRemove,
   } = useFieldArray({
     control,
-    name: `jusanRelatives`,
+    name: `relativesInJusanDtos`,
   });
 
   const [boolLivingPlace, setBoolLivingPlace] = useState(false);
@@ -336,7 +339,7 @@ const UserMainForm = () => {
               <input
                 className={style.IINinput}
                 placeholder="например, 900101250050"
-                pattern="^[0-9]{12}$"
+                // pattern="^[0-9]{12}$"
                 title="ИИН состоит из 12 цифр"
                 required="required"
                 {...register("iin")}
@@ -356,7 +359,7 @@ const UserMainForm = () => {
                 pattern="([А-ЯЁ][а-яё]+[\-\s]?){3,}"
                 title="Введите полное имя"
                 required="required"
-                {...register("FIO")}
+                {...register("oldSurname")}
               ></input>
               <img
                 src={question}
@@ -954,9 +957,30 @@ const UserMainForm = () => {
                   <input
                     className={style.CONTACTSinputTwo}
                     placeholder="например, Баглан Данов"
-                    {...register("contactPerson")}
+                    {...register("contactPersonFio")}
                   ></input>
                 </div>
+                <div className={style.CONTACTSContainerThree}>
+                  <label className={style.CONTACTSlabelTwo}>
+                    Контактный - степень родства (родственника и/или знакомого)
+                  </label>
+                  <input
+                    className={style.CONTACTSinputTwo}
+                    placeholder="например, отец"
+                    {...register("contactPersonDegreeOfRelationship")}
+                  ></input>
+                </div>
+                <div className={style.CONTACTSContainerThree}>
+                  <label className={style.CONTACTSlabelTwo}>
+                    Контактный - номер телефона (родственника и/или знакомого)
+                  </label>
+                  <input
+                    className={style.CONTACTSinputTwo}
+                    placeholder="например, +7-777-555-6677"
+                    {...register("contactPersonPhoneNumber")}
+                  ></input>
+                </div>
+
                 <div className={style.CONTACTSContainerThree}>
                   <label className={style.CONTACTSlabelTwo}>
                     Адрес электронной почты
@@ -1138,7 +1162,9 @@ const UserMainForm = () => {
                           type="date"
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 01-01-1990"
-                          {...register(`startDateOfEducation.${index}`)}
+                          {...register(
+                            `universityInfoDtos.${index}.startDateOfEducation`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1149,7 +1175,9 @@ const UserMainForm = () => {
                           type="date"
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 01-01-1994"
-                          {...register(`endDateOfEducation.${index}`)}
+                          {...register(
+                            `universityInfoDtos.${index}.endDateOfEducation`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1159,7 +1187,9 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, Назарбаев Университет"
-                          {...register(`nameOfInstitution.${index}`)}
+                          {...register(
+                            `universityInfoDtos.${index}.nameOfInstitution`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1169,7 +1199,21 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, информатика"
-                          {...register(`specialityAndFormOfStudy.${index}`)}
+                          {...register(
+                            `universityInfoDtos.${index}.speciality`
+                          )}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Форма обучения
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, очная"
+                          {...register(
+                            `universityInfoDtos.${index}.formOfStudy`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1179,7 +1223,9 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, бакалавр"
-                          {...register(`qualification.${index}`)}
+                          {...register(
+                            `universityInfoDtos.${index}.qualification`
+                          )}
                         ></input>
                       </div>
                     </div>
@@ -1194,13 +1240,15 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите места высшего и среднеспециального образования, которые Вы окончили."
               ></img>
             </div>
-            <div>
+            <div className={style.AddRemoveButtonContainer}>
               <Button
+                className={style.AddButton}
                 onClick={() => universityAppend({ ...defaultUniversity })}
               >
                 Добавить университет
               </Button>
               <Button
+                className={style.RemoveButton}
                 onClick={() => universityRemove({ ...defaultUniversity })}
               >
                 Удалить университет
@@ -1229,7 +1277,9 @@ const UserMainForm = () => {
                           type="date"
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 1990"
-                          {...register(`yearOfGraduation.${index}`)}
+                          {...register(
+                            `additionalEducationInfoDtos.${index}.yearOfGraduation`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1239,7 +1289,9 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 1 год"
-                          {...register(`durationOfTraining.${index}`)}
+                          {...register(
+                            `additionalEducationInfoDtos.${index}.durationOfTraining`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1249,7 +1301,9 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, Курсы инженерной квалификации"
-                          {...register(`nameOfCourse.${index}`)}
+                          {...register(
+                            `additionalEducationInfoDtos.${index}.nameOfCourse`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1259,7 +1313,9 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например,инженер"
-                          {...register(`speciality.${index}`)}
+                          {...register(
+                            `additionalEducationInfoDtos.${index}.speciality`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1269,7 +1325,9 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, разряд/грейд"
-                          {...register(`AcademicDegreeOrCertificates.${index}`)}
+                          {...register(
+                            `additionalEducationInfoDtos.${index}.academicDegreeOrCertificates`
+                          )}
                         ></input>
                       </div>
                     </div>
@@ -1283,19 +1341,17 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите курсы"
               ></img>
             </div>
-            {/* <button
-              type="button"
-              onClick={() =>
-                setCourses((courses) => [...courses, defaultCourse])
-              }
-            >
-              Добавить курс
-            </button> */}
-            <div>
-              <Button onClick={() => courseAppend({ ...defaultUniversity })}>
+            <div className={style.AddRemoveButtonContainer}>
+              <Button
+                className={style.AddButton}
+                onClick={() => courseAppend({ ...defaultUniversity })}
+              >
                 Добавить курс
               </Button>
-              <Button onClick={() => courseRemove({ ...defaultUniversity })}>
+              <Button
+                className={style.RemoveButton}
+                onClick={() => courseRemove({ ...defaultUniversity })}
+              >
                 Удалить курс
               </Button>
             </div>
@@ -1321,7 +1377,7 @@ const UserMainForm = () => {
                       type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1990"
-                      {...register("startOfWorking1")}
+                      {...register("startOfWorkingOne")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1332,7 +1388,7 @@ const UserMainForm = () => {
                       type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1991"
-                      {...register("endOfWorking1")}
+                      {...register("endOfWorkingOne")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1342,7 +1398,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, АО First Heartland Jusan Bank"
-                      {...register("workingPlaceInfo1")}
+                      {...register("workingPlaceInfoOne")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1352,7 +1408,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, банкинг и финансы"
-                      {...register("WorkType1")}
+                      {...register("workTypeOne")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1362,7 +1418,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Кабанбай Батыра 205"
-                      {...register("WorkAddress1")}
+                      {...register("workingPlaceAddressOne")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1372,7 +1428,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, +7-7172-777-888"
-                      {...register("WorkPhone1")}
+                      {...register("workingPlacePhoneNumberOne")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1382,7 +1438,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, бухгалтер"
-                      {...register("WorkTitle1")}
+                      {...register("positionOne")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1392,7 +1448,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Рахимбаев Талгат Ильясович"
-                      {...register("WorkManager1")}
+                      {...register("managerFullNameOne")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1402,7 +1458,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, например, +7-7172-777-888"
-                      {...register("WorkManagerPhone1")}
+                      {...register("managerPhoneNumberOne")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1412,7 +1468,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, по собственному желанию"
-                      {...register("WorkLeaveReason1")}
+                      {...register("reasonForDismissalOne")}
                     ></input>
                   </div>
                 </div>
@@ -1428,7 +1484,7 @@ const UserMainForm = () => {
                       type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1990"
-                      {...register("WorkStart2")}
+                      {...register("startOfWorkingTwo")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1439,7 +1495,7 @@ const UserMainForm = () => {
                       type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1991"
-                      {...register("WorkEnd2")}
+                      {...register("endOfWorkingTwo")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1449,7 +1505,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, АО First Heartland Jusan Bank"
-                      {...register("WorkName2")}
+                      {...register("workingPlaceInfoTwo")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1459,7 +1515,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, банкинг и финансы"
-                      {...register("WorkType2")}
+                      {...register("workTypeTwo")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1469,7 +1525,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Кабанбай Батыра 205"
-                      {...register("WorkAddress2")}
+                      {...register("workingPlaceAddressTwo")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1479,7 +1535,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, +7-7172-777-888"
-                      {...register("WorkPhone2")}
+                      {...register("workingPlacePhoneNumberTwo")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1489,7 +1545,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, бухгалтер"
-                      {...register("WorkTitle2")}
+                      {...register("positionTwo")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1499,7 +1555,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Рахимбаев Талгат Ильясович"
-                      {...register("WorkManager2")}
+                      {...register("managerFullNameTwo")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1509,7 +1565,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, например, +7-7172-777-888"
-                      {...register("WorkManagerPhone2")}
+                      {...register("managerPhoneNumberTwo")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1519,7 +1575,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, по собственному желанию"
-                      {...register("WorkLeaveReason2")}
+                      {...register("reasonForDismissalTwo")}
                     ></input>
                   </div>
                 </div>
@@ -1535,7 +1591,7 @@ const UserMainForm = () => {
                       type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1990"
-                      {...register("WorkStart3")}
+                      {...register("startOfWorkingThree")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1546,7 +1602,7 @@ const UserMainForm = () => {
                       type="date"
                       className={style.HOMEContainerFourInput}
                       placeholder="например, 01-1991"
-                      {...register("WorkEnd3")}
+                      {...register("endOfWorkingThree")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1556,7 +1612,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, АО First Heartland Jusan Bank"
-                      {...register("WorkName3")}
+                      {...register("workingPlaceNameThree")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1566,7 +1622,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, банкинг и финансы"
-                      {...register("WorkType3")}
+                      {...register("workTypeThree")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1576,7 +1632,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Кабанбай Батыра 205"
-                      {...register("WorkAddress3")}
+                      {...register("workingPlaceAddressThree")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1586,7 +1642,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, +7-7172-777-888"
-                      {...register("WorkPhone3")}
+                      {...register("workingPlacePhoneNumberThree")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1596,7 +1652,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, бухгалтер"
-                      {...register("WorkTitle3")}
+                      {...register("positionThree")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1606,7 +1662,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Рахимбаев Талгат Ильясович"
-                      {...register("WorkManager3")}
+                      {...register("managerFullNameThree")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1616,7 +1672,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, например, +7-7172-777-888"
-                      {...register("WorkManagerPhone3")}
+                      {...register("managerPhoneNumberThree")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1626,7 +1682,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, по собственному желанию"
-                      {...register("WorkLeaveReason3")}
+                      {...register("reasonForDismissalThree")}
                     ></input>
                   </div>
                 </div>
@@ -1656,7 +1712,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Рахимбаев Талгат Ильясович"
-                      {...register("RecommenderName1")}
+                      {...register("profRefFullName1")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1666,7 +1722,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, АО First Heartland Jusan Bank"
-                      {...register("RecommenderWork1")}
+                      {...register("profRefWorkPlace1")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1676,7 +1732,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, бухгалтер"
-                      {...register("RecommenderTitle1")}
+                      {...register("profRefWorkPosition1")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1686,7 +1742,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, например, +7-7172-777-888"
-                      {...register("RecommenderPhone1")}
+                      {...register("profRefTel1")}
                     ></input>
                   </div>
                 </div>
@@ -1701,7 +1757,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Рахимбаев Талгат Ильясович"
-                      {...register("RecommenderName2")}
+                      {...register("profRefFullName2")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1711,7 +1767,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, АО First Heartland Jusan Bank"
-                      {...register("RecommenderWork2")}
+                      {...register("profRefWorkPlace2")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1721,7 +1777,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, бухгалтер"
-                      {...register("RecommenderTitle2")}
+                      {...register("profRefWorkPosition2")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1731,7 +1787,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, например, +7-7172-777-888"
-                      {...register("RecommenderPhone2")}
+                      {...register("profRefTel2")}
                     ></input>
                   </div>
                 </div>
@@ -1746,7 +1802,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, Рахимбаев Талгат Ильясович"
-                      {...register("RecommenderName3")}
+                      {...register("profRefFullName3")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1756,7 +1812,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, АО First Heartland Jusan Bank"
-                      {...register("RecommenderWork3")}
+                      {...register("profRefWorkPlace3")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1766,7 +1822,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, бухгалтер"
-                      {...register("RecommenderTitle3")}
+                      {...register("profRefWorkPosition3")}
                     ></input>
                   </div>
                   <div className={style.HOMEContainerFour}>
@@ -1776,7 +1832,7 @@ const UserMainForm = () => {
                     <input
                       className={style.HOMEContainerFourInput}
                       placeholder="например, например, +7-7172-777-888"
-                      {...register("RecommenderPhone3")}
+                      {...register("profRefTel3")}
                     ></input>
                   </div>
                 </div>
@@ -1914,7 +1970,7 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, Муса Темирлан Аскарович"
-                          {...register(`ChildName.${index}`)}
+                          {...register(`childrenInfoDtos.${index}.fio`)}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1925,7 +1981,9 @@ const UserMainForm = () => {
                           type="date"
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 01-01-1994"
-                          {...register(`ChildDOB.${index}`)}
+                          {...register(
+                            `childrenInfoDtos.${index}.dateOfBirthday`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1935,7 +1993,7 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, +7-777-777-7777"
-                          {...register(`ChildPhone.${index}`)}
+                          {...register(`childrenInfoDtos.${index}.phoneNumber`)}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1945,7 +2003,7 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, информатика"
-                          {...register(`ChildPlace.${index}`)}
+                          {...register(`childrenInfoDtos.${index}.workPlace`)}
                         ></input>
                       </div>
                     </div>
@@ -1959,11 +2017,17 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите детали детей"
               ></img>
             </div>
-            <div>
-              <Button onClick={() => childAppend({ ...defaultChild })}>
+            <div className={style.AddRemoveButtonContainer}>
+              <Button
+                className={style.AddButton}
+                onClick={() => childAppend({ ...defaultChild })}
+              >
                 Добавить ребенка
               </Button>
-              <Button onClick={() => childRemove({ ...defaultChild })}>
+              <Button
+                className={style.RemoveButton}
+                onClick={() => childRemove({ ...defaultChild })}
+              >
                 Удалить ребенка
               </Button>
             </div>
@@ -1986,7 +2050,9 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, тесть"
-                          {...register(`RelativeRelationship.${index}`)}
+                          {...register(
+                            `relativesInfoDtos.${index}.degreeOfRelationship`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -1994,7 +2060,7 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, Айдынов Аскар Макарович"
-                          {...register(`RelativeName.${index}`)}
+                          {...register(`relativesInfoDtos.${index}.fio`)}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -2005,7 +2071,9 @@ const UserMainForm = () => {
                           type="date"
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, 01-01-1994"
-                          {...register(`RelativeDOB.${index}`)}
+                          {...register(
+                            `relativesInfoDtos.${index}.dateOfBirthday`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -2015,7 +2083,9 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, АО First Heartland Jusan Bank"
-                          {...register(`RelativePlace.${index}`)}
+                          {...register(
+                            `relativesInfoDtos.${index}.workingPlace`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -2025,7 +2095,9 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, бухгалтер"
-                          {...register(`RelativeTitle.${index}`)}
+                          {...register(
+                            `relativesInfoDtos.${index}.workingPosition`
+                          )}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -2035,7 +2107,7 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, Кирова 21/1 горож Нур-Султан"
-                          {...register(`RelativeAddress.${index}`)}
+                          {...register(`relativesInfoDtos.${index}.address`)}
                         ></input>
                       </div>
                       <div className={style.UNIVERSITYContainerThree}>
@@ -2045,7 +2117,9 @@ const UserMainForm = () => {
                         <input
                           className={style.UNIVERSITYinputTwo}
                           placeholder="например, +7-777-777-7777"
-                          {...register(`RelativePhone.${index}`)}
+                          {...register(
+                            `relativesInfoDtos.${index}.phoneNumber`
+                          )}
                         ></input>
                       </div>
                     </div>
@@ -2059,11 +2133,17 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите детали родственников"
               ></img>
             </div>
-            <div>
-              <Button onClick={() => relativeAppend({ ...defaultRelative })}>
+            <div className={style.AddRemoveButtonContainer}>
+              <Button
+                className={style.AddButton}
+                onClick={() => relativeAppend({ ...defaultRelative })}
+              >
                 Добавить родственника
               </Button>
-              <Button onClick={() => relativeRemove({ ...defaultRelative })}>
+              <Button
+                className={style.RemoveButton}
+                onClick={() => relativeRemove({ ...defaultRelative })}
+              >
                 Удалить родственника
               </Button>
             </div>
@@ -2106,7 +2186,9 @@ const UserMainForm = () => {
                             <input
                               className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, ТОО Балтех"
-                              {...register(`CommerceOrgName.${index}`)}
+                              {...register(
+                                `additionalWorkingInfoDtos.${index}.name`
+                              )}
                             ></input>
                           </div>
                           <div className={style.ADDITIONALINFOContainerThree}>
@@ -2116,7 +2198,9 @@ const UserMainForm = () => {
                             <input
                               className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, 123456789012"
-                              {...register(`CommerceOrgINN.${index}`)}
+                              {...register(
+                                `additionalWorkingInfoDtos.${index}.iin`
+                              )}
                             ></input>
                           </div>
                           <div className={style.ADDITIONALINFOContainerThree}>
@@ -2126,7 +2210,9 @@ const UserMainForm = () => {
                             <input
                               className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, Шевченко 51, город Шымкент"
-                              {...register(`CommerceOrgAddress.${index}`)}
+                              {...register(
+                                `additionalWorkingInfoDtos.${index}.address`
+                              )}
                             ></input>
                           </div>
                           <div className={style.ADDITIONALINFOContainerThree}>
@@ -2136,7 +2222,9 @@ const UserMainForm = () => {
                             <input
                               className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, строительство"
-                              {...register(`CommerceOrgType.${index}`)}
+                              {...register(
+                                `additionalWorkingInfoDtos.${index}.typeOfWork`
+                              )}
                             ></input>
                           </div>
                           <div className={style.ADDITIONALINFOContainerThree}>
@@ -2146,7 +2234,9 @@ const UserMainForm = () => {
                             <input
                               className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, +7-777-777-7777"
-                              {...register(`CommerceOrgPhone.${index}`)}
+                              {...register(
+                                `additionalWorkingInfoDtos.${index}.phoneNumber`
+                              )}
                             ></input>
                           </div>
                         </>
@@ -2221,12 +2311,18 @@ const UserMainForm = () => {
               ></img>
             </div>
 
-            <div>
-              <Button onClick={() => commerceAppend({ ...defaultCommerceOrg })}>
-                Добавить коммерческую организацию
+            <div className={style.AddRemoveButtonContainer}>
+              <Button
+                className={style.AddButton}
+                onClick={() => commerceAppend({ ...defaultCommerceOrg })}
+              >
+                Добавить организацию
               </Button>
-              <Button onClick={() => commerceRemove({ ...defaultCommerceOrg })}>
-                Удалить коммерческую организацию
+              <Button
+                className={style.RemoveButton}
+                onClick={() => commerceRemove({ ...defaultCommerceOrg })}
+              >
+                Удалить организацию
               </Button>
             </div>
             <div className={style.ADDITIONALINFOContainer}>
@@ -2263,7 +2359,7 @@ const UserMainForm = () => {
                               className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, брат"
                               {...register(
-                                `JusanRelativesRelationship.${index}`
+                                `JusanRelativesRelationship.${index}.degreeOfRelationship`
                               )}
                             ></input>
                           </div>
@@ -2274,7 +2370,7 @@ const UserMainForm = () => {
                             <input
                               className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, Бахытжанов Аскар Иманович"
-                              {...register(`JusanRelativesName.${index}`)}
+                              {...register(`JusanRelativesName.${index}.fio`)}
                             ></input>
                           </div>
                           <div className={style.ADDITIONALINFOContainerThree}>
@@ -2284,17 +2380,9 @@ const UserMainForm = () => {
                             <input
                               className={style.ADDITIONALINFinputTwo}
                               placeholder="например, бухгалтерия"
-                              {...register(`JusanRelativesDepartment.${index}`)}
-                            ></input>
-                          </div>
-                          <div className={style.ADDITIONALINFOContainerThree}>
-                            <label className={style.ADDITIONALINFOlabelThree}>
-                              Должность
-                            </label>
-                            <input
-                              className={style.ADDITIONALINFOinputTwo}
-                              placeholder="например, бухгалтер"
-                              {...register(`JusanRelativesTitle.${index}`)}
+                              {...register(
+                                `JusanRelativesDepartment.${index}.departmentAndPosition`
+                              )}
                             ></input>
                           </div>
                         </>
@@ -2320,7 +2408,6 @@ const UserMainForm = () => {
                               value=""
                               className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, Бахытжанов Аскар Иманович"
-                              {...register(`JusanRelativesName.${index}`)}
                             ></input>
                           </div>
                           <div className={style.ADDITIONALINFOContainerThree}>
@@ -2332,19 +2419,6 @@ const UserMainForm = () => {
                               value=""
                               className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, бухгалтерия"
-                              {...register(`JusanRelativesDepartment.${index}`)}
-                            ></input>
-                          </div>
-                          <div className={style.ADDITIONALINFOContainerThree}>
-                            <label className={style.ADDITIONALINFOlabelThree}>
-                              Должность
-                            </label>
-                            <input
-                              readOnly
-                              value=""
-                              className={style.ADDITIONALINFOinputTwo}
-                              placeholder="например, бухгалтер"
-                              {...register(`JusanRelativesTitle.${index}`)}
                             ></input>
                           </div>
                         </>
@@ -2360,13 +2434,15 @@ const UserMainForm = () => {
                 title="Пожалуйста укажите родственников, членов семьи, работающих в АО Jusan Bank или связанных с деятельностью  АО Jusan Bank"
               ></img>
             </div>
-            <div>
+            <div className={style.AddRemoveButtonContainer}>
               <Button
+                className={style.AddButton}
                 onClick={() => jusanRelativeAppend({ ...defaultJusanRelative })}
               >
                 Добавить родственника
               </Button>
               <Button
+                className={style.RemoveButton}
                 onClick={() => jusanRelativeRemove({ ...defaultJusanRelative })}
               >
                 Удалить родственника
@@ -2385,7 +2461,6 @@ const UserMainForm = () => {
                   <input
                     type="checkbox"
                     className={style.UNIVERSITYinputTwo}
-                    {...register(`carAnswer`)}
                   ></input>
                 </div>
                 <div className={style.UNIVERSITYContainerTwo} key={cars.id}>
@@ -2485,7 +2560,10 @@ const UserMainForm = () => {
                   <label className={style.UNIVERSITYlabelTwo}>
                     Имеете ли Вы просроченный заем?
                   </label>
-                  <select className={style.NATIONALITYinput}>
+                  <select
+                    className={style.NATIONALITYinput}
+                    {...register(`overdueLoanStatus`)}
+                  >
                     {/* TODO make a radio button */}
                     <option value="">выберите опцию</option>
                     <option value="да">да</option>
@@ -2499,14 +2577,17 @@ const UserMainForm = () => {
                   <input
                     className={style.UNIVERSITYinputTwo}
                     placeholder="например, невозможность оплатить заем"
-                    {...register(`overdueLoanStatus`)}
+                    {...register(`overdueLoanReason`)}
                   ></input>
                 </div>
                 <div className={style.UNIVERSITYContainerThree}>
                   <label className={style.UNIVERSITYlabelTwo}>
                     Привлекались ли Вы к уголовной ответственности?
                   </label>
-                  <select className={style.NATIONALITYinput}>
+                  <select
+                    className={style.NATIONALITYinput}
+                    {...register(`criminalLiabilityStatus`)}
+                  >
                     {/* TODO make a radio button */}
                     <option value="">выберите опцию</option>
                     <option value="да">да</option>
@@ -2528,7 +2609,10 @@ const UserMainForm = () => {
                     Привлекались ли Ваши близкие родственники, члены семьи к
                     уголовной ответственности?
                   </label>
-                  <select className={style.NATIONALITYinput}>
+                  <select
+                    className={style.NATIONALITYinput}
+                    {...register(`relativesCriminalCaseStatus`)}
+                  >
                     <option value="">выберите опцию</option>
                     <option value="да">да</option>
                     <option value="нет">нет</option>
@@ -2548,7 +2632,10 @@ const UserMainForm = () => {
                   <label className={style.UNIVERSITYlabelTwo}>
                     Против Вас когда-либо возбуждалось уголовное дело?
                   </label>
-                  <select className={style.NATIONALITYinput}>
+                  <select
+                    className={style.NATIONALITYinput}
+                    {...register(`criminalCaseStatus`)}
+                  >
                     <option value="">выберите опцию</option>
                     <option value="да">да</option>
                     <option value="нет">нет</option>
@@ -2568,7 +2655,10 @@ const UserMainForm = () => {
                   <label className={style.UNIVERSITYlabelTwo}>
                     Выплачиваете ли Вы алименты?
                   </label>
-                  <select className={style.NATIONALITYinput}>
+                  <select
+                    className={style.NATIONALITYinput}
+                    {...register(`alimonyStatus`)}
+                  >
                     <option value="">выберите опцию</option>
                     <option value="да">да</option>
                     <option value="нет">нет</option>
@@ -2588,7 +2678,10 @@ const UserMainForm = () => {
                   <label className={style.UNIVERSITYlabelTwo}>
                     Привлекались ли Вы к административной ответственности?
                   </label>
-                  <select className={style.NATIONALITYinput}>
+                  <select
+                    className={style.NATIONALITYinput}
+                    {...register(`administrativeLiabilityStatus`)}
+                  >
                     <option value="">выберите опцию</option>
                     <option value="да">да</option>
                     <option value="нет">нет</option>
@@ -2609,7 +2702,10 @@ const UserMainForm = () => {
                     Есть ли у Вас дополнительный доход (работа,
                     дистрибьютерство/представительство в торговых компаниях)
                   </label>
-                  <select className={style.NATIONALITYinput}>
+                  <select
+                    className={style.NATIONALITYinput}
+                    {...register(`additionalInformation`)}
+                  >
                     <option value="">выберите опцию</option>
                     <option value="да">да</option>
                     <option value="нет">нет</option>
@@ -2656,7 +2752,14 @@ const UserMainForm = () => {
                 в Республике Казахстан».
               </span>
               <div className={style.confirmation}>
-                <input type="checkbox" style={{ margin: "2%" }}></input>
+                <input
+                  type="checkbox"
+                  style={{ margin: "2%" }}
+                  onClick={() => {
+                    setAgree(!agree);
+                    console.log("test");
+                  }}
+                ></input>
                 <span>
                   Даю безусловное согласие на сбор, обработку, хранение и
                   распространение Банком информации обо мне{" "}
@@ -2678,6 +2781,7 @@ const UserMainForm = () => {
                 {}
               </input>
             </div>
+            <Button type="submit">Отправить</Button>
             <div
               style={{
                 position: "fixed",

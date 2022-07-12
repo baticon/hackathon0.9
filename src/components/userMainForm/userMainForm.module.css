@@ -403,3 +403,18 @@ select:focus {
 .confirmation {
   margin: 2%;
 }
+
+.AddRemoveButtonContainer {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 3%;
+}
+
+.AddButton {
+  margin-right: 0px;
+  margin-left: auto;
+}
+
+.RemoveButton {
+  margin-right: 4%;
+}

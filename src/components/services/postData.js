@@ -1,15 +1,17 @@
-async function DataUpload(obj, userId, token) {
+async function DataUpload(obj) {
+  const userId = window.localStorage.getItem("user_id");
+  const token = window.localStorage.getItem("access_token");
   console.log(obj);
   console.log("test");
   try {
     const data = await fetch(
-      `https://jusanhr.herokuapp.com/form/upload/maininfo/${userId}`,
+      `https://jusanhr.herokuapp.com/form/upload/info/${userId}`,
       {
         method: "POST",
         body: JSON.stringify(obj),
         headers: {
           "Content-Type": "application/json",
-          // Authorization: "Bearer_" + token,
+          Authorization: "Bearer_" + token,
           // // 'Content-Type': 'application/x-www-form-urlencoded',
         },
       }
