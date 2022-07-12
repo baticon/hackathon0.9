@@ -8,14 +8,15 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import dataUpload from "../services/postData.js";
 import dataDownload from "../services/getData.js";
-import Button from "@mui/material/Button";
 import CountrySelect from "./countrySelect";
 
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-
-import { Input } from "@chakra-ui/react";
+import {
+  FormErrorMessage,
+  FormLabel,
+  FormControl,
+  Input,
+  Button,
+} from "@chakra-ui/react";
 
 const userId = window.localStorage.getItem("user_id");
 const token = window.localStorage.getItem("access_token");
@@ -35,7 +36,13 @@ const personalData = {
 
 const FormOne = () => {
   const navigate = useNavigate();
-  const { control, register, handleSubmit, reset } = useForm({
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
     defaultValues: personalData,
   });
 
@@ -65,39 +72,20 @@ const FormOne = () => {
     <div>
       <Header />
       <Button
-        variant="contained"
+        colorScheme="teal"
+        size="xs"
         style={{ width: "50%", height: "100%" }}
         onClick={() => navigate("/profile")}
       >
         Назад в профиль
       </Button>
+
       <form className={style.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <div style={{ marginTop: "2%" }}>
           <div className={style.IINContainer}>
             <label className={style.IINlabel}>ФИО</label>
-            {/* https://blog.logrocket.com/using-material-ui-with-react-hook-form/ */}
-            <Controller
-              name={"textValue"}
-              control={control}
-              render={({ field: { handleValidation, value } }) => (
-                //https://codesandbox.io/s/xvr9f?file=/src/App.js:597-701
-                <TextField
-                  name="fio"
-                  type="text"
-                  className={style.IINinput}
-                  placeholder="например, Багданов Нурасыл Серикович"
-                  variant="outlined"
-                  // onChange={onChange}
-                  onChange={(e) => handleValidation(e)}
-                  value={value}
-                  {...register(`fio`)}
-                  // inputRef={register({
-                  //   required: true,
-                  //   pattern: /\S+@\S+\.\S+/,
-                  // })}
-                />
-              )}
-            />
+            <Input placeholder="Basic usage" className={style.IINinput} />
+
             <img
               src={question}
               alt=""
@@ -107,22 +95,7 @@ const FormOne = () => {
           </div>
           <div className={style.IINContainer}>
             <label className={style.IINlabel}>ИИН</label>
-            <Controller
-              name={"textValue"}
-              control={control}
-              render={({ field: { handleValidation, value } }) => (
-                <TextField
-                  name="iin"
-                  type="text"
-                  className={style.IINinput}
-                  placeholder="например, 900101250050"
-                  variant="outlined"
-                  onChange={(e) => handleValidation(e)}
-                  value={value}
-                  {...register(`iin`)}
-                />
-              )}
-            />
+
             <img
               src={question}
               alt=""
@@ -134,22 +107,6 @@ const FormOne = () => {
             <label className={style.DOBlabel}>
               Число, месяц и год рождения
             </label>
-            <Controller
-              name={"textValue"}
-              control={control}
-              render={({ field: { handleValidation, value } }) => (
-                <TextField
-                  name="dateOfBirthday"
-                  type="text"
-                  className={style.DOBinput}
-                  placeholder="например, 01-01-1990"
-                  variant="outlined"
-                  onChange={(e) => handleValidation(e)}
-                  value={value}
-                  {...register(`dateOfBirthday`)}
-                />
-              )}
-            />
             <img
               src={question}
               alt=""
@@ -159,22 +116,7 @@ const FormOne = () => {
           </div>
           <div className={style.POBContainer}>
             <label className={style.POBlabel}>Место рождения</label>
-            <Controller
-              name={"textValue"}
-              control={control}
-              render={({ field: { handleValidation, value } }) => (
-                <TextField
-                  name="placeOfBirth"
-                  type="text"
-                  className={style.POBinput}
-                  placeholder="например, Шымкент"
-                  variant="outlined"
-                  onChange={(e) => handleValidation(e)}
-                  value={value}
-                  {...register(`placeOfBirth`)}
-                />
-              )}
-            />
+
             <img
               src={question}
               alt=""
@@ -184,35 +126,7 @@ const FormOne = () => {
           </div>
           <div className={style.NATIONALITYContainer}>
             <label className={style.NATIONALITYlabel}>Национальность</label>
-            <Autocomplete
-              className={style.NATIONALITYinput}
-              onChange={(event, value) => console.log(Object.values(value))}
-              {...register(`nationality`)}
-              id="country-select-demo"
-              options={countries}
-              autoHighlight
-              getOptionLabel={(option) => option.label}
-              renderOption={(props, option) => (
-                <Box
-                  component="li"
-                  sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                  {...props}
-                >
-                  <img loading="lazy" width="20" alt="" />
-                  {option.label} ({option.code}) +{option.phone}
-                </Box>
-              )}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  placeholder="Выберите национальность"
-                  inputProps={{
-                    ...params.inputProps,
-                    autoComplete: "new-password", // disable autocomplete and autofill
-                  }}
-                />
-              )}
-            />
+
             <img
               src={question}
               alt=""
@@ -243,60 +157,12 @@ const FormOne = () => {
               Паспорт, удостоверение личности
             </label>
             <div className={style.IDCARDContainerTwo}>
-              <Controller
-                name={"textValue"}
-                control={control}
-                render={({ field: { handleValidation, value } }) => (
-                  <TextField
-                    name="passportSeries"
-                    type="text"
-                    className={style.IDCARDinput}
-                    placeholder="например, N9191919191"
-                    variant="outlined"
-                    onChange={(e) => handleValidation(e)}
-                    value={value}
-                    {...register(`passportSeries`)}
-                  />
-                )}
-              />
               <label style={{ fontSize: "70%" }}>Серия</label>
             </div>
             <div className={style.IDCARDContainerTwo}>
-              <Controller
-                name={"textValue"}
-                control={control}
-                render={({ field: { handleValidation, value } }) => (
-                  <TextField
-                    name="identityCardNumber"
-                    type="text"
-                    className={style.IDCARDinput}
-                    placeholder="например, 04112323"
-                    variant="outlined"
-                    onChange={(e) => handleValidation(e)}
-                    value={value}
-                    {...register(`identityCardNumber`)}
-                  />
-                )}
-              />
               <label style={{ fontSize: "70%" }}>Номер</label>
             </div>
             <div className={style.IDCARDContainerTwo}>
-              <Controller
-                name={"textValue"}
-                control={control}
-                render={({ field: { handleValidation, value } }) => (
-                  <TextField
-                    name="identityCardNumber"
-                    type="text"
-                    className={style.passportIssued}
-                    placeholder="например, 04112323"
-                    variant="outlined"
-                    onChange={(e) => handleValidation(e)}
-                    value={value}
-                    {...register(`passportIssued`)}
-                  />
-                )}
-              />
               <label style={{ fontSize: "70%" }}>Кем выдан</label>
             </div>
 
@@ -308,9 +174,6 @@ const FormOne = () => {
             ></img>
           </div>
         </div>
-        <Button variant="contained" style={{ width: "100%", height: "100%" }}>
-          Сохранить➤
-        </Button>
       </form>
 
       <Footer />
