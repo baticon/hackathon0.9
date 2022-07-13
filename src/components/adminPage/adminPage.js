@@ -4,11 +4,12 @@ import style from "./adminPage.module.css";
 import person from "../media/person.png";
 import TextField from "@mui/material/TextField";
 import List from "./List";
-import React, { useState, Component } from "react";
+import React, { useState, useEffect, Component } from "react";
 import ReactSearchBox from "react-search-box";
 import { Button, Input } from "@chakra-ui/react";
 import createUser from "../services/postUser";
 import getUser from "../services/getUsers";
+import getPhoto from "../services/getPhoto";
 
 //https://dev.to/salehmubashar/search-bar-in-react-js-545l
 const UserMainPage = () => {
@@ -26,16 +27,75 @@ const UserMainPage = () => {
     // console.log("value is:", event.target.value);
   };
 
-  async function Users() {
-    try {
-      const response = await getUser();
-      const resJson = await response;
-
-      console.log(resJson);
-    } catch (error) {
-      console.log(error);
+  const [userDetails, setUserDetails] = useState();
+  useEffect(() => {
+    async function pullData() {
+      const fetchedData = await getUser();
+      if (fetchedData !== undefined) {
+        setUserDetails(fetchedData);
+        console.log(fetchedData);
+      }
     }
+    pullData();
+  }, []);
+
+  const handleClick = (event) => {
+    console.log(event.currentTarget.id);
+    doFetchDownload(event.currentTarget.id);
+  };
+
+  function doFetchDownload(userId) {
+    // fetch(`https://jusanhr.herokuapp.com/photos/download/${userId}`)
+    //   .then((resp) => resp.blob())
+    //   .then((blob) => {
+    //     const url = window.URL.createObjectURL(blob);
+    //     const a = document.createElement("a");
+    //     a.style.display = "none";
+    //     a.href = url;
+    //     // the filename you want
+    //     a.download = "todo-1.json";
+    //     document.body.appendChild(a);
+    //     a.click();
+    //     window.URL.revokeObjectURL(url);
+    //     alert("your file has downloaded!"); // or you know, something with better UX...
+    //   })
+    //   .catch(() => alert("oh no!"));
+    const token = window.localStorage.getItem("access_token");
+    fetch(`https://jusanhr.herokuapp.com/photos/download/${userId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer_" + token,
+        // // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    })
+      .then((res) => {
+        return res.blob();
+      })
+      .then((data) => {
+        var a = document.createElement("a");
+        a.href = window.URL.createObjectURL(data);
+        a.download = "FILENAME";
+        a.click();
+      });
   }
+
+  const renderListItems = () => {
+    if (userDetails !== undefined && userDetails !== null) {
+      return userDetails.users.map((user) => {
+        return (
+          <div>
+            <span>
+              ID {user.id} : {user.username}
+            </span>
+            {/* <Button id={user.id} onClick={() => getPhoto(this.id)}> */}
+            <Button id={user.id} onClick={handleClick}>
+              Hello
+            </Button>
+          </div>
+        );
+      });
+    }
+  };
 
   return (
     <div className={style.parent}>
@@ -54,11 +114,12 @@ const UserMainPage = () => {
           перед точкой обязательно должны быть буквы"
               ></Input>
               <Button onClick={() => createUser(email)}>Создать профиль</Button>
-              <Button onClick={() => Users()}>Показать профили</Button>
+              {/* <Button onClick={() => Users()}>Показать профили</Button> */}
             </div>
 
             <div className={style.searchContainer}>
               <h1 className={style.searchHeader}>Список профилей</h1>
+              {renderListItems()}
             </div>
           </div>
           <div className={style.profileContainer}>

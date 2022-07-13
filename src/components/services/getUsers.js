@@ -2,7 +2,8 @@ async function usersDownload() {
   const userId = window.localStorage.getItem("user_id");
   const token = window.localStorage.getItem("access_token");
   try {
-    const data = await fetch(`https://jusanhr.herokuapp.com/users/${userId}`, {
+    // const data = await fetch(`https://jusanhr.herokuapp.com/users/${userId}`, {
+    const data = await fetch(`https://jusanhr.herokuapp.com/users/all`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

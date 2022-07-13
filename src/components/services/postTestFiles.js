@@ -1,6 +1,6 @@
 const axios = require("axios").default;
 
-async function uploadPhoto(files) {
+async function uploadFile(files, filetype) {
   const userId = window.localStorage.getItem("user_id");
   const token = window.localStorage.getItem("access_token");
   const formData = new FormData();
@@ -8,7 +8,7 @@ async function uploadPhoto(files) {
   console.log("file", files);
   try {
     const response = await axios.post(
-      `https://jusanhr.herokuapp.com/photos/upload/${userId}`,
+      `https://jusanhr.herokuapp.com/files/upload/${userId}`,
       formData,
       {
         headers: {
@@ -35,4 +35,4 @@ async function uploadPhoto(files) {
   }
 }
 
-export default uploadPhoto;
+export default uploadFile;

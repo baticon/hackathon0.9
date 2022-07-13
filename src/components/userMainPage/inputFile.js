@@ -1,7 +1,7 @@
 import { useState } from "react";
 import style from "../userMainPage/userMainPage.module.css";
 
-function InputFile(files, setFiles, identifier, boolCheck, setBoolCheck) {
+function InputFile(files, setFiles, identifier) {
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
   const removeSelectedImage = () => {
@@ -54,6 +54,7 @@ function InputFile(files, setFiles, identifier, boolCheck, setBoolCheck) {
         name="file"
         onChange={changeHandler}
       />
+
       {isFilePicked && selectedFile !== undefined ? (
         <div>
           <p className={style.paragraph}>

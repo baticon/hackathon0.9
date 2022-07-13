@@ -7,7 +7,8 @@ import style from "./userMainPage.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "@chakra-ui/react";
-import testUpload from "../services/postTest";
+import UploadPhoto from "../services/postTest";
+import UploadFile from "../services/postTestFiles";
 
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
 
@@ -24,18 +25,11 @@ const UserMainPage = () => {
   const file = {};
 
   const [idFile, setIDFile] = useState(file);
-  const [idBoolCheck, setIDBoolCheck] = useState(false);
   const [diplomaFile, setDiplomaFile] = useState(file);
-  const [diplomaBoolCheck, setDiplomaBoolCheck] = useState(false);
   const [experienceFile, setExperienceFile] = useState(file);
-  const [experienceBoolCheck, setExperienceBoolCheck] = useState(false);
   const [medicalFile, setMedicalFile] = useState(file);
-  const [medicalBoolCheck, setMedicalBoolCheck] = useState(false);
   const [militaryFile, setMilitaryFile] = useState(file);
-  const [militaryBoolCheck, setMIlitaryBoolCheck] = useState(false);
   const [photoFile, setPhotoFile] = useState(file);
-  const [photoBoolCheck, setPhotoBoolCheck] = useState(false);
-
   const [selectedImage, setSelectedImage] = useState();
 
   // This function will be triggered when the file field change
@@ -86,7 +80,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", idFile);
-                    testUpload(idFile);
+                    UploadPhoto(idFile);
                   }}
                 >
                   Сохранить
@@ -109,7 +103,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", diplomaFile);
-                    testUpload(diplomaFile);
+                    UploadFile(diplomaFile);
                   }}
                 >
                   Сохранить
@@ -131,7 +125,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", experienceFile);
-                    testUpload(experienceFile);
+                    UploadFile(experienceFile);
                   }}
                 >
                   Сохранить
@@ -153,7 +147,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", medicalFile);
-                    testUpload(medicalFile);
+                    UploadFile(medicalFile);
                   }}
                 >
                   Сохранить
@@ -175,7 +169,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", militaryFile);
-                    testUpload(militaryFile);
+                    UploadFile(militaryFile);
                   }}
                 >
                   Сохранить
@@ -195,7 +189,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", photoFile);
-                    testUpload(photoFile);
+                    UploadFile(photoFile);
                   }}
                 >
                   Сохранить
