@@ -39,29 +39,39 @@ const UserMainPage = () => {
     pullData();
   }, []);
 
-  const handleClick = (event) => {
+  const handleClickPhoto = (event) => {
     console.log(event.currentTarget.id);
-    doFetchDownload(event.currentTarget.id);
+    doFetchDownloadPhoto(event.currentTarget.id);
   };
 
-  function doFetchDownload(userId) {
-    // fetch(`https://jusanhr.herokuapp.com/photos/download/${userId}`)
-    //   .then((resp) => resp.blob())
-    //   .then((blob) => {
-    //     const url = window.URL.createObjectURL(blob);
-    //     const a = document.createElement("a");
-    //     a.style.display = "none";
-    //     a.href = url;
-    //     // the filename you want
-    //     a.download = "todo-1.json";
-    //     document.body.appendChild(a);
-    //     a.click();
-    //     window.URL.revokeObjectURL(url);
-    //     alert("your file has downloaded!"); // or you know, something with better UX...
-    //   })
-    //   .catch(() => alert("oh no!"));
+  function doFetchDownloadPhoto(userId) {
     const token = window.localStorage.getItem("access_token");
     fetch(`https://jusanhr.herokuapp.com/photos/download/${userId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer_" + token,
+        // // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    })
+      .then((res) => {
+        return res.blob();
+      })
+      .then((data) => {
+        var a = document.createElement("a");
+        a.href = window.URL.createObjectURL(data);
+        a.download = "FILENAME";
+        a.click();
+      });
+  }
+
+  const handleClickFiles = (event) => {
+    console.log(event.currentTarget.id);
+    doFetchDownloadFiles(event.currentTarget.id);
+  };
+
+  function doFetchDownloadFiles(userId) {
+    const token = window.localStorage.getItem("access_token");
+    fetch(`https://jusanhr.herokuapp.com/form/download/info/${userId}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer_" + token,
@@ -88,8 +98,11 @@ const UserMainPage = () => {
               ID {user.id} : {user.username}
             </span>
             {/* <Button id={user.id} onClick={() => getPhoto(this.id)}> */}
-            <Button id={user.id} onClick={handleClick}>
-              Hello
+            <Button id={user.id} onClick={handleClickPhoto}>
+              Download photo
+            </Button>
+            <Button id={`${user.id}a`} onClick={handleClickFiles}>
+              Download files
             </Button>
           </div>
         );

@@ -1,6 +1,10 @@
+import sendFileID from "./sendFileID";
+
 const axios = require("axios").default;
 
-async function uploadFile(files, filetype) {
+async function uploadFile(files) {
+  console.log("test");
+  console.log(files.name);
   const userId = window.localStorage.getItem("user_id");
   const token = window.localStorage.getItem("access_token");
   const formData = new FormData();
@@ -17,7 +21,9 @@ async function uploadFile(files, filetype) {
         },
       }
     );
-    console.log(response);
+    console.log("test2");
+    console.log(response.data.fileId);
+    sendFileID(response.data.fileId);
   } catch (error) {
     if (error.response) {
       // get response with a status code not in range 2xx
