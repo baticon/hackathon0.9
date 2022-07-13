@@ -8,7 +8,14 @@ import person from "../media/person.png";
 const UserProfilePage = () => {
   const navigate = useNavigate();
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "100vh",
+      }}
+    >
       <Header />
       <div>
         <div className={style.bodyContainer}>

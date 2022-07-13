@@ -49,7 +49,7 @@ function InputFile(files, setFiles, identifier, boolCheck, setBoolCheck) {
     <div className={style.fileUpload}>
       <input
         className={style.fileInput}
-        accept="."
+        accept="*.*"
         type="file"
         name="file"
         onChange={changeHandler}

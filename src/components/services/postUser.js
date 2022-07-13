@@ -1,18 +1,18 @@
 const axios = require("axios").default;
 
-async function uploadFile(files) {
+async function createUser(usermail) {
+  console.log(usermail);
+
   const userId = window.localStorage.getItem("user_id");
   const token = window.localStorage.getItem("access_token");
-  const formData = new FormData();
-  formData.append("file", files);
-  console.log("file", files);
+  const obj = { email: usermail };
   try {
     const response = await axios.post(
-      `https://jusanhr.herokuapp.com/photos/upload/${userId}`,
-      formData,
+      `https://jusanhr.herokuapp.com/users/sign-up`,
       {
+        email: usermail,
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       }
     );
@@ -34,4 +34,4 @@ async function uploadFile(files) {
   }
 }
 
-export default uploadFile;
+export default createUser;

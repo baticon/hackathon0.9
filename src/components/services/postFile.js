@@ -7,6 +7,7 @@ async function FileUpload(files) {
   try {
     const data = await fetch(
       `https://jusanhr.herokuapp.com/photos/upload/${userId}`,
+      formData,
       {
         method: "POST",
         body: formData,
