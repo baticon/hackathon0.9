@@ -7,6 +7,7 @@ import style from "./userMainPage.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "@chakra-ui/react";
+import testUpload from "../services/postTest";
 
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
 
@@ -30,23 +31,10 @@ const UserMainPage = () => {
   const [experienceBoolCheck, setExperienceBoolCheck] = useState(false);
   const [medicalFile, setMedicalFile] = useState(file);
   const [medicalBoolCheck, setMedicalBoolCheck] = useState(false);
-  const [militaryFile, setMilitaryFile] = useState({ file: null });
+  const [militaryFile, setMilitaryFile] = useState(file);
   const [militaryBoolCheck, setMIlitaryBoolCheck] = useState(false);
-  const [photoFile, setPhotoFile] = useState({ file: null });
+  const [photoFile, setPhotoFile] = useState(file);
   const [photoBoolCheck, setPhotoBoolCheck] = useState(false);
-
-  const [boolCheck, setBoolCheck] = useState(false);
-  const [selectedFile, setSelectedFile] = useState();
-  const [isFilePicked, setIsFilePicked] = useState(false);
-  // const changeHandlerID = (event) => {
-  //   console.log(idFile);
-  //   setSelectedFile(event.target.idFile);
-  //   console.log("test");
-  //   console.log(event.target.idFile);
-  //   const newFile = { ...idFile, selectedFile };
-  //   setIDFile(newFile);
-  //   setIsFilePicked(true);
-  // };
 
   return (
     <div>
@@ -60,7 +48,7 @@ const UserMainPage = () => {
           Назад в профиль
         </Button>
         <div className={style.container}>
-          <form className={style.formContainer}>
+          <form className={style.formContainer} encType="multipart/form-data">
             <div className={style.uploadContainer}>
               <span className={style.formHeader}>
                 Пожалуйста приложите следующие документы
@@ -84,7 +72,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", idFile);
-                    postFile(idFile);
+                    testUpload(idFile);
                   }}
                 >
                   Сохранить
@@ -104,7 +92,14 @@ const UserMainPage = () => {
                 </div>
 
                 {InputFile(diplomaFile, setDiplomaFile, stringdiploma)}
-                <Button onClick={() => postFile(diplomaFile)}>Сохранить</Button>
+                <Button
+                  onClick={() => {
+                    console.log("fdsfsdf", diplomaFile);
+                    testUpload(diplomaFile);
+                  }}
+                >
+                  Сохранить
+                </Button>
               </div>
               <div className={style.fileUploadContainer}>
                 <div className={style.documentType}>
@@ -119,7 +114,12 @@ const UserMainPage = () => {
                   ></img>
                 </div>
                 {InputFile(experienceFile, setExperienceFile, stringexperience)}
-                <Button onClick={() => postFile(experienceFile)}>
+                <Button
+                  onClick={() => {
+                    console.log("fdsfsdf", experienceFile);
+                    testUpload(experienceFile);
+                  }}
+                >
                   Сохранить
                 </Button>
               </div>
@@ -136,7 +136,14 @@ const UserMainPage = () => {
                   ></img>
                 </div>
                 {InputFile(medicalFile, setMedicalFile, stringmedical)}
-                <Button onClick={() => postFile(medicalFile)}>Сохранить</Button>
+                <Button
+                  onClick={() => {
+                    console.log("fdsfsdf", medicalFile);
+                    testUpload(medicalFile);
+                  }}
+                >
+                  Сохранить
+                </Button>
               </div>
               <div className={style.fileUploadContainer}>
                 <div className={style.documentType}>
@@ -151,7 +158,12 @@ const UserMainPage = () => {
                   ></img>
                 </div>
                 {InputFile(militaryFile, setMilitaryFile, stringmilitary)}
-                <Button onClick={() => postFile(militaryFile)}>
+                <Button
+                  onClick={() => {
+                    console.log("fdsfsdf", militaryFile);
+                    testUpload(militaryFile);
+                  }}
+                >
                   Сохранить
                 </Button>
               </div>
@@ -166,7 +178,14 @@ const UserMainPage = () => {
                   ></img>
                 </div>
                 {InputFile(photoFile, setPhotoFile, stringphoto)}
-                <Button onClick={() => postFile(photoFile)}>Сохранить</Button>
+                <Button
+                  onClick={() => {
+                    console.log("fdsfsdf", photoFile);
+                    testUpload(photoFile);
+                  }}
+                >
+                  Сохранить
+                </Button>
               </div>
             </div>
           </form>

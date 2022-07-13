@@ -14,27 +14,27 @@ function InputFile(files, setFiles, identifier, boolCheck, setBoolCheck) {
       console.log(files);
     }
     if (identifier === "diploma") {
-      const newFile = { ...files, file: event.target.files[0] };
+      const newFile = event.target.files[0];
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "experience") {
-      const newFile = { ...files, file: event.target.files[0] };
+      const newFile = event.target.files[0];
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "medical") {
-      const newFile = { ...files, file: event.target.files[0] };
+      const newFile = event.target.files[0];
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "military") {
-      const newFile = { ...files, file: event.target.files[0] };
+      const newFile = event.target.files[0];
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "photo") {
-      const newFile = { ...files, file: event.target.files[0] };
+      const newFile = event.target.files[0];
       setFiles(newFile);
       console.log(files);
     }

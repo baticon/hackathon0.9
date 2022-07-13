@@ -64,7 +64,7 @@ const Header = () => {
           <MenuItem
             onClick={() => {
               window.localStorage.clear();
-              navigate("/login");
+              navigate("/");
             }}
           >
             Выход
