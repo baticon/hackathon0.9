@@ -36,6 +36,20 @@ const UserMainPage = () => {
   const [photoFile, setPhotoFile] = useState(file);
   const [photoBoolCheck, setPhotoBoolCheck] = useState(false);
 
+  const [selectedImage, setSelectedImage] = useState();
+
+  // This function will be triggered when the file field change
+  const imageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
+    }
+  };
+
+  // This function will be triggered when the "Remove This Image" button is clicked
+  const removeSelectedImage = () => {
+    setSelectedImage();
+  };
+
   return (
     <div>
       <Header />

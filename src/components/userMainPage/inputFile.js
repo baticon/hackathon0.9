@@ -4,6 +4,9 @@ import style from "../userMainPage/userMainPage.module.css";
 function InputFile(files, setFiles, identifier, boolCheck, setBoolCheck) {
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
+  const removeSelectedImage = () => {
+    setSelectedFile();
+  };
 
   const changeHandler = (event) => {
     console.log(files);
@@ -46,6 +49,7 @@ function InputFile(files, setFiles, identifier, boolCheck, setBoolCheck) {
     <div className={style.fileUpload}>
       <input
         className={style.fileInput}
+        accept="."
         type="file"
         name="file"
         onChange={changeHandler}
@@ -53,10 +57,7 @@ function InputFile(files, setFiles, identifier, boolCheck, setBoolCheck) {
       {isFilePicked && selectedFile !== undefined ? (
         <div>
           <p className={style.paragraph}>
-            Наименование файла:{" "}
-            {selectedFile.name.length > 10
-              ? "File name in too long"
-              : `✅ ${selectedFile.name}`}
+            Наименование файла:✅ {selectedFile.name}
           </p>
           <p className={style.paragraph}>Тип файла: {selectedFile.type}</p>
           <p className={style.paragraph}>
@@ -66,6 +67,22 @@ function InputFile(files, setFiles, identifier, boolCheck, setBoolCheck) {
             Последние изменение:{" "}
             {selectedFile.lastModifiedDate.toLocaleDateString()}
           </p>
+          {isFilePicked === true ? (
+            <>
+              <div className={style.preview}>
+                <img
+                  src={URL.createObjectURL(selectedFile)}
+                  className={style.image}
+                  alt="Thumb"
+                />
+                <button onClick={removeSelectedImage} className={style.delete}>
+                  Remove
+                </button>
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       ) : (
         <p style={{ paddingTop: "5%" }}>Файл не прикреплен</p>
