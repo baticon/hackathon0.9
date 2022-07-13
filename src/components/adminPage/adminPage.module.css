@@ -26,6 +26,13 @@
   background-color: #f7f7f7;
 }
 
+.create {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+
 .stepsContainer {
   display: flex;
   justify-content: space-between;
@@ -83,6 +90,7 @@
   margin: 5%;
   font-size: 100%;
   color: rgb(1, 1, 59);
+  width: 50%;
 }
 
 .searchBox {

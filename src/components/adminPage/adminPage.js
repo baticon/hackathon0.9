@@ -4,7 +4,10 @@ import style from "./adminPage.module.css";
 import person from "../media/person.png";
 import TextField from "@mui/material/TextField";
 import List from "./List";
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
+import ReactSearchBox from "react-search-box";
+import { Button, Input } from "@chakra-ui/react";
+
 //https://dev.to/salehmubashar/search-bar-in-react-js-545l
 const UserMainPage = () => {
   const [inputText, setInputText] = useState("");
@@ -14,29 +17,43 @@ const UserMainPage = () => {
     setInputText(lowerCase);
   };
 
+  const dummydata = [
+    {
+      key: "john",
+      value: "John Doe",
+    },
+    {
+      key: "jane",
+      value: "Jane Doe",
+    },
+    {
+      key: "mary",
+      value: "Mary Phillips",
+    },
+    {
+      key: "robert",
+      value: "Robert",
+    },
+    {
+      key: "karius",
+      value: "Karius",
+    },
+  ];
+
   return (
     <div>
       <Header />
       <div>
         <div className={style.bodyContainer}>
           <div className={style.actionContainer}>
-            <label>Создать новый профиль кандидата</label>
-            <input placeholder="вставьте адрес электронной почты сюда"></input>
-            <button>Создать профиль</button>
+            <div className={style.create}>
+              <label>Создать новый профиль кандидата</label>
+              <Input placeholder="вставьте адрес электронной почты сюда"></Input>
+              <Button>Создать профиль</Button>
+            </div>
 
             <div className={style.searchContainer}>
-              <h1 className={style.searchHeader}>Поиск</h1>
-
-              <div className="search">
-                <TextField
-                  id="outlined-basic"
-                  onChange={inputHandler}
-                  variant="outlined"
-                  fullWidth
-                  label="Search"
-                />
-              </div>
-              <List input={inputText} />
+              <h1 className={style.searchHeader}>Список профилей</h1>
             </div>
           </div>
           <div className={style.profileContainer}>

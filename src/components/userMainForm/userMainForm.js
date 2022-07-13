@@ -320,6 +320,7 @@ const UserMainForm = () => {
 
   const [boolAdditionalInfoToo, setBoolAdditionalInfoToo] = useState(false);
   const [boolADDITIONALINFO, setBoolADDITIONALINFO] = useState(false);
+  const [boolCarInfo, setBoolCarInfo] = useState(false);
 
   return (
     <div>
@@ -2378,7 +2379,7 @@ const UserMainForm = () => {
                               Подразделение
                             </label>
                             <input
-                              className={style.ADDITIONALINFinputTwo}
+                              className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, бухгалтерия"
                               {...register(
                                 `JusanRelativesDepartment.${index}.departmentAndPosition`
@@ -2449,46 +2450,91 @@ const UserMainForm = () => {
               </Button>
             </div>
 
-            <div className={style.UNIVERSITYContainer}>
-              <label className={style.UNIVERSITYlabel}>
+            <div className={style.ADDITIONALINFOContainer}>
+              <label className={style.ADDITIONALINFOlabel}>
                 Дополнительная информация - наличие автомобиля
               </label>
-              <div className={style.UNIVERSITYSubContainer}>
-                <div className={style.UNIVERSITYContainerThree}>
-                  <label className={style.UNIVERSITYlabelTwo}>
+              <div className={style.ADDITIONALINFOSubContainer}>
+                <div className={style.ADDITIONALINFOContainerThree}>
+                  <label className={style.ADDITIONALINFOlabelTwo}>
                     Наличие автомобиля
                   </label>
                   <input
                     type="checkbox"
-                    className={style.UNIVERSITYinputTwo}
+                    onClick={() => setBoolCarInfo(!boolCarInfo)}
+                    className={style.ADDITIONALINFOcheckbox}
                   ></input>
                 </div>
-                <div className={style.UNIVERSITYContainerTwo} key={cars.id}>
-                  <div className={style.UNIVERSITYContainerThree}>
-                    <label className={style.UNIVERSITYlabelTwo}>Модель</label>
-                    <input
-                      className={style.UNIVERSITYinputTwo}
-                      placeholder="например, Лада 9"
-                      {...register(`carModel`)}
-                    ></input>
-                  </div>
-                  <div className={style.UNIVERSITYContainerThree}>
-                    <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
-                    <input
-                      className={style.UNIVERSITYinputTwo}
-                      placeholder="например, 1990"
-                      {...register(`carYearOfManufacture`)}
-                    ></input>
-                  </div>
-                  <div className={style.UNIVERSITYContainerThree}>
-                    <label className={style.UNIVERSITYlabelTwo}>Номер</label>
-                    <input
-                      className={style.UNIVERSITYinputTwo}
-                      placeholder="например, A88801KZ"
-                      {...register(`carNumber`)}
-                    ></input>
-                  </div>
-                </div>
+                {boolCarInfo === true ? (
+                  <>
+                    <div className={style.UNIVERSITYContainerTwo} key={cars.id}>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Модель
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, Лада 9"
+                          {...register(`carModel`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, 1990"
+                          {...register(`carYearOfManufacture`)}
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Номер
+                        </label>
+                        <input
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, A88801KZ"
+                          {...register(`carNumber`)}
+                        ></input>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className={style.UNIVERSITYContainerTwo} key={cars.id}>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Модель
+                        </label>
+                        <input
+                          readOnly
+                          value=""
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, Лада 9"
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                        <input
+                          readOnly
+                          value=""
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, 1990"
+                        ></input>
+                      </div>
+                      <div className={style.UNIVERSITYContainerThree}>
+                        <label className={style.UNIVERSITYlabelTwo}>
+                          Номер
+                        </label>
+                        <input
+                          readOnly
+                          value=""
+                          className={style.UNIVERSITYinputTwo}
+                          placeholder="например, A88801KZ"
+                        ></input>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
               <img
                 src={question}

@@ -9,7 +9,7 @@ function InputFile(files, setFiles, identifier, boolCheck, setBoolCheck) {
     console.log(files);
     setSelectedFile(event.target.files[0]);
     if (identifier === "id") {
-      const newFile = { ...files, file: event.target.files[0] };
+      const newFile = event.target.files[0];
       setFiles(newFile);
       console.log(files);
     }

@@ -27,7 +27,7 @@ const Header = () => {
           onClick={() => {
             console.log("Exit condition");
             window.localStorage.clear();
-            navigate("/login");
+            navigate("/");
           }}
         >
           <img src={exitIcon} className={style.exitIcon} alt=""></img>

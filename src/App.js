@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/profile" element={<UserProfilePage />} />
         {/* <Route path="/mainpage" element={<UserMainPage />} /> */}
@@ -24,5 +24,4 @@ function App() {
   );
 }
 
-//TODO - create routes for pages of the form (use subroutes)
 export default App;

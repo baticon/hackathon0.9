@@ -14,7 +14,8 @@ async function DataDownload() {
       }
     );
     const dataJson = await data.json();
-    return { dataJson };
+    console.log(dataJson);
+    return dataJson;
 
     // return {
     //   iin: "string",
@@ -46,8 +47,16 @@ async function DataDownload() {
     //   actualAddressStreet: "string",
     //   actualAddressHouseNumber: "string",
     //   actualAddressCorpus: "string",
-    //   actualAddressApartment: "string",
+    //   actualAddressApartment: "nurasyl",
     //   universityInfoDtos: [
+    //     {
+    //       startDateOfEducation: "string",
+    //       endDateOfEducation: "string",
+    //       nameOfInstitution: "string",
+    //       speciality: "string",
+    //       formOfStudy: "string",
+    //       qualification: "string",
+    //     },
     //     {
     //       startDateOfEducation: "string",
     //       endDateOfEducation: "string",
@@ -58,6 +67,13 @@ async function DataDownload() {
     //     },
     //   ],
     //   additionalEducationInfoDtos: [
+    //     {
+    //       yearOfGraduation: "string",
+    //       durationOfTraining: "string",
+    //       nameOfCourse: "string",
+    //       speciality: "string",
+    //       academicDegreeOrCertificates: "string",
+    //     },
     //     {
     //       yearOfGraduation: "string",
     //       durationOfTraining: "string",
@@ -110,6 +126,7 @@ async function DataDownload() {
     //   profRefTel3: "string",
     //   maritalStatus: "string",
     //   spouseFIO: "string",
+    //   spouseDateOfBirthday: "string",
     //   spouseWorkingInfo: "string",
     //   spouseWorkingPosition: "string",
     //   spouseAddress: "string",
@@ -122,8 +139,23 @@ async function DataDownload() {
     //       workPlace: "string",
     //       fio: "string",
     //     },
+    //     {
+    //       dateOfBirthday: "string",
+    //       phoneNumber: "string",
+    //       workPlace: "string",
+    //       fio: "string",
+    //     },
     //   ],
     //   relativesInfoDtos: [
+    //     {
+    //       degreeOfRelationship: "string",
+    //       dateOfBirthday: "string",
+    //       workingPlace: "string",
+    //       workingPosition: "string",
+    //       address: "string",
+    //       phoneNumber: "string",
+    //       fio: "string",
+    //     },
     //     {
     //       degreeOfRelationship: "string",
     //       dateOfBirthday: "string",
@@ -142,8 +174,20 @@ async function DataDownload() {
     //       typeOfWork: "string",
     //       phoneNumber: "string",
     //     },
+    //     {
+    //       name: "string",
+    //       inn: "string",
+    //       address: "string",
+    //       typeOfWork: "string",
+    //       phoneNumber: "string",
+    //     },
     //   ],
     //   relativesInJusanDtos: [
+    //     {
+    //       degreeOfRelationship: "string",
+    //       departmentAndPosition: "string",
+    //       fio: "string",
+    //     },
     //     {
     //       degreeOfRelationship: "string",
     //       departmentAndPosition: "string",
@@ -153,7 +197,7 @@ async function DataDownload() {
     //   carModel: "string",
     //   carYearOfManufacture: "string",
     //   carNumber: "string",
-    //   militaryStatus: "невоеннообязанный",
+    //   militaryStatus: "string",
     //   benefitsStatus: "string",
     //   overdueLoanStatus: "string",
     //   overdueLoanReason: "string",

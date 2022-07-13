@@ -20,13 +20,15 @@ const stringphoto = "photo";
 const UserMainPage = () => {
   const navigate = useNavigate();
 
-  const [idFile, setIDFile] = useState({ file: null });
+  const file = {};
+
+  const [idFile, setIDFile] = useState(file);
   const [idBoolCheck, setIDBoolCheck] = useState(false);
-  const [diplomaFile, setDiplomaFile] = useState({ file: null });
+  const [diplomaFile, setDiplomaFile] = useState(file);
   const [diplomaBoolCheck, setDiplomaBoolCheck] = useState(false);
-  const [experienceFile, setExperienceFile] = useState({ file: null });
+  const [experienceFile, setExperienceFile] = useState(file);
   const [experienceBoolCheck, setExperienceBoolCheck] = useState(false);
-  const [medicalFile, setMedicalFile] = useState({ file: null });
+  const [medicalFile, setMedicalFile] = useState(file);
   const [medicalBoolCheck, setMedicalBoolCheck] = useState(false);
   const [militaryFile, setMilitaryFile] = useState({ file: null });
   const [militaryBoolCheck, setMIlitaryBoolCheck] = useState(false);
@@ -36,13 +38,15 @@ const UserMainPage = () => {
   const [boolCheck, setBoolCheck] = useState(false);
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
-  const changeHandlerID = (event) => {
-    console.log(idFile);
-    setSelectedFile(event.target.idFile);
-    const newFile = { ...idFile, file: event.target.idFile };
-    setIDFile(newFile);
-    setIsFilePicked(true);
-  };
+  // const changeHandlerID = (event) => {
+  //   console.log(idFile);
+  //   setSelectedFile(event.target.idFile);
+  //   console.log("test");
+  //   console.log(event.target.idFile);
+  //   const newFile = { ...idFile, selectedFile };
+  //   setIDFile(newFile);
+  //   setIsFilePicked(true);
+  // };
 
   return (
     <div>
@@ -77,7 +81,14 @@ const UserMainPage = () => {
                   ></img>
                 </div>
                 {InputFile(idFile, setIDFile, stringid)}
-                <Button onClick={() => postFile(idFile)}>Сохранить</Button>
+                <Button
+                  onClick={() => {
+                    console.log("fdsfsdf", idFile);
+                    postFile(idFile);
+                  }}
+                >
+                  Сохранить
+                </Button>
               </div>
               <div className={style.fileUploadContainer}>
                 <div className={style.documentType}>
