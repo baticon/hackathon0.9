@@ -71,7 +71,8 @@ const UserMainPage = () => {
 
   function doFetchDownloadFiles(userId) {
     const token = window.localStorage.getItem("access_token");
-    fetch(`https://jusanhr.herokuapp.com/form/download/info/${userId}`, {
+    fetch(`https://jusanhr.herokuapp.com/files/download/${userId}`, {
+      Accept: "*/*",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer_" + token,
@@ -93,17 +94,18 @@ const UserMainPage = () => {
     if (userDetails !== undefined && userDetails !== null) {
       return userDetails.users.map((user) => {
         return (
-          <div>
+          <div className={style.profiles}>
             <span>
               ID {user.id} : {user.username}
             </span>
-            {/* <Button id={user.id} onClick={() => getPhoto(this.id)}> */}
-            <Button id={user.id} onClick={handleClickPhoto}>
-              Download photo
-            </Button>
-            <Button id={`${user.id}a`} onClick={handleClickFiles}>
-              Download files
-            </Button>
+            <div>
+              <Button id={user.id} onClick={handleClickPhoto}>
+                Download photo
+              </Button>
+              <Button id={user.id} onClick={handleClickFiles}>
+                Download files
+              </Button>
+            </div>
           </div>
         );
       });
@@ -113,7 +115,27 @@ const UserMainPage = () => {
   return (
     <div className={style.parent}>
       <Header />
-      <div>
+      <div className={style.subparent}>
+        <div className={style.actionContainer}>
+          <div className={style.profile}>
+            <div>
+              <img className={style.profilePic} src={person}></img>
+              <div className={style.profileInfo}>
+                <span>Админ профиль</span>
+                <span>Email: admin </span>
+                <span>Имя: admin</span>
+                <span>Фамилия: admin</span>
+              </div>
+            </div>
+            <div>
+              <div className={style.profileInfo}>
+                <span>Количество заявок: 2 </span>
+                <span>В процессе: 2</span>
+                <span>Для дальнейшего рассмотрения: 2</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className={style.bodyContainer}>
           <div className={style.actionContainer}>
             <div className={style.create}>
@@ -121,29 +143,18 @@ const UserMainPage = () => {
               <Input
                 onChange={handleChange}
                 placeholder="вставьте адрес электронной почты сюда"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                title="Email — стандартная проверка: латиница, может содержать спецсимволы и
-          цифры, обязательно должна быть «собачка» (@) и точка после неё, но
-          перед точкой обязательно должны быть буквы"
               ></Input>
               <Button onClick={() => createUser(email)}>Создать профиль</Button>
               {/* <Button onClick={() => Users()}>Показать профили</Button> */}
             </div>
+          </div>
+        </div>
 
-            <div className={style.searchContainer}>
+        <div className={style.bodyContainer}>
+          <div className={style.actionContainer}>
+            <div className={style.create}>
               <h1 className={style.searchHeader}>Список профилей</h1>
               {renderListItems()}
-            </div>
-          </div>
-          <div className={style.profileContainer}>
-            <span>Админ профиль</span>
-            <div className={style.profile}>
-              <img className={style.profilePic} src={person}></img>
-              <div className={style.profileInfo}>
-                <span>Email: </span>
-                <span>Имя:</span>
-                <span>Фамилия:</span>
-              </div>
             </div>
           </div>
         </div>

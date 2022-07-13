@@ -1147,84 +1147,205 @@ const UserMainForm = () => {
               Образование (в том числе неоконченное)
             </label>
             <div className={style.UNIVERSITYSubContainer}>
-              {universityFields.map((field, index) => {
-                return (
-                  <div className={style.UNIVERSITYContainerTwo} key={field.id}>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Дата начала обучения
-                      </label>
-                      <input
-                        type="date"
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, 01-01-1990"
-                        {...register(
-                          `universityInfoDtos.${index}.startDateOfEducation`
-                        )}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Дата конца обучения
-                      </label>
-                      <input
-                        type="date"
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, 01-01-1994"
-                        {...register(
-                          `universityInfoDtos.${index}.endDateOfEducation`
-                        )}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Полное название учебного заведения
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, Назарбаев Университет"
-                        {...register(
-                          `universityInfoDtos.${index}.nameOfInstitution`
-                        )}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Специальность
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, информатика"
-                        {...register(`universityInfoDtos.${index}.speciality`)}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Форма обучения
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, очная"
-                        {...register(`universityInfoDtos.${index}.formOfStudy`)}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Квалификация
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, бакалавр"
-                        {...register(
-                          `universityInfoDtos.${index}.qualification`
-                        )}
-                      ></input>
-                    </div>
-                  </div>
-                );
-              })}
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата начала обучения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1990"
+                    {...register(
+                      `universityInfoDtos.${0}.startDateOfEducation`
+                    )}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата конца обучения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1994"
+                    {...register(`universityInfoDtos.${0}.endDateOfEducation`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Полное название учебного заведения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Назарбаев Университет"
+                    {...register(`universityInfoDtos.${0}.nameOfInstitution`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Специальность
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, информатика"
+                    {...register(`universityInfoDtos.${0}.speciality`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Форма обучения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, очная"
+                    {...register(`universityInfoDtos.${0}.formOfStudy`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Квалификация
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, бакалавр"
+                    {...register(`universityInfoDtos.${0}.qualification`)}
+                  ></input>
+                </div>
+              </div>
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата начала обучения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1990"
+                    {...register(
+                      `universityInfoDtos.${1}.startDateOfEducation`
+                    )}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата конца обучения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1994"
+                    {...register(`universityInfoDtos.${1}.endDateOfEducation`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Полное название учебного заведения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Назарбаев Университет"
+                    {...register(`universityInfoDtos.${1}.nameOfInstitution`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Специальность
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, информатика"
+                    {...register(`universityInfoDtos.${1}.speciality`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Форма обучения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, очная"
+                    {...register(`universityInfoDtos.${1}.formOfStudy`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Квалификация
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, бакалавр"
+                    {...register(`universityInfoDtos.${1}.qualification`)}
+                  ></input>
+                </div>
+              </div>
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата начала обучения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1990"
+                    {...register(
+                      `universityInfoDtos.${2}.startDateOfEducation`
+                    )}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата конца обучения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1994"
+                    {...register(`universityInfoDtos.${2}.endDateOfEducation`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Полное название учебного заведения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Назарбаев Университет"
+                    {...register(`universityInfoDtos.${2}.nameOfInstitution`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Специальность
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, информатика"
+                    {...register(`universityInfoDtos.${2}.speciality`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Форма обучения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, очная"
+                    {...register(`universityInfoDtos.${2}.formOfStudy`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Квалификация
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, бакалавр"
+                    {...register(`universityInfoDtos.${2}.qualification`)}
+                  ></input>
+                </div>
+              </div>
             </div>
-
             <img
               src={question}
               alt=""
@@ -1241,87 +1362,139 @@ const UserMainForm = () => {
             </Button>
             <Button
               className={style.RemoveButton}
-              onClick={() => universityRemove({ ...defaultUniversity })}
+              onClick={() => courseRemove({ ...defaultUniversity })}
             >
               Удалить университет
             </Button>
           </div>
+
           <div className={style.UNIVERSITYContainer}>
             <label className={style.UNIVERSITYlabel}>
               Специальные курсы, школы, стажировки, семинары
             </label>
             <div className={style.UNIVERSITYSubContainer}>
-              {courseFields.map((field, index) => {
-                {
-                  /* {courses.map(
-                  ({ end, duration, coursename, type, degree }, index) => { */
-                }
-                return (
-                  <div className={style.UNIVERSITYContainerTwo} key={field.id}>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Год окончания
-                      </label>
-                      <input
-                        type="date"
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, 1990"
-                        {...register(
-                          `additionalEducationInfoDtos.${index}.yearOfGraduation`
-                        )}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Длительность обучения
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, 1 год"
-                        {...register(
-                          `additionalEducationInfoDtos.${index}.durationOfTraining`
-                        )}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Полное наименование курсов
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, Курсы инженерной квалификации"
-                        {...register(
-                          `additionalEducationInfoDtos.${index}.nameOfCourse`
-                        )}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Специальность
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например,инженер"
-                        {...register(
-                          `additionalEducationInfoDtos.${index}.speciality`
-                        )}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Учёная степень, сертификаты
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, разряд/грейд"
-                        {...register(
-                          `additionalEducationInfoDtos.${index}.academicDegreeOrCertificates`
-                        )}
-                      ></input>
-                    </div>
-                  </div>
-                );
-              })}
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Год окончания
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 1990"
+                    {...register(
+                      `additionalEducationInfoDtos.${0}.yearOfGraduation`
+                    )}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Длительность обучения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 1 год"
+                    {...register(
+                      `additionalEducationInfoDtos.${0}.durationOfTraining`
+                    )}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Полное наименование курсов
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Курсы инженерной квалификации"
+                    {...register(
+                      `additionalEducationInfoDtos.${0}.nameOfCourse`
+                    )}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Специальность
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например,инженер"
+                    {...register(`additionalEducationInfoDtos.${0}.speciality`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Учёная степень, сертификаты
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, разряд/грейд"
+                    {...register(
+                      `additionalEducationInfoDtos.${0}.academicDegreeOrCertificates`
+                    )}
+                  ></input>
+                </div>
+              </div>
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Год окончания
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 1990"
+                    {...register(
+                      `additionalEducationInfoDtos.${1}.yearOfGraduation`
+                    )}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Длительность обучения
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 1 год"
+                    {...register(
+                      `additionalEducationInfoDtos.${1}.durationOfTraining`
+                    )}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Полное наименование курсов
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Курсы инженерной квалификации"
+                    {...register(
+                      `additionalEducationInfoDtos.${1}.nameOfCourse`
+                    )}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Специальность
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например,инженер"
+                    {...register(`additionalEducationInfoDtos.${1}.speciality`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Учёная степень, сертификаты
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, разряд/грейд"
+                    {...register(
+                      `additionalEducationInfoDtos.${1}.academicDegreeOrCertificates`
+                    )}
+                  ></input>
+                </div>
+              </div>
             </div>
             <img
               src={question}
@@ -1948,53 +2121,123 @@ const UserMainForm = () => {
           <div className={style.UNIVERSITYContainer}>
             <label className={style.UNIVERSITYlabel}>Дети</label>
             <div className={style.UNIVERSITYSubContainer}>
-              {childFields.map((field, index) => {
-                return (
-                  <div className={style.UNIVERSITYContainerTwo} key={field.id}>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, Муса Темирлан Аскарович"
-                        {...register(`childrenInfoDtos.${index}.fio`)}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Дата рождения
-                      </label>
-                      <input
-                        type="date"
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, 01-01-1994"
-                        {...register(
-                          `childrenInfoDtos.${index}.dateOfBirthday`
-                        )}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Телефон
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, +7-777-777-7777"
-                        {...register(`childrenInfoDtos.${index}.phoneNumber`)}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Место учебы, работы
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, информатика"
-                        {...register(`childrenInfoDtos.${index}.workPlace`)}
-                      ></input>
-                    </div>
-                  </div>
-                );
-              })}
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Муса Темирлан Аскарович"
+                    {...register(`childrenInfoDtos.${0}.fio`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата рождения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1994"
+                    {...register(`childrenInfoDtos.${0}.dateOfBirthday`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>Телефон</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, +7-777-777-7777"
+                    {...register(`childrenInfoDtos.${0}.phoneNumber`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Место учебы, работы
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, информатика"
+                    {...register(`childrenInfoDtos.${0}.workPlace`)}
+                  ></input>
+                </div>
+              </div>
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Муса Темирлан Аскарович"
+                    {...register(`childrenInfoDtos.${1}.fio`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата рождения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1994"
+                    {...register(`childrenInfoDtos.${1}.dateOfBirthday`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>Телефон</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, +7-777-777-7777"
+                    {...register(`childrenInfoDtos.${1}.phoneNumber`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Место учебы, работы
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, информатика"
+                    {...register(`childrenInfoDtos.${1}.workPlace`)}
+                  ></input>
+                </div>
+              </div>
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Муса Темирлан Аскарович"
+                    {...register(`childrenInfoDtos.${2}.fio`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата рождения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1994"
+                    {...register(`childrenInfoDtos.${2}.dateOfBirthday`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>Телефон</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, +7-777-777-7777"
+                    {...register(`childrenInfoDtos.${2}.phoneNumber`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Место учебы, работы
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, информатика"
+                    {...register(`childrenInfoDtos.${2}.workPlace`)}
+                  ></input>
+                </div>
+              </div>
             </div>
             <img
               src={question}
@@ -2023,87 +2266,207 @@ const UserMainForm = () => {
               Ближайшие родственники
             </label>
             <div className={style.UNIVERSITYSubContainer}>
-              {relativeFields.map((field, index) => {
-                return (
-                  <div className={style.UNIVERSITYContainerTwo} key={field.id}>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Степень родства
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, тесть"
-                        {...register(
-                          `relativesInfoDtos.${index}.degreeOfRelationship`
-                        )}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, Айдынов Аскар Макарович"
-                        {...register(`relativesInfoDtos.${index}.fio`)}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Дата рождения
-                      </label>
-                      <input
-                        type="date"
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, 01-01-1994"
-                        {...register(
-                          `relativesInfoDtos.${index}.dateOfBirthday`
-                        )}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Место работы
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, АО First Heartland Jusan Bank"
-                        {...register(`relativesInfoDtos.${index}.workingPlace`)}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Должность
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, бухгалтер"
-                        {...register(
-                          `relativesInfoDtos.${index}.workingPosition`
-                        )}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Домашний адрес
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, Кирова 21/1 горож Нур-Султан"
-                        {...register(`relativesInfoDtos.${index}.address`)}
-                      ></input>
-                    </div>
-                    <div className={style.UNIVERSITYContainerThree}>
-                      <label className={style.UNIVERSITYlabelTwo}>
-                        Телефон
-                      </label>
-                      <input
-                        className={style.UNIVERSITYinputTwo}
-                        placeholder="например, +7-777-777-7777"
-                        {...register(`relativesInfoDtos.${index}.phoneNumber`)}
-                      ></input>
-                    </div>
-                  </div>
-                );
-              })}
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Степень родства
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, тесть"
+                    {...register(`relativesInfoDtos.${0}.degreeOfRelationship`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Айдынов Аскар Макарович"
+                    {...register(`relativesInfoDtos.${0}.fio`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата рождения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1994"
+                    {...register(`relativesInfoDtos.${0}.dateOfBirthday`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Место работы
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, АО First Heartland Jusan Bank"
+                    {...register(`relativesInfoDtos.${0}.workingPlace`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>Должность</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, бухгалтер"
+                    {...register(`relativesInfoDtos.${0}.workingPosition`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Домашний адрес
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Кирова 21/1 горож Нур-Султан"
+                    {...register(`relativesInfoDtos.${0}.address`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>Телефон</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, +7-777-777-7777"
+                    {...register(`relativesInfoDtos.${0}.phoneNumber`)}
+                  ></input>
+                </div>
+              </div>
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Степень родства
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, тесть"
+                    {...register(`relativesInfoDtos.${1}.degreeOfRelationship`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Айдынов Аскар Макарович"
+                    {...register(`relativesInfoDtos.${1}.fio`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата рождения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1994"
+                    {...register(`relativesInfoDtos.${1}.dateOfBirthday`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Место работы
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, АО First Heartland Jusan Bank"
+                    {...register(`relativesInfoDtos.${1}.workingPlace`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>Должность</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, бухгалтер"
+                    {...register(`relativesInfoDtos.${1}.workingPosition`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Домашний адрес
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Кирова 21/1 горож Нур-Султан"
+                    {...register(`relativesInfoDtos.${1}.address`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>Телефон</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, +7-777-777-7777"
+                    {...register(`relativesInfoDtos.${1}.phoneNumber`)}
+                  ></input>
+                </div>
+              </div>
+              <div className={style.UNIVERSITYContainerTwo}>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Степень родства
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, тесть"
+                    {...register(`relativesInfoDtos.${2}.degreeOfRelationship`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>ФИО</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Айдынов Аскар Макарович"
+                    {...register(`relativesInfoDtos.${2}.fio`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Дата рождения
+                  </label>
+                  <input
+                    type="date"
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, 01-01-1994"
+                    {...register(`relativesInfoDtos.${2}.dateOfBirthday`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Место работы
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, АО First Heartland Jusan Bank"
+                    {...register(`relativesInfoDtos.${2}.workingPlace`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>Должность</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, бухгалтер"
+                    {...register(`relativesInfoDtos.${2}.workingPosition`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>
+                    Домашний адрес
+                  </label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, Кирова 21/1 горож Нур-Султан"
+                    {...register(`relativesInfoDtos.${2}.address`)}
+                  ></input>
+                </div>
+                <div className={style.UNIVERSITYContainerThree}>
+                  <label className={style.UNIVERSITYlabelTwo}>Телефон</label>
+                  <input
+                    className={style.UNIVERSITYinputTwo}
+                    placeholder="например, +7-777-777-7777"
+                    {...register(`relativesInfoDtos.${2}.phoneNumber`)}
+                  ></input>
+                </div>
+              </div>
             </div>
             <img
               src={question}
@@ -2150,137 +2513,125 @@ const UserMainForm = () => {
                   {...register(`CommerceOrgAnswer`)}
                 ></input>
               </div>
-              {commerceFields.map((field, index) => {
-                return (
-                  <div
-                    className={style.ADDITIONALINFOontainerTwo}
-                    key={field.id}
-                  >
-                    {boolAdditionalInfoToo ? (
-                      <>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Наименование
-                          </label>
-                          <input
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, ТОО Балтех"
-                            {...register(
-                              `additionalWorkingInfoDtos.${index}.name`
-                            )}
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Идентификационный Номер Налогоплательщика
-                          </label>
-                          <input
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, 123456789012"
-                            {...register(
-                              `additionalWorkingInfoDtos.${index}.inn`
-                            )}
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Адрес
-                          </label>
-                          <input
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, Шевченко 51, город Шымкент"
-                            {...register(
-                              `additionalWorkingInfoDtos.${index}.address`
-                            )}
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Вид деятельности
-                          </label>
-                          <input
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, строительство"
-                            {...register(
-                              `additionalWorkingInfoDtos.${index}.typeOfWork`
-                            )}
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Телефон
-                          </label>
-                          <input
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, +7-777-777-7777"
-                            {...register(
-                              `additionalWorkingInfoDtos.${index}.phoneNumber`
-                            )}
-                          ></input>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Наименование
-                          </label>
-                          <input
-                            readOnly
-                            value=""
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, ТОО Балтех"
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Идентификационный Номер Налогоплательщика
-                          </label>
-                          <input
-                            readOnly
-                            value=""
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, 123456789012"
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Адрес
-                          </label>
-                          <input
-                            readOnly
-                            value=""
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, Шевченко 51, город Шымкент"
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Вид деятельности
-                          </label>
-                          <input
-                            readOnly
-                            value=""
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, строительство"
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Телефон
-                          </label>
-                          <input
-                            readOnly
-                            value=""
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, +7-777-777-7777"
-                          ></input>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                );
-              })}
+
+              <div className={style.ADDITIONALINFOontainerTwo}>
+                {boolAdditionalInfoToo ? (
+                  <>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Наименование
+                      </label>
+                      <input
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, ТОО Балтех"
+                        {...register(`additionalWorkingInfoDtos.${0}.name`)}
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Идентификационный Номер Налогоплательщика
+                      </label>
+                      <input
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, 123456789012"
+                        {...register(`additionalWorkingInfoDtos.${0}.inn`)}
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Адрес
+                      </label>
+                      <input
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, Шевченко 51, город Шымкент"
+                        {...register(`additionalWorkingInfoDtos.${0}.address`)}
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Вид деятельности
+                      </label>
+                      <input
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, строительство"
+                        {...register(
+                          `additionalWorkingInfoDtos.${0}.typeOfWork`
+                        )}
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Телефон
+                      </label>
+                      <input
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, +7-777-777-7777"
+                        {...register(
+                          `additionalWorkingInfoDtos.${0}.phoneNumber`
+                        )}
+                      ></input>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Наименование
+                      </label>
+                      <input
+                        readOnly
+                        value=""
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, ТОО Балтех"
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Идентификационный Номер Налогоплательщика
+                      </label>
+                      <input
+                        readOnly
+                        value=""
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, 123456789012"
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Адрес
+                      </label>
+                      <input
+                        readOnly
+                        value=""
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, Шевченко 51, город Шымкент"
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Вид деятельности
+                      </label>
+                      <input
+                        readOnly
+                        value=""
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, строительство"
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Телефон
+                      </label>
+                      <input
+                        readOnly
+                        value=""
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, +7-777-777-7777"
+                      ></input>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
             <img
               src={question}
@@ -2322,89 +2673,82 @@ const UserMainForm = () => {
                   {...register(`JusanRelativeAnswer`)}
                 ></input>
               </div>
-              {jusanRelativeFields.map((field, index) => {
-                return (
-                  <div
-                    className={style.ADDITIONALINFOContainerTwo}
-                    key={field.id}
-                  >
-                    {boolADDITIONALINFO === true ? (
-                      <>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Степень родства
-                          </label>
-                          <input
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, брат"
-                            {...register(
-                              `JusanRelativesRelationship.${index}.degreeOfRelationship`
-                            )}
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            ФИО
-                          </label>
-                          <input
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, Бахытжанов Аскар Иманович"
-                            {...register(`JusanRelativesName.${index}.fio`)}
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Подразделение
-                          </label>
-                          <input
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, бухгалтерия"
-                            {...register(
-                              `JusanRelativesDepartment.${index}.departmentAndPosition`
-                            )}
-                          ></input>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Степень родства
-                          </label>
-                          <input
-                            readOnly
-                            value=""
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, брат"
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            ФИО
-                          </label>
-                          <input
-                            readOnly
-                            value=""
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, Бахытжанов Аскар Иманович"
-                          ></input>
-                        </div>
-                        <div className={style.ADDITIONALINFOContainerThree}>
-                          <label className={style.ADDITIONALINFOlabelThree}>
-                            Подразделение
-                          </label>
-                          <input
-                            readOnly
-                            value=""
-                            className={style.ADDITIONALINFOinputTwo}
-                            placeholder="например, бухгалтерия"
-                          ></input>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                );
-              })}
+              <div className={style.ADDITIONALINFOContainerTwo}>
+                {boolADDITIONALINFO === true ? (
+                  <>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Степень родства
+                      </label>
+                      <input
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, брат"
+                        {...register(
+                          `JusanRelativesRelationship.${0}.degreeOfRelationship`
+                        )}
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        ФИО
+                      </label>
+                      <input
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, Бахытжанов Аскар Иманович"
+                        {...register(`JusanRelativesName.${0}.fio`)}
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Подразделение
+                      </label>
+                      <input
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, бухгалтерия"
+                        {...register(
+                          `JusanRelativesDepartment.${0}.departmentAndPosition`
+                        )}
+                      ></input>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Степень родства
+                      </label>
+                      <input
+                        readOnly
+                        value=""
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, брат"
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        ФИО
+                      </label>
+                      <input
+                        readOnly
+                        value=""
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, Бахытжанов Аскар Иманович"
+                      ></input>
+                    </div>
+                    <div className={style.ADDITIONALINFOContainerThree}>
+                      <label className={style.ADDITIONALINFOlabelThree}>
+                        Подразделение
+                      </label>
+                      <input
+                        readOnly
+                        value=""
+                        className={style.ADDITIONALINFOinputTwo}
+                        placeholder="например, бухгалтерия"
+                      ></input>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
             <img
               src={question}

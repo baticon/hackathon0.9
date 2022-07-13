@@ -5,6 +5,11 @@
   height: 100vh;
 }
 
+.subparent {
+  margin: auto;
+  width: 80%;
+}
+
 .bodyContainer {
   display: flex;
   flex-direction: row;
@@ -12,8 +17,8 @@
 }
 
 .actionContainer {
-  width: 60%;
-  margin: 5%;
+  width: 100%;
+  /* margin: 5%; */
   border-radius: 6px;
   border-style: solid;
   border-width: 1px;
@@ -40,7 +45,7 @@
 .create {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
   margin: auto;
 }
 
@@ -72,9 +77,14 @@
 
 .profile {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.profiles {
+  width: 50%;
+  margin: auto;
 }
 
 .profilePic {
@@ -98,10 +108,10 @@
 }
 
 .searchHeader {
-  margin: 5%;
+  /* margin: 5%; */
   font-size: 100%;
   color: rgb(1, 1, 59);
-  width: 50%;
+  width: 100%;
 }
 
 .searchBox {
