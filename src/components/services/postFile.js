@@ -1,4 +1,6 @@
-async function FileUpload(files) {
+import sendFileID from "./sendFileID";
+
+async function FileUpload(files, type) {
   const userId = window.localStorage.getItem("user_id");
   const token = window.localStorage.getItem("access_token");
   const formData = new FormData();
@@ -18,6 +20,7 @@ async function FileUpload(files) {
     );
     // const dataJson = await data.json();
     console.log(data);
+    sendFileID(type);
     // console.log(dataJson);
   } catch (error) {
     console.error("Error:", error);

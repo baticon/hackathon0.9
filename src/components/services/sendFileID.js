@@ -1,10 +1,11 @@
-async function sendFileID(id) {
+async function sendFileID(id, type) {
   const userId = window.localStorage.getItem("user_id");
   const token = window.localStorage.getItem("access_token");
   const obj = {
     documentId: id,
-    documentType: "string",
+    documentType: type,
   };
+  console.log(obj);
   try {
     const data = await fetch(
       `https://jusanhr.herokuapp.com/files/upload/document-type`,

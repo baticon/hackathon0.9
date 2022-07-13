@@ -80,7 +80,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", idFile);
-                    UploadPhoto(idFile);
+                    UploadPhoto(idFile, "idcard");
                   }}
                 >
                   Сохранить
@@ -103,7 +103,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", diplomaFile);
-                    UploadFile(diplomaFile);
+                    UploadFile(diplomaFile, "diploma");
                   }}
                 >
                   Сохранить
@@ -125,7 +125,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", experienceFile);
-                    UploadFile(experienceFile);
+                    UploadFile(experienceFile, "work experience");
                   }}
                 >
                   Сохранить
@@ -169,7 +169,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", militaryFile);
-                    UploadFile(militaryFile);
+                    UploadFile(militaryFile, "military");
                   }}
                 >
                   Сохранить
@@ -189,7 +189,7 @@ const UserMainPage = () => {
                 <Button
                   onClick={() => {
                     console.log("fdsfsdf", photoFile);
-                    UploadFile(photoFile);
+                    UploadFile(photoFile, "photo");
                   }}
                 >
                   Сохранить
