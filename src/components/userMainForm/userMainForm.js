@@ -2199,7 +2199,7 @@ const UserMainForm = () => {
                               className={style.ADDITIONALINFOinputTwo}
                               placeholder="например, 123456789012"
                               {...register(
-                                `additionalWorkingInfoDtos.${index}.iin`
+                                `additionalWorkingInfoDtos.${index}.inn`
                               )}
                             ></input>
                           </div>

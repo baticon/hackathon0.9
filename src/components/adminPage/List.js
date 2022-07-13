@@ -1,8 +1,5 @@
 import { React, useState } from "react";
 import data from "./ListData.json";
-import TextField from "@mui/material/TextField";
-
-//https://dev.to/salehmubashar/search-bar-in-react-js-545l
 
 function List(props) {
   //create a new array by filtering the original array

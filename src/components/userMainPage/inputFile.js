@@ -1,7 +1,7 @@
 import { useState } from "react";
 import style from "../userMainPage/userMainPage.module.css";
 
-function InputFile(files, setFiles, identifier) {
+function InputFile(files, setFiles, identifier, boolCheck, setBoolCheck) {
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
 
@@ -9,32 +9,32 @@ function InputFile(files, setFiles, identifier) {
     console.log(files);
     setSelectedFile(event.target.files[0]);
     if (identifier === "id") {
-      const newFile = { ...files, id: { file: event.target.files[0] } };
+      const newFile = { ...files, file: event.target.files[0] };
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "diploma") {
-      const newFile = { ...files, diploma: { file: event.target.files[0] } };
+      const newFile = { ...files, file: event.target.files[0] };
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "experience") {
-      const newFile = { ...files, experience: { file: event.target.files[0] } };
+      const newFile = { ...files, file: event.target.files[0] };
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "medical") {
-      const newFile = { ...files, medical: { file: event.target.files[0] } };
+      const newFile = { ...files, file: event.target.files[0] };
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "military") {
-      const newFile = { ...files, military: { file: event.target.files[0] } };
+      const newFile = { ...files, file: event.target.files[0] };
       setFiles(newFile);
       console.log(files);
     }
     if (identifier === "photo") {
-      const newFile = { ...files, photo: { file: event.target.files[0] } };
+      const newFile = { ...files, file: event.target.files[0] };
       setFiles(newFile);
       console.log(files);
     }
@@ -53,7 +53,10 @@ function InputFile(files, setFiles, identifier) {
       {isFilePicked && selectedFile !== undefined ? (
         <div>
           <p className={style.paragraph}>
-            Наименование файла: {selectedFile.name}
+            Наименование файла:{" "}
+            {selectedFile.name.length > 10
+              ? "File name in too long"
+              : `✅ ${selectedFile.name}`}
           </p>
           <p className={style.paragraph}>Тип файла: {selectedFile.type}</p>
           <p className={style.paragraph}>

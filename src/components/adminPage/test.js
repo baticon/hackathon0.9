@@ -26,7 +26,6 @@ const UserMainPage = () => {
 
             <div className={style.searchContainer}>
               <h1 className={style.searchHeader}>Поиск</h1>
-
               <div className="search">
                 <TextField
                   id="outlined-basic"

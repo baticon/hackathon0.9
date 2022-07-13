@@ -23,10 +23,13 @@
 // }
 
 async function FileUpload(files) {
+  const userId = window.localStorage.getItem("user_id");
+  const token = window.localStorage.getItem("access_token");
   try {
     const data = await fetch(
       // `http://164.92.192.48:9095/upload/file/database?name=test`,
-      "https://app-hr-project.herokuapp.com/login",
+      // "https://app-hr-project.herokuapp.com/login",
+      `https://jusanhr.herokuapp.com/upload/photo/${userId}`,
       {
         method: "POST",
         body: files,

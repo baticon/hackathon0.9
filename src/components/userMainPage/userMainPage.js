@@ -40,6 +40,8 @@ const UserMainPage = () => {
     },
   });
 
+  const [boolCheck, setboolCheck] = useState(false);
+
   return (
     <div>
       <Header />
