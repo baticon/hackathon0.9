@@ -8,7 +8,8 @@ async function sendFileID(id, type) {
   console.log(obj);
   try {
     const data = await fetch(
-      `https://jusanhr.herokuapp.com/files/upload/document-type`,
+      //   `https://jusanhr.herokuapp.com/files/upload/document-type`,
+      `http://164.92.192.48:8081/files/upload/document-type`,
       {
         method: "POST",
         body: JSON.stringify(obj),

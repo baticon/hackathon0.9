@@ -4,7 +4,7 @@ import InputFile from "./inputFile";
 import postFile from "../services/postFile";
 import question from "../media/question.png";
 import style from "./userMainPage.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 //https://www.pluralsight.com/guides/uploading-files-with-reactjs
@@ -42,113 +42,139 @@ const UserMainPage = () => {
 
   const [boolCheck, setboolCheck] = useState(false);
 
-  return (
-    <div>
-      <Header />
-      <button type="button" onClick={() => navigate("/profile")}>
-        Назад в профиль
-      </button>
-      <div className={style.container}>
-        <form className={style.formContainer}>
-          <div className={style.uploadContainer}>
-            <span className={style.formHeader}>
-              Пожалуйста приложите следующие документы
-            </span>
-            <div className={style.fileUploadContainer}>
-              <div className={style.documentType}>
-                <span className={style.documentTypeText}>
-                  1. Вид на жительство или удостоверение
-                </span>
-                <img
-                  src={question}
-                  alt=""
-                  className={style.hint}
-                  title="Вид на жительство иностранца в Республике Казахстан или
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Loading function to load data or
+    // fake it using setTimeout;
+    const loadData = async () => {
+      // Wait for two second
+      await new Promise((r) => setTimeout(r, 1000));
+      console.log("test");
+
+      // Toggle loading state
+      setLoading(!loading);
+    };
+
+    loadData();
+  }, []);
+
+  // If page is in loading state, display
+  // loading message. Modify it as per your
+  // requirement.
+  if (loading) {
+    return <div className={style.dotsbars1}></div>;
+  } else {
+    return (
+      <div>
+        <Header />
+        <button type="button" onClick={() => navigate("/profile")}>
+          Назад в профиль
+        </button>
+        <div className={style.container}>
+          <form className={style.formContainer}>
+            <div className={style.uploadContainer}>
+              <span className={style.formHeader}>
+                Пожалуйста приложите следующие документы
+              </span>
+              <div className={style.fileUploadContainer}>
+                <div className={style.documentType}>
+                  <span className={style.documentTypeText}>
+                    1. Вид на жительство или удостоверение
+                  </span>
+                  <img
+                    src={question}
+                    alt=""
+                    className={style.hint}
+                    title="Вид на жительство иностранца в Республике Казахстан или
                 удостоверение лица без гражданства (для иностранцев и лиц без
                 гражданства, постоянно проживающих на территории Республики
                 Казахстан)"
-                ></img>
+                  ></img>
+                </div>
+                {InputFile(files, setFiles, stringid)}
               </div>
-              {InputFile(files, setFiles, stringid)}
-            </div>
-            <div className={style.fileUploadContainer}>
-              <div className={style.documentType}>
-                <span className={style.documentTypeText}>
-                  2. Документ об образовании
-                </span>
-                <img
-                  src={question}
-                  alt=""
-                  className={style.hint}
-                  title="Документ об образовании (с приложением), квалификации, наличии специальных знаний или профессиональной подготовки при заключении трудового договора на работу, требующую соответствующих знаний, умений и навыков"
-                ></img>
+              <div className={style.fileUploadContainer}>
+                <div className={style.documentType}>
+                  <span className={style.documentTypeText}>
+                    2. Документ об образовании
+                  </span>
+                  <img
+                    src={question}
+                    alt=""
+                    className={style.hint}
+                    title="Документ об образовании (с приложением), квалификации, наличии специальных знаний или профессиональной подготовки при заключении трудового договора на работу, требующую соответствующих знаний, умений и навыков"
+                  ></img>
+                </div>
+                {InputFile(files, setFiles, stringdiploma)}
               </div>
-              {InputFile(files, setFiles, stringdiploma)}
-            </div>
-            <div className={style.fileUploadContainer}>
-              <div className={style.documentType}>
-                <span className={style.documentTypeText}>
-                  3. Документ, подтверждающий трудовую деятельность
-                </span>
-                <img
-                  src={question}
-                  alt=""
-                  className={style.hint}
-                  title="Для лиц, имеющих трудовой стаж"
-                ></img>
+              <div className={style.fileUploadContainer}>
+                <div className={style.documentType}>
+                  <span className={style.documentTypeText}>
+                    3. Документ, подтверждающий трудовую деятельность
+                  </span>
+                  <img
+                    src={question}
+                    alt=""
+                    className={style.hint}
+                    title="Для лиц, имеющих трудовой стаж"
+                  ></img>
+                </div>
+                {InputFile(files, setFiles, stringexperience)}
               </div>
-              {InputFile(files, setFiles, stringexperience)}
-            </div>
-            <div className={style.fileUploadContainer}>
-              <div className={style.documentType}>
-                <span className={style.documentTypeText}>
-                  4. Медицинская справка
-                </span>
-                <img
-                  src={question}
-                  alt=""
-                  className={style.hint}
-                  title="Документ о прохождении предварительного медицинского освидетельствования (форма 075/у, для водителей 083/у)"
-                ></img>
+              <div className={style.fileUploadContainer}>
+                <div className={style.documentType}>
+                  <span className={style.documentTypeText}>
+                    4. Медицинская справка
+                  </span>
+                  <img
+                    src={question}
+                    alt=""
+                    className={style.hint}
+                    title="Документ о прохождении предварительного медицинского освидетельствования (форма 075/у, для водителей 083/у)"
+                  ></img>
+                </div>
+                {InputFile(files, setFiles, stringmedical)}
               </div>
-              {InputFile(files, setFiles, stringmedical)}
-            </div>
-            <div className={style.fileUploadContainer}>
-              <div className={style.documentType}>
-                <span className={style.documentTypeText}>5. Военный билет</span>
-                <img
-                  src={question}
-                  alt=""
-                  className={style.hint}
-                  title="Военный билет/приписное свидетельство (для военнообязанных)"
-                ></img>
+              <div className={style.fileUploadContainer}>
+                <div className={style.documentType}>
+                  <span className={style.documentTypeText}>
+                    5. Военный билет
+                  </span>
+                  <img
+                    src={question}
+                    alt=""
+                    className={style.hint}
+                    title="Военный билет/приписное свидетельство (для военнообязанных)"
+                  ></img>
+                </div>
+                {InputFile(files, setFiles, stringmilitary)}
               </div>
-              {InputFile(files, setFiles, stringmilitary)}
-            </div>
-            <div className={style.fileUploadContainer}>
-              <div className={style.documentType}>
-                <span className={style.documentTypeText}>6. Фото</span>
-                <img
-                  src={question}
-                  alt=""
-                  className={style.hint}
-                  title="Фото 3*4 в формате Jpeg для оформления служебного пропуска"
-                ></img>
+              <div className={style.fileUploadContainer}>
+                <div className={style.documentType}>
+                  <span className={style.documentTypeText}>6. Фото</span>
+                  <img
+                    src={question}
+                    alt=""
+                    className={style.hint}
+                    title="Фото 3*4 в формате Jpeg для оформления служебного пропуска"
+                  ></img>
+                </div>
+                {InputFile(files, setFiles, stringphoto)}
               </div>
-              {InputFile(files, setFiles, stringphoto)}
+              <button
+                className={style.submitButton}
+                onClick={() => postFile(files)}
+              >
+                Отправить
+              </button>
             </div>
-            <button
-              className={style.submitButton}
-              onClick={() => postFile(files)}
-            >
-              Отправить
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  );
+    );
+  }
 };
 
 export default UserMainPage;

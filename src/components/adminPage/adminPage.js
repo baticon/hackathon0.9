@@ -95,15 +95,48 @@ const UserMainPage = () => {
       return userDetails.users.map((user) => {
         return (
           <div className={style.profiles}>
-            <span>
+            <span className={style.profileHeader}>
               ID {user.id} : {user.username}
             </span>
             <div>
-              <Button id={user.id} onClick={handleClickPhoto}>
-                Download photo
+              <Button
+                id={user.id}
+                style={{ backgroundColor: "#a7c957", margin: "2%" }}
+              >
+                Принять кандидата
               </Button>
-              <Button id={user.id} onClick={handleClickFiles}>
-                Download files
+              <Button
+                id={user.id}
+                style={{
+                  backgroundColor: "#4895ef",
+                  margin: "2%",
+                  color: "white",
+                }}
+                onClick={handleClickPhoto}
+              >
+                Загрузить фотографию
+              </Button>
+              <Button
+                id={user.id}
+                style={{
+                  backgroundColor: "#4895ef",
+                  margin: "2%",
+                  color: "white",
+                }}
+                onClick={handleClickFiles}
+              >
+                Загрузить документы
+              </Button>
+              <Button
+                id={user.id}
+                style={{
+                  backgroundColor: "#4895ef",
+                  margin: "2%",
+                  color: "white",
+                }}
+                onClick={handleClickFiles}
+              >
+                Загрузить анкету
               </Button>
             </div>
           </div>
@@ -112,56 +145,91 @@ const UserMainPage = () => {
     }
   };
 
-  return (
-    <div className={style.parent}>
-      <Header />
-      <div className={style.subparent}>
-        <div className={style.actionContainer}>
-          <div className={style.profile}>
-            <div>
-              <img className={style.profilePic} src={person}></img>
-              <div className={style.profileInfo}>
-                <span>Админ профиль</span>
-                <span>Email: admin </span>
-                <span>Имя: admin</span>
-                <span>Фамилия: admin</span>
-              </div>
-            </div>
-            <div>
-              <div className={style.profileInfo}>
-                <span>Количество заявок: 2 </span>
-                <span>В процессе: 2</span>
-                <span>Для дальнейшего рассмотрения: 2</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={style.bodyContainer}>
-          <div className={style.actionContainer}>
-            <div className={style.create}>
-              <label>Создать новый профиль кандидата</label>
-              <Input
-                onChange={handleChange}
-                placeholder="вставьте адрес электронной почты сюда"
-              ></Input>
-              <Button onClick={() => createUser(email)}>Создать профиль</Button>
-              {/* <Button onClick={() => Users()}>Показать профили</Button> */}
-            </div>
-          </div>
-        </div>
+  // Set loading state to true initially
+  const [loading, setLoading] = React.useState(true);
 
-        <div className={style.bodyContainer}>
+  React.useEffect(() => {
+    // Loading function to load data or
+    // fake it using setTimeout;
+    const loadData = async () => {
+      // Wait for two second
+      await new Promise((r) => setTimeout(r, 1000));
+      console.log("test");
+
+      // Toggle loading state
+      setLoading(!loading);
+    };
+
+    loadData();
+  }, []);
+
+  // If page is in loading state, display
+  // loading message. Modify it as per your
+  // requirement.
+  if (loading) {
+    return <div className={style.dotsbars1}></div>;
+  } else {
+    return (
+      <div className={style.parent}>
+        <Header />
+        <div className={style.subparent}>
           <div className={style.actionContainer}>
-            <div className={style.create}>
-              <h1 className={style.searchHeader}>Список профилей</h1>
-              {renderListItems()}
+            <div className={style.profile}>
+              <div>
+                <img className={style.profilePic} src={person}></img>
+                <div className={style.profileInfo}>
+                  <span>Админ профиль</span>
+                  <span>Email: admin </span>
+                  <span>Имя: admin</span>
+                  <span>Фамилия: admin</span>
+                </div>
+              </div>
+              <div>
+                <div className={style.profileInfo}>
+                  <span>
+                    Количество заявок:{" "}
+                    {userDetails ? userDetails.users.length : ""}
+                  </span>
+                  <span>
+                    В процессе: {userDetails ? userDetails.users.length : ""}
+                  </span>
+                  <span>
+                    Для дальнейшего рассмотрения:{" "}
+                    {userDetails ? userDetails.users.length : ""}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={style.bodyContainer}>
+            <div className={style.actionContainer}>
+              <div className={style.create}>
+                <label>Создать новый профиль кандидата</label>
+                <Input
+                  onChange={handleChange}
+                  placeholder="вставьте адрес электронной почты сюда"
+                ></Input>
+                <Button onClick={() => createUser(email)}>
+                  Создать профиль
+                </Button>
+                {/* <Button onClick={() => Users()}>Показать профили</Button> */}
+              </div>
+            </div>
+          </div>
+
+          <div className={style.bodyContainer}>
+            <div className={style.actionContainer}>
+              <div className={style.create}>
+                <h1 className={style.searchHeader}>Список профилей</h1>
+                {renderListItems()}
+              </div>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  );
+    );
+  }
 };
 
 export default UserMainPage;

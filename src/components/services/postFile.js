@@ -8,7 +8,8 @@ async function FileUpload(files, type) {
   console.log("test", files);
   try {
     const data = await fetch(
-      `https://jusanhr.herokuapp.com/photos/upload/${userId}`,
+      // `https://jusanhr.herokuapp.com/photos/upload/${userId}`,
+      `http://164.92.192.48:8081/photos/upload/${userId}`,
       formData,
       {
         method: "POST",

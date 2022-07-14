@@ -3,7 +3,8 @@ async function getUserDetails(userData, setUserData) {
   const token = window.localStorage.getItem("access_token");
   try {
     const data = await fetch(
-      `https://jusanhr.herokuapp.com/form/download/info/${userId}`,
+      // `https://jusanhr.herokuapp.com/form/download/info/${userId}`,
+      `http://164.92.192.48:8081/form/download/info/${userId}`,
       {
         method: "GET",
         headers: {

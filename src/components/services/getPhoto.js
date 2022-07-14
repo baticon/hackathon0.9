@@ -3,7 +3,8 @@ async function getPhoto(userId) {
   const token = window.localStorage.getItem("access_token");
   try {
     const data = await fetch(
-      `https://jusanhr.herokuapp.com/photos/download/${userId}`,
+      // `https://jusanhr.herokuapp.com/photos/download/${userId}`,
+      `http://164.92.192.48:8081/photos/download/${userId}`,
       {
         method: "GET",
         headers: {

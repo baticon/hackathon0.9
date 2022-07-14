@@ -5,7 +5,8 @@ async function DataUpload(obj) {
   console.log("test");
   try {
     const data = await fetch(
-      `https://jusanhr.herokuapp.com/form/upload/info/${userId}`,
+      // `https://jusanhr.herokuapp.com/form/upload/info/${userId}`,
+      `http://164.92.192.48:8081/form/upload/info/${userId}`,
       {
         method: "POST",
         body: JSON.stringify(obj),

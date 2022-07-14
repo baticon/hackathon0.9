@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <div className={style.container}>
-      <a className={style.jusan} href="https://jusan.kz/">
+      <a className={style.jusan} onClick={() => navigate("/profile")}>
         Модуль JUSAN Hire
       </a>
       <a href="https://jusan.kz/">

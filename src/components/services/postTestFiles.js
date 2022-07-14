@@ -12,7 +12,8 @@ async function uploadFile(files, type) {
   console.log("file", files);
   try {
     const response = await axios.post(
-      `https://jusanhr.herokuapp.com/files/upload/${userId}`,
+      // `https://jusanhr.herokuapp.com/files/upload/${userId}`,
+      `http://164.92.192.48:8081/files/upload/${userId}`,
       formData,
       {
         headers: {
