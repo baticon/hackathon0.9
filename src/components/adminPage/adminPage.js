@@ -101,7 +101,10 @@ const UserMainPage = () => {
             <div>
               <Button
                 id={user.id}
-                style={{ backgroundColor: "#a7c957", margin: "2%" }}
+                style={{
+                  backgroundColor: "#a7c957",
+                  margin: "2%",
+                }}
               >
                 Принять кандидата
               </Button>
